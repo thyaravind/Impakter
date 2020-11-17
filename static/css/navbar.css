@@ -1,0 +1,25 @@
+
+
+
+.sidebar {
+    position: fixed;
+    float: left;
+    width: 10%;
+    background-color: #e9f7ff;
+
+  }
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+  }
+.subnav a {
+    margin-left: 8px;
+    font-size: 6px;
+  }
+
+.sidebar a:hover {
+    color: #e42e2e;
+  }
