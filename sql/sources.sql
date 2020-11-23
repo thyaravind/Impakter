@@ -10,3 +10,4 @@ Source_Url VARCHAR(250)
 );
 
 
+SELECT * FROM sources;

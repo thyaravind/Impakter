@@ -13,3 +13,6 @@ Directory_Url VARCHAR(250),
 Notes TINYTEXT
 );
 
+
+SELECT * FROM credentials;
+

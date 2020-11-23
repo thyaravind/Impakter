@@ -1,2 +1,4 @@
 /env
 /data
+/venv
+/impakter_app/config.py
