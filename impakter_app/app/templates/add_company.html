@@ -1,220 +1,26 @@
 
-<html>
+{% extends "base.html"%}
+{% import 'bootstrap/wtf.html' as wtf%}
 
-<head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/add_company.css') }}"/>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/navbar.css') }}"/>
+{% block main%}
 
+<div class = "row">
 
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="./js/bundle.min.js" type="text/javascript"></script>
-    
-    <script>
+  <div class="col-3"></div>
+  <div class="col">
+    <form method="POST" action="/">
 
-        var autocomplete = new SelectPure(".autocomplete-select", {
-          options: [
-            {
-              label: "Barbina",
-              value: "ba",
-            },
-            {
-              label: "Bigoli",
-              value: "bg",
-            },
-            {
-              label: "Bucatini",
-              value: "bu",
-            },
-            {
-              label: "Busiate",
-              value: "bus",
-            },
-            {
-              label: "Capellini",
-              value: "cp",
-            },
-            {
-              label: "Fedelini",
-              value: "fe",
-            },
-            {
-              label: "Maccheroni",
-              value: "ma",
-            },
-            {
-              label: "Spaghetti",
-              value: "sp",
-            },
-          ],
-          value: ["sp"],
-          multiple: true,
-          autocomplete: true,
-          icon: "fa fa-times",
-          onChange: value => { console.log(value); },
-          classNames: {
-            select: "select-pure__select",
-            dropdownShown: "select-pure__select--opened",
-            multiselect: "select-pure__select--multiple",
-            label: "select-pure__label",
-            placeholder: "select-pure__placeholder",
-            dropdown: "select-pure__options",
-            option: "select-pure__option",
-            autocompleteInput: "select-pure__autocomplete",
-            selectedLabel: "select-pure__selected-label",
-            selectedOption: "select-pure__option--selected",
-            placeholderHidden: "select-pure__placeholder--hidden",
-            optionHidden: "select-pure__option--hidden",
-          }
-        });
-        var resetAutocomplete = function() {
-          autocomplete.reset();
-        };
-      </script>
-    
-    
+    {{wtf.quick_form(form)}}
 
-</head>
+    </form>
+  </div>
 
-<body>
-
-{% include 'sidebar.html'%}
-
-
-<div class = 'form-style-5'>
-
-<form action = 'upload_company' method = 'post'>
-  <div class = 'column1'>
-    <fieldset>
-    <legend><span class="header">1</span>Company Details</legend>
-
-    <label for = 'company_name'>Company name</label>
-    <input type="text" name="company_name" />
-
-    <label for = 'company_url'>Company website URL</label>
-    <input type="text" name="company_url" />
-        
-    <label for = 'address'>Company address</label>
-    <textarea name = 'address' value = '' cols = '20' rows = '4'></textarea>
-    
-    <label for = 'country'>Select Country</label>
-    <select name="country">
-        <option value="USA">United States</option>
-        <option value="UK">United Kingdom</option>
-        <option value="other">OTHER</option>
-    </select>
-
-    <label for = 'stock_market'>Select Stock Market</label>
-    <select name="stock_market">
-        <option value="NASDAQ">NASDAQ</option>
-        <option value="NYSE"selected = 'selected'>NYSE</option>
-        <option value="other">OTHER</option>
-    </select>
-    
-
-
-    <label for = 'ticker'>Enter Company's Stock Ticker</label>
-    <input type="text" name="ticker" />
-
-    <label for = 'company_revenue'>Company Revenue (in billion dollars)</label>
-    <span>
-    <input type="text" name="company_revenue" />
-    Financial Year
-    <select name="financial_year">
-        <option value="2019">2019</option>
-        <option value="2018" selected = 'selected'>2018</option>
-        <option value="other">OTHER</option>
-    </select></span>
-
-    <label for = 'company_description'>Company Description</label>
-    <textarea name = 'company_description' value = '' cols = '40' rows = '10'></textarea>
-
-    <label for = 'company_description_long'>Company Description - Long</label>
-    <textarea name = 'company_description_long' value = '' cols = '40' rows = '15'></textarea>
- 
-    <label for = 'certificates'>Select all Certificates/Labels</label>
-    <select name="certificates" size="10" multiple="multiple">
-      <option value="LEED" selected="selected">LEED</option>
-      <option value="BCorp">B Corp</option>
-    </select>
-
-
-
-    </div>
-
-
-    <div class = 'column2'>
-    <legend><span class="header">2</span>Analysis</legend>
-  
-        
-        <label for = 'SDGs'>SDGs covered</label>
-        <select name="SDGs" size="5" multiple="multiple">
-        <option value="SDG1" selected="selected">SDG1</option>
-        <option value="SDG2">SDG2</option>
-        <option value="SDG3">SDG3</option>
-        <option value="SD4">SD4</option>
-        </select>
-
-        <label for = 'sustainability'>Company Sustainability Activity</label>
-        <textarea name = 'sustainability' value = '' cols = '40' rows = '10'></textarea>
-        <label for = 'sustainability_long'>Company Sustainability Activity - Long</label>
-        <textarea name = 'sustainability_long' value = '' cols = '40' rows = '10'></textarea>
-        <label for = 'critical_points'>Critical Points</label>
-        <textarea name = 'critical_points' value = '' cols = '40' rows = '10'></textarea>
-        <label for = 'notes'>Analyst Note</label>
-        <textarea name = 'notes' value = '' cols = '40' rows = '10'></textarea>
-
-        <div class = 'radio'>
-        <label for = "outlook">Outlook</label>
-        <span><input id="positive" type="radio" name="outlook"
-        value="Positive">Positive</span>
-        <span><input id="Neutral" type="radio" name="outlook"
-        value="Neutral">Neutral</span>
-        <span><input id="Negative" type="radio" name="outlook"
-        value="Negative">Negative</span>
-        </div>
-
-        <div class = 'radio'>
-        <label for = "rating">Rating</label>
-        <span><input id="A" type="radio" name="rating"
-        value="A">A - Great</span>
-        <span><input id="B" type="radio" name="rating"
-        value="B">B</span>
-        <span><input id="C" type="radio" name="rating"
-        value="C">C</span>
-        <span><input id="D" type="radio" name="rating"
-        value="D">D</span>
-        <span><input id="E" type="radio" name="rating"
-        value="E">E - failed</span>
-        </div>
-
-
-
-
-
-
-
-
-        <input type = 'submit' name = 'submit_button' value = 'update'>
-        <p>_____
-     </p>
-
-     </div>
-
-     
-
-    
-    </fieldset>
-
-    
-
-</form>
+  <div class="col-3"></div>
 
 </div>
 
 
+{% endblock %}
 
 
-</body>
 
-</html>

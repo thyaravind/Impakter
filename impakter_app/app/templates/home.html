@@ -1,19 +1,10 @@
-<html>
 
-<head>
+{% extends "base.html"%}
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/navbar.css') }}"/>
-
-</head>
+{% block main %}
 
 
-<body>
-
-{% include 'sidebar.html'%}
+{{super()}}
 
 
-
-</body>
-
-
-</html>
+{% endblock %}

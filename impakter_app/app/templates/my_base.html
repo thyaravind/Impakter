@@ -1,0 +1,41 @@
+
+<head>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <!-- link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/navbar.css') }}" -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my_sidebar.css') }}" />
+  
+</head>
+
+<body>
+
+{% block content %}
+<div class="container-fluid">
+ 
+
+        <div class = "row">
+
+            <div class = "col-2">
+            {% include 'my_sidebar.html'%}
+
+            </div>
+
+            <div class = "col">
+            {% bloack main %}
+            Main content
+            <!-- Content -->
+            {% endblock %}
+            </div>
+
+        </div>
+        
+    
+
+</div>
+
+{% endblock %}
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+</body>

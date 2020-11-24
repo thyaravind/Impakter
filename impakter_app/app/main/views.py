@@ -8,7 +8,7 @@ from mysql.connector import errorcode
 
 
 from . import main
-
+from . import forms as f
 
 kwargs = {}
 try:
@@ -31,19 +31,38 @@ except mysql.connector.Error as err:
         kwargs['status'] = f'{err}'
 
 
-@main.route('/')
+@main.route('/',methods = ['GET','POST'])
 def home():
     return render_template('home.html')
 
 
 @main.route('/add_company',methods = ['GET','POST'])
 def add_company():
+    name = None
+    form = f.CompanyForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        form.name.data=''
+    return render_template('add_company.html',form=form,name=name)
 
-    return render_template('add_company.html')
+@main.route('/add_credential',methods = ['GET','POST'])
+def add_credential():
+    name = None
+    form = f.CredentialForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        form.name.data=''
+    return render_template('add_credential.html',form=form,name=name)
 
-@main.route('/credentials',methods = ['GET','POST'])
-def credentials():
-    return render_template('credentials.html')
+@main.route('/add_source',methods = ['GET','POST'])
+def add_source():
+    name = None
+    form = f.SourceForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        form.name.data=''
+    return render_template('add_source.html',form=form,name=name)
+
 
 @main.route('/companies',methods = ['GET','POST'])
 def display_companies():

@@ -5,7 +5,12 @@ from app.models import User, Role
 from flask_migrate import Migrate
 
 
-get_config_mode = 'development'
 
-app = create_app(get_config_mode.capitalize())
+app = create_app()
+app.app_context().push()
 migrate = Migrate(app,db)
+
+@app.shell_context_processor
+def make_shell_context():
+    return dict(db=db,User=User,Role=Role)
+

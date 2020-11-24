@@ -1,0 +1,183 @@
+<form action = 'upload_company' method = 'post'>
+
+  <div class='row'>
+
+    <div class = 'col form-group' '>
+    
+    <legend><span class="header">1</span>Company Details</legend>
+
+    <div class = 'row'>
+    <label for = 'company_name'>Company name</label>
+    <input type="text" name="company_name" />
+    </div>
+
+    <div class = 'row'>
+    <label for = 'company_url'>Company website URL</label>
+    <input type="text" name="company_url" />
+    </div>
+      
+    <div class = 'row'>
+    <label for = 'address'>Company address</label>
+    <textarea name = 'address' value = '' cols = '20' rows = '4'></textarea>
+    </div>
+
+    <div class = 'row'>
+    <label for = 'country'>Select Country</label>
+    <select name="country">
+        <option value="USA">United States</option>
+        <option value="UK">United Kingdom</option>
+        <option value="other">OTHER</option>
+    </select>
+    </div>
+
+
+    <div class = 'row'>
+    <label for = 'stock_market'>Select Stock Market</label>
+    <select name="stock_market">
+        <option value="NASDAQ">NASDAQ</option>
+        <option value="NYSE"selected = 'selected'>NYSE</option>
+        <option value="other">OTHER</option>
+    </select>
+    </div>
+
+
+    <label for = 'ticker'>Enter Company's Stock Ticker</label>
+    <input type="text" name="ticker" />
+
+    <label for = 'company_revenue'>Company Revenue (in billion dollars)</label>
+    <span>
+    <input type="text" name="company_revenue" />
+    Financial Year
+    <select name="financial_year">
+        <option value="2019">2019</option>
+        <option value="2018" selected = 'selected'>2018</option>
+        <option value="other">OTHER</option>
+    </select></span>
+
+    <label for = 'company_description'>Company Description</label>
+    <textarea name = 'company_description' value = '' cols = '40' rows = '10'></textarea>
+
+    <label for = 'company_description_long'>Company Description - Long</label>
+    <textarea name = 'company_description_long' value = '' cols = '40' rows = '15'></textarea>
+ 
+    <label for = 'certificates'>Select all Certificates/Labels</label>
+    <select name="certificates" size="10" multiple="multiple">
+      <option value="LEED" selected="selected">LEED</option>
+      <option value="BCorp">B Corp</option>
+    </select>
+
+
+
+    </div>
+
+
+    <div class = 'col'>
+    <legend><span class="header">2</span>Analysis</legend>
+  
+        
+        <label for = 'SDGs'>SDGs covered</label>
+        <select name="SDGs" size="5" multiple="multiple">
+        <option value="SDG1" selected="selected">SDG1</option>
+        <option value="SDG2">SDG2</option>
+        <option value="SDG3">SDG3</option>
+        <option value="SD4">SD4</option>
+        </select>
+
+        <label for = 'sustainability'>Company Sustainability Activity</label>
+        <textarea name = 'sustainability' value = '' cols = '40' rows = '10'></textarea>
+        <label for = 'sustainability_long'>Company Sustainability Activity - Long</label>
+        <textarea name = 'sustainability_long' value = '' cols = '40' rows = '10'></textarea>
+        <label for = 'critical_points'>Critical Points</label>
+        <textarea name = 'critical_points' value = '' cols = '40' rows = '10'></textarea>
+        <label for = 'notes'>Analyst Note</label>
+        <textarea name = 'notes' value = '' cols = '40' rows = '10'></textarea>
+
+        <div class = 'radio'>
+        <label for = "outlook">Outlook</label>
+        <span><input id="positive" type="radio" name="outlook"
+        value="Positive">Positive</span>
+        <span><input id="Neutral" type="radio" name="outlook"
+        value="Neutral">Neutral</span>
+        <span><input id="Negative" type="radio" name="outlook"
+        value="Negative">Negative</span>
+        </div>
+
+        <div class = 'radio'>
+        <label for = "rating">Rating</label>
+        <span><input id="A" type="radio" name="rating"
+        value="A">A - Great</span>
+        <span><input id="B" type="radio" name="rating"
+        value="B">B</span>
+        <span><input id="C" type="radio" name="rating"
+        value="C">C</span>
+        <span><input id="D" type="radio" name="rating"
+        value="D">D</span>
+        <span><input id="E" type="radio" name="rating"
+        value="E">E - failed</span>
+        </div>
+
+
+
+
+
+
+
+
+        <input type = 'submit' name = 'submit_button' value = 'update'>
+        <p>_____
+     </p>
+
+    </div>
+
+    
+  </div>
+
+    
+
+</form>
+
+
+<!-- new form-->
+
+<div class = "row">
+  <div class = "col">
+    {{ form.hidden_tag() }}
+
+    <div class="row">
+    {{ form.name.label }} {{ form.name(size=20) }}
+    </div>
+
+    
+    <div class="row">
+    {{ form.address.label }} {{ form.address(size=20) }}
+    </div>
+
+    <div class="row">
+      {{ form.company_url.label }} {{ form.company_url(size=30) }}
+    </div>
+
+    <div class="row form-inline">
+      {{ form.stock_market.label }} <span>{{ form.stock_market }}</span>
+      {{ form.ticker.description }} {{ form.ticker(size=10) }}
+    </div>
+
+    <div class="row">
+      {{ form.company_url.label }} {{ form.company_url(size=30) }}
+    </div>
+
+    <div class="row">
+      {{ form.company_url.label }} {{ form.company_url(size=30) }}
+    </div>
+
+
+  </div>
+
+
+  <div class = "col form-group">
+    {{ form.name.label }} {{ form.name(size=20) }}
+
+
+
+  </div>
+
+</div>
