@@ -11,12 +11,6 @@ class CredentialForm(FlaskForm):
     specificity = RadioField('Specificity',choices=['Specific','Generic'],validate_choice=True,default='Generic')
     source_url = StringField('Source website URL',validators=[InputRequired(),URL()])
 
-
-
-
-
-
-
     submit = SubmitField('Submit')
 
 
@@ -42,7 +36,7 @@ class CompanyForm(FlaskForm):
     address = StringField('Address of the Company',validators=[InputRequired()])
     company_url = StringField('Company website URL',validators=[InputRequired(),URL()])
     revenue = StringField('Revenue in USD',validators=[InputRequired()])
-    stock_market = SelectField('Select Stock Market',choices=['NASDAQ','NYSE'],validate_choice=True,default='NASDAQ')
+    financial_year = SelectField('Financial Year',choices=[2019,2018,2017],validate_choice=True,default=2019)
     country = SelectField('Select Country',choices=['United States','United Kingdom'],validate_choice=True,default='United States')
     stock_market = SelectField('Select Stock Market',choices=['NASDAQ','NYSE'],validate_choice=True,default='NASDAQ')
     ticker = StringField("Company's stock ticker",validators=[InputRequired()],description = 'description',id=None,widget=None)
@@ -58,6 +52,15 @@ class CompanyForm(FlaskForm):
     sustainability_long = TextAreaField("Company's Sustainability Long",default = '', validators=[InputRequired()],description = 'description',id=None,widget=None)
     #sdgs = SelectMultipleField('Select SDGs',choices=['SDG 1','SDG 2'])
     critical_points = TextAreaField("Critical Points",default = '', validators=[InputRequired()],description = 'description',id=None,widget=None)
+    notes = TextAreaField("Analyst's Notes",default = '', validators=[InputRequired()],description = 'description',id=None,widget=None)
     outlook = RadioField(label = "Outlook",default = 'Positive', choices=['Positive','Neutral','Negative'], validators=[InputRequired()],description = 'description',id=None,widget=None)
     rating = RadioField(label = "Rating",default = 'C', choices=['A - Extraordinary','B','C','D','E - fail'], validators=[InputRequired()],description = 'description',id=None,widget=None)
     submit = SubmitField('Submit')
+
+
+class UserForm(FlaskForm):
+    username = StringField('Create a username',validators=[InputRequired()])
+    first_name = StringField('Enter your first Name',validators=[InputRequired()])
+    last_name = StringField('Enter your first Name',validators=[InputRequired()])
+    submit = SubmitField('Submit')
+

@@ -11,19 +11,19 @@
 <table class = "table" style="width:100%"> 
     <thead> 
     <tr> 
-        <th>Credential Name</th> 
-        <th>Credential Type</th>
-        <th>Is Essential?</th>
-        <th>Level of Credibility</th>
-        <th>Specificity</th>
-        <th>Industries</th>
+        <th>Username</th> 
+        <th>Name</th>
+        <th>Revenue</th>
+        <th>Country</th>
+        <th>Ticker</th>
+        <th>Rating</th>
     </tr> 
     </thead> 
     <tbody> 
-        {% for record in table %}  
+        {% for user in users %}  
             <tr> 
-                <td>{{record.username}}</td> 
-                <td>{{record.name}}</td>
+                <td>{{user.username}}</td> 
+                <td>{{user.name}}</td>
             </tr> 
         {% endfor %} 
     </tbody> 

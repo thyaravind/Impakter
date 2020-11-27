@@ -1,0 +1,24 @@
+{% extends "base.html"%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{% block main%}
+
+<div class = "row">
+
+  <div class="col-3"></div>
+
+    <div class="col">
+
+      {% block form %}
+      <form method="POST" action="updated">
+          
+        {{wtf.quick_form(form)}}
+        </form>
+      {% endblock %}
+    </div>
+
+  <div class="col-3"></div>
+  
+</div>
+  
+{% endblock %}
