@@ -17,11 +17,11 @@ class CredentialForm(FlaskForm):
 
 class SourceForm(FlaskForm):
     name = StringField('Name of the source',validators=[InputRequired()])
-    source_type = SelectField('Select Type',choices=['Research Report','News Publication','Other'],validate_choice=True,default='Certificate')
-    level_of_credibility = SelectField('Level of Credibility',choices=['FirstHand','Tier-1','Tier-2','Tier-3','Tier-4'],validate_choice=True,default='Tier-1')
-    period_of_release = SelectField('Period of release',choices=['Real-time', 'Daily', 'Weekly', 'Monthly', 'Annual', 'Occasional'],validate_choice=True,default='Real-time')
+    type = SelectField('Select Type',choices=['Research Report','News Publication','Other'],validate_choice=True,default='Certificate')
+    rating = SelectField('Level of Credibility',choices=['FirstHand','Tier-1','Tier-2','Tier-3','Tier-4'],validate_choice=True,default='Tier-1')
+    update_frequency = SelectField('Period of release',choices=['Real-time', 'Daily', 'Weekly', 'Monthly', 'Annual', 'Occasional'],validate_choice=True,default='Real-time')
     specificity = RadioField('Specificity',choices=['Specific','Generic'],validate_choice=True,default='Generic')
-    source_url = StringField('Source website URL',validators=[InputRequired(),URL()])
+    url = StringField('Source website URL',validators=[InputRequired(),URL()])
     #todo industries multiselect
 
 
@@ -33,8 +33,10 @@ class SourceForm(FlaskForm):
 
 class CompanyForm(FlaskForm):
     name = StringField('Name of the Company',validators=[InputRequired()])
+    industry = SelectField('Select Industry',choices=['A','B'],validate_choice=True,default='A')
+    status = SelectField('Mark Status',choices=['To double check','To triple check'],validate_choice=True)
     address = StringField('Address of the Company',validators=[InputRequired()])
-    company_url = StringField('Company website URL',validators=[InputRequired(),URL()])
+    url = StringField('Company website URL',validators=[InputRequired(),URL()])
     revenue = StringField('Revenue in USD',validators=[InputRequired()])
     financial_year = SelectField('Financial Year',choices=[2019,2018,2017],validate_choice=True,default=2019)
     country = SelectField('Select Country',choices=['United States','United Kingdom'],validate_choice=True,default='United States')
@@ -63,4 +65,3 @@ class UserForm(FlaskForm):
     first_name = StringField('Enter your first Name',validators=[InputRequired()])
     last_name = StringField('Enter your first Name',validators=[InputRequired()])
     submit = SubmitField('Submit')
-

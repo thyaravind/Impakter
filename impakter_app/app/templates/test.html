@@ -1,10 +1,10 @@
 {% extends "base.html"%}
 {% import 'bootstrap/wtf.html' as wtf%}
 
-
 {% block main%}
-<div class = "alert alert-success">{{ status }}</div>
-{{user}}
-<p>what a waste</p>
+
+{{table}}
+{{asked}}
+<a class="page-link" href="/show/1" aria-label="Next"></a>
 
 {% endblock %}

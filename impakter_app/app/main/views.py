@@ -16,52 +16,90 @@ def home():
     return render_template('home.html')
 
 
-@main.route('/add_user',methods = ['GET','POST'])
-def add_user():
-    form = UserForm()
-    status = 'connection active'
-    if form.validate_on_submit():
-        user = User(username = form.username.data,name = form.first_name.data + ' ' + form.last_name.data)
-        db.session.add(user)
-        db.session.commit()
-        added_user = User.query.filter_by(username=form.username.data).first()
-        status = f'{added_user.name} is added to db'
-        return render_template('updated.html', status = status)
-    return render_template('add.html',form = form)
+@main.route('/add/<requested_item>',methods = ['GET','POST'])
+def add_user(requested_item):
+    item = requested_item
+
+    if requested_item == 'user':
+        form = UserForm()
+        status = 'connection active'
+        if form.validate_on_submit():
+            new_record = User(username = form.username.data,name = form.first_name.data + ' ' + form.last_name.data)
+            try:
+                db.session.add(new_record)
+                db.session.commit()
+                added_record = User.query.filter_by(username=form.username.data).first()
+                status = f'Successfully added {added_record.name} to database'
+            except:
+                status = "Unable to add the record to database. Please contact admin"
+
+            form = UserForm()
+            return render_template('add.html', status = status,form = form,item=item)
+
+    if requested_item == 'source':
+        form = SourceForm()
+        status = 'connection active'
+        if form.validate_on_submit():
+            new_record = Source(name = form.name.data,type = form.type.data,rating = form.rating.data)
+            try:
+                db.session.add(new_record)
+                db.session.commit()
+                added_record = Source.query.filter_by(name=form.name.data).first()
+                status = f'Successfully added {added_record.name} to database'
+            except:
+                status = "Unable to add the record to database. Please contact admin"
+
+            form = SourceForm()
+            return render_template('add.html', status = status,form = form,item = item)
+
+    if requested_item == 'company':
+        form = CompanyForm()
+        status = 'connection active'
+        if form.validate_on_submit():
+            new_record = Company(name = form.name.data,
+            address = form.address.data,company_url = form.url.data,revenue = form.revenue.data,
+            financial_year = form.financial_year.data,country = form.country.data,
+            stock_market = form.stock_market.data,ticker = form.ticker.data,
+            company_desc = form.company_desc.data,company_desc_long= form.company_desc_long.data,
+            rating = form.rating.data)
+            try:
+                db.session.add(new_record)
+                db.session.commit()
+                added_record = Company.query.filter_by(name=form.name.data).first()
+                status = f'Successfully added {added_record.name} to database'
+            except:
+                status = "Unable to add the record to database. Please contact admin"
+
+            form = CompanyForm()
+            return render_template('add.html', status = status,form = form,item = item)     
+
+    if requested_item == 'credential':
+        form = CredentialForm()
+        status = 'connection active'
+        if form.validate_on_submit():
+            new_record = Credential(name = form.name.data,type = form.type.data,rating = form.rating.data)
+            try:
+                db.session.add(new_record)
+                db.session.commit()
+                added_record = Credential.query.filter_by(name=form.name.data).first()
+                status = f'Successfully added {added_record.name} to database'
+            except:
+                status = "Unable to add the record to database. Please contact admin"
+
+            form = CredentialForm()
+            return render_template('add.html', status = status,form = form,item = item) 
+
+    return render_template('add.html',form = form,item = item)
 
 
 @main.route('/add_company',methods = ['GET','POST'])
 def add_company():
-    name = None
     form = CompanyForm()
     status = 'connection active'
     if form.validate_on_submit():
-        info = {}
-        
-        info = {
-            'id': form.name.data+form.ticker.data,
-            'company_name': form.name.data,
-            'company_url': form.company_url.data,
-            'address': form.address.data,
-            'country': form.country.data,
-            'stock_market':form.stock_market.data,
-            'ticker': form.ticker.data,
-            'revenue': form.revenue.data,
-            'financial_year': form.financial_year.data,
-            'desc': form.company_desc.data,
-            'desc_long': form.company_desc_long.data,
-            'sus': form.sustainability.data,
-            'sus_long': form.sustainability_long.data,
-            'critical_points': form.critical_points.data,
-            'outlook':form.outlook.data,
-            'notes':form.notes.data,
-            'rating':form.rating.data
-        }
-
-
         name = form.name.data
         form.name.data=''
-    return render_template('add.html',form=form)
+    return render_template('add.html',form=form,name= name)
 
 @main.route('/add_credential',methods = ['GET','POST'])
 def add_credential():
@@ -81,28 +119,58 @@ def add_source():
         form.name.data=''
     return render_template('add.html',form=form)
 
+@main.route('/show/<requested_item>/<int:page>',methods = ['GET','POST'])
+def show(requested_item,page):
+    if requested_item == 'companies':
+        table = Company.query.all()[page:page+10]
+        item = requested_item
+        return render_template('companies.html',table = table,item = item)
+
+    if requested_item == 'users':
+        table = User.query.all()[page:page+10]
+        item = requested_item
+        return render_template('users.html',table = table,item = item)
+
+    if requested_item == 'sources':
+        table = Source.query.all()[page:page+10]
+        item = requested_item
+        return render_template('sources.html',table = table,item = item)
+
+    if requested_item == 'credentials':
+        x= page
+        table = Credential.query.all()[page:page+10]
+        item = requested_item
+        return render_template('credentials.html',table = table,item = item)
+    
+    return render_template('home.html',**kwargs)
+
+
 
 @main.route('/users',methods = ['GET','POST'])
 def users():
-    userTable = User.query.all()
+    userTable = User.query.all()[1:3]
     status = 'retrieved'
     return render_template('users.html',table = userTable, status = status)
 
 
+@main.route('/sources',methods = ['GET','POST'])
+def sources():
+    sourceTable = Source.query.all()
+    status = 'retrieved'
+    return render_template('sources.html',table = sourceTable, status = status)
 
 
 @main.route('/companies',methods = ['GET','POST'])
 def companies():
     companyTable = Company.query.all()
-    
-
-    return render_template('companies.html',value = data,status = kwargs['status'])
+    status = 'retrieved'
+    return render_template('companies.html',table = companyTable, status = status)
 
 @main.route('/credentials',methods = ['GET','POST'])
-def companies():
-    credentialTable = m.User.query.all()
+def credentials():
+    credentialTable = Credential.query.all()
     status = 'retrieved'
-    return render_template('credentials.html',table = userTable, status = status)
+    return render_template('credentials.html',table = credentialTable, status = status)
 
 @main.route('/research',methods = ['GET','POST'])
 def research():

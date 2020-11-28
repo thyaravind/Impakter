@@ -10,9 +10,11 @@
     <div class="col">
 
       {% block form %}
-      <form method="POST" action="updated">
+      <div class = "alert alert-success">{{ status }}</div>
+      <form method="POST" action="http://127.0.0.1:5000/add/{{item}}">
           
         {{wtf.quick_form(form)}}
+
         </form>
       {% endblock %}
     </div>
