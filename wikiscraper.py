@@ -4,7 +4,7 @@ import requests
 
 
 
-url = 'https://en.wikipedia.org/wiki/Apple_Inc.'
+url = 'https://en.wikipedia.org/wiki/Amazon_(company)'
 try:
     response = requests.get(url)
     print(response.status_code)
@@ -26,3 +26,5 @@ revenue = wiki_sidebox.find(string = 'Revenue').find_parent('tr').find('td').tex
 
 employees = wiki_sidebox.find(string = 'Number of employees').find_parent('tr').find('td').text
 
+
+print(f"company_url:{company_url},\n employees: {employees},\n revenue: {revenue},\n stock_ticker: {stock_ticker},\n employees: {employees}")

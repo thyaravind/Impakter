@@ -1,4 +1,4 @@
-from config import DevConfig
+from ..config import DevConfig
 
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap

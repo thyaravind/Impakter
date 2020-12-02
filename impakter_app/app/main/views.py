@@ -3,6 +3,7 @@ import os.path
 import json
 from werkzeug.utils import secure_filename
 
+
 from ..models import User,Credential,Company,Source
 from .. import db
 from . import main
@@ -13,7 +14,24 @@ kwargs = {}
 
 @main.route('/',methods = ['GET','POST'])
 def home():
-    return render_template('home.html')
+    if request.method == 'POST':
+        if request.form['submit_button'] == 'fetch':
+            if request.form['source'] == 'reuters':
+                if request.form['keyword'] == 'ESG':
+                    with open('/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/reuters.json','r') as f:
+                        dictt = json.load(f)
+                if request.form['keyword'] == 'Finance':
+                    with open('/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/reuters_finance.json','r') as f:
+                        dictt = json.load(f)                
+
+            elif request.form['source'] == 'ecowatch':
+                with open('/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/ecowatch_sustainability.json','r') as f:
+                        dictt = json.load(f)
+    else:
+        dictt = {'Impakter':'https://impakter.com'}
+        """with open('/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/reuters.json','r') as f:
+            dictt = json.load(f)"""
+    return render_template('home.html',dictt=dictt)
 
 
 @main.route('/add/<requested_item>',methods = ['GET','POST'])
