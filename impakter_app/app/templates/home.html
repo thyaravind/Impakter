@@ -5,17 +5,19 @@
 
 
 {{super()}}
+
 <form action = '/' method = 'POST'>
-<div class = 'row'>
+<span class = 'row' style="margin:5px">
     <label for = 'source'>Filter by Source</label>
     <select name="source">
         <option value="ecowatch">Ecowatch</option>
-        <option value="reuters"selected = 'selected'>Reuters</option>
+        <option value="reuters">Reuters</option>
+        <option value="None">All</option>
         <option value="other">OTHER</option>
     </select>
-</div>
+</span>
 
-<div class = 'row'>
+<span class = 'row' style="margin:5px">
     <label for = 'keyword'>Filter by Keyword</label>
     <select name="keyword">
         <option value="Finance">Finance</option>
@@ -23,11 +25,12 @@
         <option value="other">OTHER</option>
     </select>
 
-</div>
+</span>
 
 <input type = 'submit' name = 'submit_button' value = 'fetch'>
 
 </form>
+<h2>{{title}}</h2>
 {% for article,link in dictt.items() %}
 
 <div style="margin:5px">

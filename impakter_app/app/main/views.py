@@ -18,20 +18,24 @@ def home():
         if request.form['submit_button'] == 'fetch':
             if request.form['source'] == 'reuters':
                 if request.form['keyword'] == 'ESG':
-                    with open('/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/reuters.json','r') as f:
+                    with open('/data/reuters.json', 'r') as f:
                         dictt = json.load(f)
+                    title = "Reuters - ESG"  
                 if request.form['keyword'] == 'Finance':
-                    with open('/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/reuters_finance.json','r') as f:
-                        dictt = json.load(f)                
+                    with open('/data/reuters_business.json', 'r') as f:
+                        dictt = json.load(f)
+                    title = "Reuters - Business"                
 
             elif request.form['source'] == 'ecowatch':
-                with open('/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/ecowatch_sustainability.json','r') as f:
-                        dictt = json.load(f)
+                with open('/data/ecowatch_sustainability.json', 'r') as f:
+                    dictt = json.load(f)
+                title = "EcoWatch" 
     else:
         dictt = {'Impakter':'https://impakter.com'}
         """with open('/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/reuters.json','r') as f:
             dictt = json.load(f)"""
-    return render_template('home.html',dictt=dictt)
+        title = "Title"
+    return render_template('home.html',dictt=dictt,title = title)
 
 
 @main.route('/add/<requested_item>',methods = ['GET','POST'])
