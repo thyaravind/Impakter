@@ -72,7 +72,7 @@ def add_company():
             cursor.execute(sql_query, info)
             connection.commit()
             connection.close()
-            status =  f'Connected and uploaded {form.name.data} data'
+            status =  f'Connected and uploaded {form.name.data} ProjectData'
         except:
             status =  'Unable to execute the commit'
 
@@ -124,7 +124,7 @@ def display_companies():
         cursor.execute("select * from companies") 
         data = cursor.fetchall()
         connection.close()
-        kwargs['status'] = 'Fetched data successfully'
+        kwargs['status'] = 'Fetched ProjectData successfully'
     except:
         kwargs['status'] =  'Unable to execute'
 
@@ -195,7 +195,7 @@ def upload_company():
                 cursor.execute(sql_query, info)
                 connection.commit()
                 connection.close()
-                kwargs['status'] =  'Connected and updated data'
+                kwargs['status'] =  'Connected and updated ProjectData'
             except:
                 kwargs['status'] =  'Unable to execute the commit'
                 

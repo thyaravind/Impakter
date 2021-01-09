@@ -57,7 +57,7 @@ def scrap(source_link,number_of_pages):
 
     articles_dictionary
 
-    with open('../data/news_sources/greenbiz_sustainability.json', 'w') as f:
+    with open('../../data/scrapingData/news_sources/greenbiz_sustainability.json', 'w') as f:
         json.dump(articles_dictionary, f)
 
 scrap(source_link,number_of_pages)

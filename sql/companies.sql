@@ -27,3 +27,12 @@ ADD COLUMN Rating ENUM('A','B','C','D','E');
 
 
 SELECT * FROM companies;
+
+---SQlite
+
+drop table if exists companies_temp;
+create table companies_temp
+(
+    companyID   integer primary key autoincrement,
+    name        varchar(100)
+);

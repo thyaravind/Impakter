@@ -30,7 +30,7 @@ try:
     }
     cursor.execute(sql_query, info)
     connection.commit()
-    print('data updated')
+    print('ProjectData updated')
     connection.close()
 
 except mysql.connector.Error as err:

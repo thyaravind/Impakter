@@ -14,20 +14,21 @@ kwargs = {}
 
 @main.route('/',methods = ['GET','POST'])
 def home():
+    db.create_all()
     if request.method == 'POST':
         if request.form['submit_button'] == 'fetch':
             if request.form['source'] == 'reuters':
                 if request.form['keyword'] == 'ESG':
-                    with open('/data/reuters.json', 'r') as f:
+                    with open('/ProjectData/reuters.json', 'r') as f:
                         dictt = json.load(f)
                     title = "Reuters - ESG"  
                 if request.form['keyword'] == 'Finance':
-                    with open('/data/reuters_business.json', 'r') as f:
+                    with open('/ProjectData/reuters_business.json', 'r') as f:
                         dictt = json.load(f)
                     title = "Reuters - Business"                
 
             elif request.form['source'] == 'ecowatch':
-                with open('/data/ecowatch_sustainability.json', 'r') as f:
+                with open('/ProjectData/ecowatch_sustainability.json', 'r') as f:
                     dictt = json.load(f)
                 title = "EcoWatch" 
     else:
@@ -194,9 +195,6 @@ def credentials():
     status = 'retrieved'
     return render_template('credentials.html',table = credentialTable, status = status)
 
-@main.route('/research',methods = ['GET','POST'])
-def research():
-    return render_template('research.html')
 
 
 @main.route('/upload_company',methods = ['GET','POST'])

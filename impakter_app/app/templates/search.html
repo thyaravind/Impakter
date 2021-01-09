@@ -1,0 +1,69 @@
+{% extends "base.html"%}
+
+
+
+
+
+{% block main %}
+
+
+<div class="row">
+
+    <div class="col-1"></div>
+
+    <div class="col">
+
+        {% block form %}
+
+        <form action='/search_results' method='post'>
+
+
+
+
+            <div class='col form-group' '>
+                
+                <legend><span class="header"></span>Search</legend>
+            
+                <div class = ' col'>
+                <label for='company_name'>Company name</label>
+                <input type="text" name="company_name" />
+            </div>
+
+            <div class='col'>
+                <label for='company_wiki_url'>Company wiki URL</label>
+                <input type="text" name="company_wiki_url" />
+            </div>
+
+            <div class='col'>
+                <label for='keywords'>Keywords</label>
+                <input type="text" name="keywords" />
+            </div>
+
+
+
+            <div class='col'>
+                <label for='country'>Select Type</label>
+                <select name="country">
+                    <option value="USA">Company</option>
+                    <option value="UK">Credential</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+    </div>
+
+    <input type='submit' name='submit_button' value='search'>
+
+    </form>
+
+
+
+    {% endblock %}
+</div>
+
+<div class="col-1"></div>
+
+
+
+
+{% endblock %}

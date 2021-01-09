@@ -47,7 +47,7 @@ for x in range(1):
         break
 dictt = {}
 dictt = dict(zip(headlines, news_links))
-with open('../data/news_sources/ecowatch_sustainability.json', 'w') as f:
+with open('../../data/scrapingData/news_sources/ecowatch_sustainability.json', 'w') as f:
     json.dump(dictt,f)
 
 print(headlines)

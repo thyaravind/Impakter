@@ -1,5 +1,5 @@
 /env
-/data
+/ProjectData
 /venv
 /impakter_app/config.py
 .DS_Store

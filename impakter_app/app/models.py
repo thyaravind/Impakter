@@ -64,3 +64,17 @@ class Source(db.Model):
     industries = db.Column(db.Text)
     url = db.Column(db.String(64))
     update_frequency = db.Column(db.String(64))
+
+
+
+class Article(db.Model):
+    __tablename__ = 'articles'
+    id = db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String(64))
+    type = db.Column(db.String(64))
+    specificity = db.Column(db.String(64))
+    industries = db.Column(db.Text)
+    url = db.Column(db.String(64))
+
+
+
