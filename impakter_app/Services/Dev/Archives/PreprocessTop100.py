@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import sqlite3
 
-companies_df = pd.read_csv("../../../ProjectData/Top100BrandsData.csv")
+companies_df = pd.read_csv("../../../../ProjectData/Top100BrandsData.csv")
 
 
 '''
@@ -25,7 +25,7 @@ st.write(df)
 
 '''
 
-sqlite_file = '/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/impakter_app/data.sqlite'
+sqlite_file = '/impakter_app/data.sqlite'
 cnx = sqlite3.connect(sqlite_file)
 c = cnx.cursor()
 

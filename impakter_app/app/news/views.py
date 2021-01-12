@@ -25,7 +25,7 @@ def research_results():
             kwargs["sic_tables"]=[probable_sic.to_html(classes='ProjectData',index=False)]
             kwargs["sic_titles"]=probable_sic.columns.values
             if request.form['company_wiki_url']:
-                _, wiki_data = company.wiki_data()
+                _, wiki_data = company.get_wiki_data()
         except Exception as e:
             kwargs["status"] = f"Error {e} occured while using CompanyRetriever"
         else:

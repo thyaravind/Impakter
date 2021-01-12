@@ -1,0 +1,1 @@
+# todo first add www.. then check for duplicates and delete duplicates by updating articles

@@ -8,17 +8,20 @@ import pandas as pd
 import requests
 
 
-
 class CompanyProcessor:
+    """
+    Processes Company, fetches data from various resources
 
-
-    def __init__(self,company= 'na',wiki_url = 'na'):
+    """
+    def __init__(self, company='na', wiki_url='na'):
         self.__company = company
         self.__wiki_url = wiki_url
 
+    def get_wiki_data(self):
+        """
 
-    def wiki_data(self):
-
+        :return:
+        """
         try:
             response = requests.get(self.__wiki_url)
             print(response.status_code)
@@ -44,67 +47,34 @@ class CompanyProcessor:
 
         return status, output
 
-
-
-
-    def GetForbes2000(self):
-
-        headers = {
-            "accept": "application/json, text/plain, */*",
-            "referer": "https://www.forbes.com/global2000/",
-            "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36",
-        }
-
-        cookies = {
-            "notice_behavior": "expressed,eu",
-            "notice_gdpr_prefs": "0,1,2:1a8b5228dd7ff0717196863a5d28ce6c",
-        }
-
-        api_url = "https://www.forbes.com/forbesapi/org/global2000/2020/position/true.json?limit=2000"
-        response = requests.get(api_url, headers=headers, cookies=cookies).json()
-
-        sample_table = [
-            [
-                item["organizationName"],
-                item["country"],
-                item["revenue"],
-                item["profits"],
-                item["assets"],
-                item["marketValue"]
-            ] for item in
-            sorted(response["organizationList"]["organizationsLists"], key=lambda k: k["position"])
-        ]
-
-        df = pd.DataFrame(sample_table, columns=["Company", "Country", "Revenue", "Profits", "Assets", "Market Value"])
-        df.to_csv(f"ProjectData/lists/forbes_2020.csv", index=False)
-
-
     def is_forbes_2000(self):
+        """
+        Checks if a company is in Forbes 2000 list
 
+        :return:
+        """
         data = pd.read_csv("app/Services/ProjectData/lists/forbes_2020.csv")
         data = data[data['Company'].str.match(self.__company)]
 
         return not data.empty
 
-
     def get_sic_code(self):
+        """
+        Returns the probable list SIC codes for a given company
+
+        :return:
+        """
         data = pd.read_csv("app/Services/ProjectData/company_sic_database.csv")
         search_string = self.__company.upper()
         data = data[data['COMPANY'].str.upper().str.contains(search_string, regex=False)]
         data.drop(columns=['CIK'], inplace=True)
         return data
 
-
-'''
     def process(self):
+        """
+        Processes a newly added company
+        :return:
+        """
         wiki_status, wiki_output = self.wikiScraper(self)
         is_forbes_2000 = self.IsForbes2000(self)
-        return wiki_status,wiki_output,is_forbes_2000
-
-'''
-
-
-
-
-
-
+        return wiki_status, wiki_output, is_forbes_2000
