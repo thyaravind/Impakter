@@ -57,14 +57,14 @@ class News:
         self.__num_of_pages = None
         self.__categories = pd.read_sql('select categoryID,name from category_types', self.cnx)
         self.__companies = pd.read_sql('select companyID,name from companies_temp', self.cnx)
-        self.__sources = pd.read_sql('select sourceID,name,url from sources', self.cnx)
+        self.__sources = pd.read_sql('select sourceID,name,source_url from sources', self.cnx)
 
-    def fetch(self, start_date='', end_date=datetime.datetime.now(), company='', keyword='General', num_of_results=30,
+    def fetch(self, start_date='', end_date=datetime.datetime.now(), company='', keyword='General', num_of_results=500,
               period=''):
         """
         Sequence of methods when articles are to be fetched
         """
-        self.__sources = pd.read_sql('select sourceID,name,url from sources', self.cnx)
+        self.__sources = pd.read_sql('select sourceID,name,source_url from sources', self.cnx)
         self.start_date = start_date
         self.__end_date = end_date
         self.__period = period
@@ -72,7 +72,6 @@ class News:
         self.__keyword = keyword
         self.__search_string = company + " company " + keyword
         self.__num_of_pages = int(num_of_results / 10)
-
 
         articles = self.google()
         if not articles.empty:
@@ -118,7 +117,7 @@ class News:
         """
         pass
 
-    def process_source(self, source, article_url):
+    def process_source(self, article_url):
         """
         processes each source
 
@@ -128,14 +127,13 @@ class News:
         source_url = urlparse(article_url).netloc
         if not source_url.startswith("www."):
             source_url = "www." + source_url
-        if source == '':
-            source = "Unknown"
-        if source not in set(self.__sources.name) or source_url not in set(self.__sources.url):
+        source = source_url[4:]
+        if source_url not in set(self.__sources.source_url):
             source = str(source)
-            self.cursor.execute("insert into sources (name,url) values (?,?)", (source, source_url))
+            self.cursor.execute("insert into sources (name,source_url) values (?,?)", (source, source_url))
             self.cnx.commit()
-            self.__sources = pd.read_sql('select sourceID,name from sources', self.cnx)
-        return source_url
+            self.__sources = pd.read_sql('select sourceID,name,source_url from sources', self.cnx)
+        return source, source_url
 
     def process_articles(self, raw_article_df):
         """
@@ -154,9 +152,8 @@ class News:
         for ind in raw_article_df.index:
             print(f"processing article:{ind}")
             article_id = str(Simhash(raw_article_df['url'][ind]).value)
-            source = raw_article_df['source'][ind]
             article_url = raw_article_df['url'][ind]
-            source_url = self.process_source(source, article_url)
+            source, source_url = self.process_source(article_url)
 
             if article_id in set(previous_articles.articleID) or article_id in set(article_df.id):
                 continue
@@ -174,7 +171,7 @@ class News:
                     article_df.at[i, 'url'] = raw_article_df['url'][ind]
                     article_df.at[i, 'datetime'] = str(raw_article_df['datetime'][ind])
                     article_df.at[i, 'source_id'] = np.int64(
-                        self.__sources.loc[self.__sources['url'] == source_url].reset_index().at[
+                        self.__sources.loc[self.__sources['source_url'] == source_url].reset_index().at[
                             0, 'sourceID'])
                     article_df.at[i, 'summary'] = str(article.summary)
                     article_df.at[i, 'keywords'] = str(article.keywords)
@@ -212,6 +209,6 @@ class News:
 
                 self.cursor.execute("insert into article_company (articleID,companyID) values (?,?)",
                                     (article_df.at[ind, 'id'], article_df.at[ind, 'company_id']))
-                print(f"Added articles for {self.__company} to the database")
+            print(f"Added articles for {self.__company} to the database")
         except Exception as sql_error:
             print(f"error occurred during sql commit with error {sql_error}")  # todo logs

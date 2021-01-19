@@ -1,0 +1,26 @@
+{
+  "name": "certificate_backend",
+  "version": "1.0.0",
+  "description": "Impakter Certificate Tool backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "n"
+  },
+  "keywords": [
+    "impakter",
+    "certificate"
+  ],
+  "author": "Aravind Samala",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.12",
+    "nodemon": "^2.0.7"
+  }
+}

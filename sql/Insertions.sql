@@ -32,3 +32,5 @@ select url from articles where sourceID = 1  limit 1;
 update sources set url = "www.apple.com" where sourceID = 1
 
 select sourceID,name,url from sources
+
+alter table sources rename column url to source_url
