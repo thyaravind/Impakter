@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form-group label="Using options array:" v-slot="{ ariaDescribedby }">
+    <b-form-group label="Please select all the SDGs:" v-slot="{ ariaDescribedby }">
       <b-form-checkbox-group
           id="checkbox-group-1"
           v-model="selected"
@@ -10,7 +10,12 @@
           stacked
       ></b-form-checkbox-group>
     </b-form-group>
+
+    <b-button  @click="back">Back</b-button>
     <b-button variant="primary" @click="next">Next</b-button>
+    <b-card class="mt-3" header="Form result so far">
+    <pre class="m-0">{{ form }}</pre>
+  </b-card>
   </div>
 
 </template>
@@ -20,13 +25,8 @@ export default {
   name: "FormSDGs",
   data() {
     return {
-      sdgs: [{value:0,text:"SDG 1 No Poverty"},
-        {value:1,text:"SDG 2 Zero Hunger"},
-        {value:2,text:"SDG 3 Good Health and Well-Being"},
-        {value:3,text:"SDG 4 Quality Education"},
-        {value:4,text:"SDG 5 Gender Equality"},
-        {value:5,text:"SDG 6 Clean Water and Sanitation"}
-        ],
+      form:{},
+      sdgs: [],
       selected:[]
     }
   },
@@ -35,7 +35,14 @@ export default {
       this.selected.sort();
       this.$store.commit("addSdgs", this.selected);
       this.$router.push({name:'formPage2-2'})
+    },
+    back(){
+
     }
+  },
+  mounted(){
+    this.form = this.$store.getters.certificateForm;
+    this.sdgs = this.$store.getters.sdgs;
   }
 }
 </script>

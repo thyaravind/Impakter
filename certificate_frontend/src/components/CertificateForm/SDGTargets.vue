@@ -1,18 +1,21 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
-      <b-col cols="6"><h4>You selected the following SDGs</h4>
+      <b-col cols="6"><h3>You selected the following SDGs</h3>
+
+        <div v-for="index in form.sdgs" :key="index"
+        ><h5 :class="index===currentSdgIndex?'bold':''">{{sdgs[index].text}}</h5></div>
 
 
-        <b-card class="mt-3" header="Form Data Result">
-          <pre class="m-0">{{ form }}</pre>
-        </b-card>
+
+
       </b-col>
-      <b-col><SubSDGTargets :current-sdg-index=currentSdgIndex /></b-col>
+      <b-col><SubSDGTargets @next="next" :current-sdg-index=currentSdgIndex /></b-col>
     </b-row>
-    <b-row>
-      <b-button variant="primary" @click="next">Next</b-button>
-    </b-row>
+
+    <b-card class="mt-3" header="Form result so far">
+    <pre class="m-0">{{ form }}</pre>
+  </b-card>
   </b-container>
 </template>
 
@@ -25,6 +28,7 @@ export default {
   data(){
     return {
       form:{},
+      sdgs:[],
       currentSdgIndex:null,
       sdgIndex: 0,
     }
@@ -38,6 +42,9 @@ export default {
       }
       else this.$router.push({name:'formPage3'})
 
+    },
+    back(){
+
     }
   },
   computed:{
@@ -48,10 +55,14 @@ export default {
     this.form = this.$store.getters.certificateForm;
     this.sdgIndex = 0;
     this.currentSdgIndex = this.form.sdgs[this.sdgIndex]
+    this.sdgs = this.$store.getters.sdgs;
   }
 }
 </script>
 
 <style scoped>
 
+.bold{
+  color:#41b883;
+}
 </style>

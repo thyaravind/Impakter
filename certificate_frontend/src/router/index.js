@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../components/Home.vue'
-import FormBasicDetails from "@/components/CertificateForm/FormBasicDetails";
-import FormSDGTargets from "@/components/CertificateForm/FormSDGTargets";
-import FormSDGs from "@/components/CertificateForm/FormSDGs";
+import FormBasicDetails from "@/components/CertificateForm/BasicDetails";
+import FormSDGTargets from "@/components/CertificateForm/SDGTargets";
+import FormSDGs from "@/components/CertificateForm/SDGs";
 
 
 Vue.use(VueRouter)
