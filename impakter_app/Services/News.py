@@ -33,7 +33,7 @@ class News:
         config.request_timeout = 10
 
         # establishing database connection
-        sqlite_file = '/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/impakter_app/data.sqlite'
+        sqlite_file = '/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/DB/data.sqlite'
         cnx = sqlite3.connect(sqlite_file)
         cursor = cnx.cursor()
         sqlite3.register_adapter(np.int64, int)

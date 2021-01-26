@@ -9,7 +9,7 @@ import sqlite3
 from simhash import Simhash
 
 # establishing database connection
-sqlite_file = '/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/impakter_app/data.sqlite'
+sqlite_file = '/DB/data.sqlite'
 cnx = sqlite3.connect(sqlite_file)
 c = cnx.cursor()
 sqlite3.register_adapter(np.int64, int)

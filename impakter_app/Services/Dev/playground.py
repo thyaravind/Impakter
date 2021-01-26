@@ -15,7 +15,7 @@ print(source_url)
 print(source)
 '''
 
-sqlite_file = '/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/impakter_app/data.sqlite'
+sqlite_file = '/DB/data.sqlite'
 cnx = sqlite3.connect(sqlite_file)
 cursor = cnx.cursor()
 sqlite3.register_adapter(np.int64, int)

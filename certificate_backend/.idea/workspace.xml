@@ -2,13 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="520d6d76-5b5c-4cc2-977b-e5a7be8ed7f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../impakter_app/Services/Dev/articles.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/Dev/articles.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Archives/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../impakter_app/Services/Dev/google_news_to_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/Dev/google_news_to_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../impakter_app/Services/Dev/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/Dev/playground.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../impakter_app/Services/News.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/News.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../impakter_app/Services/pseudoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/pseudoController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sql/Articles.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sql/Insertions.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sql/articlesAndSources.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sql/companies.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sql/credentials.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -23,8 +45,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/controllers" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/controllers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Archives" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/routes" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -36,6 +69,8 @@
       <updated>1611047133557</updated>
       <workItem from="1611047135765" duration="617000" />
       <workItem from="1611238636175" duration="634000" />
+      <workItem from="1611601280035" duration="6890000" />
+      <workItem from="1611659758675" duration="3971000" />
     </task>
     <servers />
   </component>

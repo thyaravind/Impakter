@@ -4,14 +4,16 @@ var bodyparser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
 
+
 var app = express();
 
 
 const port = 3000;
-const route = require('./routes');
-
+//const route = require('./routes');
+const routes = require('./routes/index')
 
 //conecting to MongoDB
+/*
 mongoose.connect('mongodb://localhost:27017/orgs')
 mongoose.connection.on('connected',()=> {
     console.log('connected to MongoDB');
@@ -21,13 +23,15 @@ mongoose.connection.on('error',(err)=> {
         console.log('Error connecting to DB');
     }
     
-})
+}) */
+
 
 
 app.use(bodyparser.json());
 
 
-app.use('/api',route)
+//app.use('/api',route)
+routes(app);
 
 app.use(cors());
 

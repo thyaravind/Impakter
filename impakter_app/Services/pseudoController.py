@@ -33,7 +33,7 @@ companies_df = pd.read_csv("/Users/aravind/OneDrive/OneDocuments/Algorithm/Impak
 news = News.News()
 
 try:
-    for company in companies_df.Brand[40:45]:
+    for company in companies_df.Brand[50:55]:
         news.fetch(start_date='01/01/2017', end_date='12/31/2020', company=company, keyword="Sustainability")
 finally:
     news.close_db_connection()
@@ -44,4 +44,5 @@ finally:
 # Done list
 #35-40 Neutral, Starbucks, Mastercard, Frito-Lay (error)
 #40-45: Zara,Gillete, HSBC, Audi(error)
-#
+#45-50: Deloitte - Chase completed
+#50-55: Anything not done - start with this
