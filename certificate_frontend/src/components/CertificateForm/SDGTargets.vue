@@ -21,7 +21,9 @@
 
 <script>
 import SubSDGTargets from "@/components/CertificateForm/SubSDGTargets";
+import {ServicesFactory} from '@/services/ServicesFactory'
 
+const certificateService = ServicesFactory.get("certificates")
 export default {
   name: "FormSDGtargets",
   components:{SubSDGTargets},
@@ -35,12 +37,22 @@ export default {
   },
   methods:{
 
-    next(){
+    async next(){
       this.sdgIndex++;
       if(this.sdgIndex<this.form.sdgs.length){
         this.currentSdgIndex = this.form.sdgs[this.sdgIndex]
       }
-      else this.$router.push({name:'formPage3'})
+      else {
+      var req = this.$store.getters.payload
+      await certificateService.createCertificate(
+        req
+      ).then(response => (this.responseMessage = response.data.msg))
+      this.$store.commit("resetCertificate");
+      this.$alert(`${this.responseMessage}`);
+
+        }
+
+      //else this.$router.push({name:'formPage3'})
 
     },
     back(){

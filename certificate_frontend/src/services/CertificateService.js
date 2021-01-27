@@ -1,7 +1,12 @@
 import Api from '@/services/Api'
 
+const resource = "/certificates"
+
 export default {
-    fetchCertificates () {
-        return Api().get('certificates')
+    fetchCertificates(organizationID) {
+        return Api().get(`${resource}/${organizationID}`);
+    },
+    createCertificate(payload){
+        return Api().post(`${resource}/`,payload);
     }
 }

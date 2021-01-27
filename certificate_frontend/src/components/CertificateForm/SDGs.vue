@@ -1,12 +1,13 @@
 <template>
   <div>
-    <b-form-group label="Please select all the SDGs:" v-slot="{ ariaDescribedby }">
+    <b-form-group label="Please select all the SDGs:" v-slot="{ ariaDescribedby }" label-size="lg">
       <b-form-checkbox-group
           id="checkbox-group-1"
           v-model="selected"
           :options="sdgs"
           :aria-describedby="ariaDescribedby"
           name="flavour-1"
+          
           stacked
       ></b-form-checkbox-group>
     </b-form-group>
@@ -48,5 +49,9 @@ export default {
 </script>
 
 <style scoped>
+
+#checkbox-group-1 {
+  align-content:flex-end;
+}
 
 </style>

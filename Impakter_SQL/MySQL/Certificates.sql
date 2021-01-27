@@ -13,7 +13,7 @@ Create table certificates
     validity varchar(100),
     goal varchar(100),
     specificity char(2),
-    cost text,
+    pricing text,
     sdgEngagement text
 );
 

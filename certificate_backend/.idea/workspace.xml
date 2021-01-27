@@ -2,23 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="520d6d76-5b5c-4cc2-977b-e5a7be8ed7f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Archives/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/certificate.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/certificate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../impakter_app/Services/Dev/google_news_to_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/Dev/google_news_to_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../impakter_app/Services/Dev/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/Dev/playground.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../impakter_app/Services/News.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/News.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/certificates.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/certificates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/organizations.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/organizations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGTargets.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGTargets.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/Shared/TopBar.Vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/services/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/services/Api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/services/CertificateService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/services/CertificateService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../impakter_app/Services/pseudoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/pseudoController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sql/Articles.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sql/Insertions.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sql/articlesAndSources.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sql/companies.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sql/credentials.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +43,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/controllers" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -70,7 +67,10 @@
       <workItem from="1611047135765" duration="617000" />
       <workItem from="1611238636175" duration="634000" />
       <workItem from="1611601280035" duration="6890000" />
-      <workItem from="1611659758675" duration="3971000" />
+      <workItem from="1611659758675" duration="4195000" />
+      <workItem from="1611731571883" duration="4695000" />
+      <workItem from="1611738044621" duration="14000" />
+      <workItem from="1611746717576" duration="3462000" />
     </task>
     <servers />
   </component>

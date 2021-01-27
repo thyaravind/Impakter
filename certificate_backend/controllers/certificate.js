@@ -3,7 +3,7 @@ var connection = require("../db_connection")
 
 
 exports.apiGET = function(req, res) {
-    connection.query('select * from certificates where organizationID = ?', req.body.organizationID, (err, sql_resp) => {
+    connection.query('select * from certificates where organizationID = ?', req.params.organizationID, (err, sql_resp) => {
         if(err) throw err;
         else{
             res.json(sql_resp);}
