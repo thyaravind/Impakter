@@ -8,7 +8,7 @@ var path = require('path');
 var app = express();
 
 
-const port = 3000;
+const port = 80;
 //const route = require('./routes');
 const routes = require('./routes/index')
 

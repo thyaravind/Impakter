@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="520d6d76-5b5c-4cc2-977b-e5a7be8ed7f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/certificate.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/certificate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/uuid" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/uuid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/certificates.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/certificates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/BasicDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/BasicDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGTargets.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGTargets.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SubSDGTargets.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SubSDGTargets.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/services/CertificateService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/services/CertificateService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../impakter_app/Services/pseudoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../impakter_app/Services/pseudoController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +68,7 @@
       <workItem from="1612265643522" duration="623000" />
       <workItem from="1612296887986" duration="1788000" />
       <workItem from="1612304710020" duration="547000" />
-      <workItem from="1612336432049" duration="69000" />
+      <workItem from="1612336432049" duration="1110000" />
     </task>
     <servers />
   </component>
