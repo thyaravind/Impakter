@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import store from "./store";
 import VueSimpleAlert from "vue-simple-alert";
 
+import './assets/custom_vars.scss'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-search-select/dist/VueSearchSelect.css'

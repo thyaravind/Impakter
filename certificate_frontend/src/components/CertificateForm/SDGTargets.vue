@@ -44,8 +44,9 @@ export default {
       }
       else {
       var req = this.$store.getters.payload
+      var mode = this.$store.getters.mode
 
-      if(this.form.mode == "edit"){
+      if(mode == "edit"){
               await certificateService.updateCertificate(
         req
       ).then(response => (this.responseMessage = response.data.msg))

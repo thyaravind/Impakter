@@ -24,11 +24,11 @@ export default new Vuex.Store({
             sdgs:[],
             sdgTargets:[],
             industries:[],
-            industrySectors:[],
-            mode:"new"
+            industrySectors:[]
         },
         certificates:[],
-        organizationID:null
+        organizationID:null,
+        mode:"new"
 
     },
     getters: {
@@ -56,6 +56,9 @@ export default new Vuex.Store({
         certificates: state => {
             return state.certificates
         },
+        mode: state => {
+            return state.mode
+        }
 
     },
     mutations: {
@@ -88,8 +91,7 @@ export default new Vuex.Store({
                 sdgs:[],
                 sdgTargets:[],
                 industries:[],
-                industrySectors:[],
-                mode:"new"
+                industrySectors:[]
             }
         },
 
@@ -105,7 +107,7 @@ export default new Vuex.Store({
             state.certificates.Add(payload)
         },
         changeMode(state,payload){
-            state.certificates.mode = payload
+            state.mode = payload
         }
 
     },
