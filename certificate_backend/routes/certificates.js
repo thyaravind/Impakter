@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var certificates = require('../controllers/certificate');
+var certificate = require('../controllers/certificate');
 
 router.route('/certificates/:organizationID?')
-    .get(certificates.apiGET)
-    .post(certificates.apiPOST);
+    .get(certificate.apiGET)
+    .post(certificate.apiPOST)
+    .put(certificate.apiPUT);
 module.exports = router;

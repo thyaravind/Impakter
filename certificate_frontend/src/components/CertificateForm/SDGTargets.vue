@@ -22,6 +22,8 @@
 <script>
 import SubSDGTargets from "@/components/CertificateForm/SubSDGTargets";
 import {ServicesFactory} from '@/services/ServicesFactory'
+import SdgMixin from "@/mixins/SdgMixin";
+import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 
 const certificateService = ServicesFactory.get("certificates")
 export default {
@@ -29,8 +31,6 @@ export default {
   components:{SubSDGTargets},
   data(){
     return {
-      form:{},
-      sdgs:[],
       currentSdgIndex:null,
       sdgIndex: 0,
     }
@@ -44,10 +44,21 @@ export default {
       }
       else {
       var req = this.$store.getters.payload
-      await certificateService.createCertificate(
+
+      if(this.form.mode == "edit"){
+              await certificateService.updateCertificate(
         req
       ).then(response => (this.responseMessage = response.data.msg))
-      this.$store.commit("resetCertificate");
+
+      }
+      else{
+        await certificateService.createCertificate(
+        req
+      ).then(response => (this.responseMessage = response.data.msg))
+
+      }
+
+      this.$store.dispatch("resetCertificate");
       this.$alert(`${this.responseMessage}`);
 
         }
@@ -64,11 +75,10 @@ export default {
 
   },
   mounted(){
-    this.form = this.$store.getters.certificateForm;
     this.sdgIndex = 0;
     this.currentSdgIndex = this.form.sdgs[this.sdgIndex]
-    this.sdgs = this.$store.getters.sdgs;
-  }
+  },
+  mixins:[SdgMixin,CertificateFormMixin]
 }
 </script>
 

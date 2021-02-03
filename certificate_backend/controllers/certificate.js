@@ -15,10 +15,19 @@ exports.apiGET = function(req, res) {
 };
 
 exports.apiPOST = function(req, res) {
-    connection.query('INSERT INTO certificates SET ?', req.body, (err, sql_resp) => {
+    connection.query('INSERT INTO certificates SET ?', req.body.payload, (err, sql_resp) => {
         if(err) throw err;
         else{
             res.json({msg:"Added Certificate successfully with ID:"+ sql_resp.insertId});}
+
+    });
+};
+
+exports.apiPUT = function(req, res) {
+    connection.query('UPDATE certificates SET ? WHERE certificateID = ?', [req.body.payload,req.body.certificateID], (err, sql_resp) => {
+        if(err) throw err;
+        else{
+            res.json({msg:"Updated Certificate successfully"});}
 
     });
 };

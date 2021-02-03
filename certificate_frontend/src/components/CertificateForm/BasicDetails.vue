@@ -195,11 +195,11 @@
 
 <script>
 import { MultiSelect } from "vue-search-select";
+import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 
 export default {
   data() {
     return {
-      form: {},
       scale: [
         { text: "Select One", value: null },
         { text: "High", value: 2 },
@@ -251,17 +251,18 @@ export default {
     };
   },
   mounted() {
-    this.$store.commit("resetCertificate");
-    this.form = this.$store.getters.certificateForm;
+    this.$store.dispatch("resetCertificate");
   },
   methods: {
     async onSubmit(event) {
       event.preventDefault();
       //alert(JSON.stringify(this.form));
-      await this.$store.commit("changeCertificate", this.form);
+      await this.$store.dispatch("changeCertificate", this.form);
       this.$router.push({ name: "formPage2-1" });
     },
-    onReset() {},
+    onReset() {
+      this.$store.dispatch("resetCertificate");
+    },
     onSelect(items, lastSelectItem) {
       this.form.countries = items;
       this.lastSelectItem = lastSelectItem;
@@ -271,6 +272,7 @@ export default {
     },
   },
   components: { MultiSelect },
+  mixins:[CertificateFormMixin]
 };
 </script>
 

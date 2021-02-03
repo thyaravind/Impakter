@@ -8,5 +8,9 @@ export default {
     },
     createCertificate(payload){
         return Api().post(`${resource}/`,payload);
-    }
+    },
+    updateCertificate(payload){
+        return Api().put(`${resource}/`,payload);
+    },
+
 }

@@ -25,15 +25,16 @@
 </template>
 
 <script>
+import SdgMixin from "@/mixins/SdgMixin";
+
 export default {
   name: "SubSDGTargets",
   data(){return{
-    sdgs:[],
     selected:[]
   }},
   methods:{
     next(){
-      this.$store.commit("addSdgTargets", this.selected);
+      this.$store.dispatch("addSdgTargets", this.selected);
       this.$emit("next");
     }
 
@@ -45,8 +46,8 @@ export default {
     }
   },
   mounted(){
-    this.sdgs = this.$store.getters.sdgs;
-  }
+  },
+  mixins:[SdgMixin]
 }
 </script>
 

@@ -22,19 +22,19 @@
 </template>
 
 <script>
+import SdgMixin from "../../mixins/SdgMixin";
+import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 export default {
   name: "FormSDGs",
   data() {
     return {
-      form:{},
-      sdgs: [],
       selected:[]
     }
   },
   methods:{
     next(){
       this.selected.sort();
-      this.$store.commit("addSdgs", this.selected);
+      this.$store.dispatch("addSdgs", this.selected);
       this.$router.push({name:'formPage2-2'})
     },
     back(){
@@ -42,9 +42,8 @@ export default {
     }
   },
   mounted(){
-    this.form = this.$store.getters.certificateForm;
-    this.sdgs = this.$store.getters.sdgs;
-  }
+  },
+  mixins:[SdgMixin, CertificateFormMixin]
 }
 </script>
 
