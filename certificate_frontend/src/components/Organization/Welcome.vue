@@ -16,13 +16,12 @@
           required
         ></b-form-input>
       </b-form-group>
-<b-button @click="fetch">Fetch Certificates</b-button>
+<b-button @click="go">Go to my Certificates</b-button>
   </div>
 </template>
 
 <script>
-import { ServicesFactory } from "@/services/ServicesFactory";
-const certificateService = ServicesFactory.get("certificates");
+
 
 export default {
   name: "Welcome",
@@ -32,14 +31,9 @@ export default {
     };
   },
   methods: {
-    async fetch() {
+    async go() {this.$router.push({name:'OrgHome'})
       this.$store.dispatch("setOrganizationID",this.identifier)
-      await certificateService
-        .fetchCertificates(this.identifier)
-        .then((response) =>
-          this.$store.dispatch("fetchCertificates", response.data)
-        );
-        this.$router.push({name:'OrgHome'})
+        
     },
   },
 };

@@ -1,16 +1,22 @@
-use impakter_certificates;
+use indexCertificates;
 
-CREATE PROCEDURE spAddCertificate(IN in_name  varchar(200),IN in_organizationID int,IN in_description text)
+DELIMITER //
+
+CREATE PROCEDURE spAddCertificate(in_name  varchar(200),in_organizationID int,in_description text)
 BEGIN
-    insert into impakter_certificates.certificates (name, organizationID, description) values (in_name,in_organizationID,in_description);
+    insert into certificates (name, organizationID, description) values (in_name,in_organizationID,in_description);
 
-end;
+end//
+
+DELIMITER ;
 
 
 
+DELIMITER //
 CREATE PROCEDURE spAddCertOrganization(IN in_name  varchar(200))
 BEGIN
     insert into impakter_certificates.certificateOrganizations (name) values (in_name);
 
-end
+end//
 
+DELIMITER ;

@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var certificates = require('../controllers/organization');
+var organization = require('../controllers/organization');
 
-router.route('/organizations')
-    .get(certificates.apiGET)
-    .post(certificates.apiPOST);
+router.route('/organizations/:organizationID?')
+    .get(organization.apiGetOne)
+    .get(organization.apiGetAll)
+    .post(organization.apiPOST);
 module.exports = router;

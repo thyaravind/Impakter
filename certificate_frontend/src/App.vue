@@ -22,7 +22,8 @@
 
               <!-- Right aligned nav items -->
               <b-navbar-nav class="ml-auto">
-                <b-nav-item><router-link to="/">LogOut</router-link></b-nav-item>
+                <b-nav-item><router-link to="/">
+                <span v-if="loggedIn">Start</span><span v-if="!loggedIn">LogIn</span></router-link></b-nav-item>
               </b-navbar-nav>
             </b-collapse>
           </b-navbar>
@@ -38,9 +39,17 @@
 <script>
 
 export default {
-  mounted:{
-    //todo Login - Logout based on certirficates fetched or not
+  data(){
+    return{
+      
 
+    }
+  },
+  computed:{
+    //todo Login - Logout based on certirficates fetched or not
+      loggedIn(){ return !this.$store.getters.certificates == []} 
+
+    
   }
 }
 </script>
@@ -75,4 +84,9 @@ export default {
 #nav a.router-link-exact-active {
   color: #fe6663;
 }
+
+button {
+  margin-left: 10px;
+}
+
 </style>

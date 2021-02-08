@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import FormBasicDetails from "@/components/CertificateForm/BasicDetails";
+import BasicDetails from "@/components/CertificateForm/BasicDetails";
+import Part2 from "@/components/CertificateForm/Part2";
 import FormSDGTargets from "@/components/CertificateForm/SDGTargets";
 import FormSDGs from "@/components/CertificateForm/SDGs";
 import OrgHome from "@/components/Organization/OrgHome";
@@ -36,7 +37,7 @@ const routes = [
   {
     path: '/certificates/add',
     name: 'formPage1',
-    component: FormBasicDetails
+    component: BasicDetails
   },
   {
     path: '/certificates/add/sdgs',
@@ -47,6 +48,11 @@ const routes = [
     path: '/certificates/add/sdgtargets',
     name: 'formPage2-2',
     component: FormSDGTargets
+  },
+  {
+    path: '/certificates/add/part2',
+    name: 'formPart2',
+    component: Part2
   },
 
 

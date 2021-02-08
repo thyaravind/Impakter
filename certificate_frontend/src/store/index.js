@@ -58,7 +58,11 @@ export default new Vuex.Store({
         },
         mode: state => {
             return state.mode
-        }
+        },
+        organizationIdentifier: state => {
+            return state.organizationID
+        },
+
 
     },
     mutations: {

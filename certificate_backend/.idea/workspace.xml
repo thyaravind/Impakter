@@ -2,7 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="520d6d76-5b5c-4cc2-977b-e5a7be8ed7f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Impakter_SQL/MySQL/Cert_Orgs.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Impakter_SQL/MySQL/Cert_Orgs.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Impakter_SQL/MySQL/Certificates.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Impakter_SQL/MySQL/Certificates.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Impakter_SQL/MySQL/Common.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Impakter_SQL/MySQL/Common.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Impakter_SQL/MySQL/pSeudoController.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Impakter_SQL/MySQL/pSeudoController.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Impakter_SQL/MySQL/procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Impakter_SQL/MySQL/procedures.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/certificate.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/certificate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/organization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/organizations.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/organizations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/BasicDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/BasicDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGTargets.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGTargets.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SubSDGTargets.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SubSDGTargets.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/OrgHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/OrgHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/Welcome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/Welcome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/mixins/CertificateFormMixin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/mixins/CertificateFormMixin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/mixins/SdgMixin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/mixins/SdgMixin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +86,10 @@
       <workItem from="1612265643522" duration="623000" />
       <workItem from="1612296887986" duration="1788000" />
       <workItem from="1612304710020" duration="547000" />
-      <workItem from="1612336432049" duration="1857000" />
+      <workItem from="1612336432049" duration="1859000" />
+      <workItem from="1612437277363" duration="465000" />
+      <workItem from="1612536921403" duration="5220000" />
+      <workItem from="1612557462624" duration="777000" />
     </task>
     <servers />
   </component>

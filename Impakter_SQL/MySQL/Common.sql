@@ -1,4 +1,4 @@
-Use impakter_common;
+Use impakterCommon;
 drop table if exists industries;
 Create table industries
 (

@@ -2,11 +2,21 @@ var connection = require("../db_connection")
 
 
 
-exports.apiGET = function(req, res) {
+exports.apiGetAll = function(req, res) {
     connection.query('SELECT * from certificateOrganizations', (err, sql_resp) => {
         if(err) throw err;
         else{
             res.json({msg:"Orgs fetched successfully",sql_resp});}
+    });
+
+
+};
+
+exports.apiGetOne = function(req, res) {
+    connection.query('SELECT * from certificateOrganizations where organizationID = ?',req.params.organizationID, (err, sql_resp) => {
+        if(err) throw err;
+        else{
+            res.json({msg:"Org fetched successfully",sql_resp});}
     });
 
 

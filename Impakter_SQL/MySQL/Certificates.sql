@@ -1,18 +1,19 @@
-Use impakter_certificates;
+Use indexCertificates;
 drop table if exists certificates;
 Create table certificates
 (
-    certificateID    int         NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    certificateID    int   NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name  varchar(200) NOT NULL,
-    organizationID int NOT NULL,
+    organizationID varchar(200) NOT NULL,
     description  text,
     logoPath varchar(200),
     applicationLength text,
+    priority tinyint,
     difficulty tinyint,
     relevance tinyint,
     validity varchar(100),
     goal varchar(100),
-    specificity char(2),
+    specificity text,
     pricing text,
     sdgEngagement text
 );

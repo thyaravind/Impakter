@@ -6,7 +6,7 @@
       <b-form-checkbox-group
           id="checkbox-group-1"
           v-model="selected"
-          :options="targets"
+          :options="computedTargets"
           :aria-describedby="ariaDescribedby"
           name="flavour-1"
           stacked
@@ -30,19 +30,34 @@ import SdgMixin from "@/mixins/SdgMixin";
 export default {
   name: "SubSDGTargets",
   data(){return{
-    selected:[]
+    selected:[],
+    targets:[]
   }},
   methods:{
     next(){
       this.$store.dispatch("addSdgTargets", this.selected);
+      this.targets = []
       this.$emit("next");
+    },
+    back(){
+      this.$router.go(-1)
     }
 
   },
   props:{ currentSdgIndex: String},
   computed:{
-    targets(){
-      return this.sdgs[this.currentSdgIndex].targets
+    computedTargets(){
+      this.sdgTargets.forEach(element => {
+        if(element.goal == this.currentSdgIndex){
+          this.targets.push({value:element.code,text:element.title})
+        }
+        
+      });
+      return this.targets
+
+ 
+
+      //return this.sdgs[this.currentSdgIndex].targets
     }
   },
   mounted(){

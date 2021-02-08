@@ -33,12 +33,12 @@ export default {
   },
   methods:{
     next(){
-      this.selected.sort();
+      this.selected.sort((a,b)=>a-b);
       this.$store.dispatch("addSdgs", this.selected);
       this.$router.push({name:'formPage2-2'})
     },
     back(){
-
+      this.$router.go(-1)
     }
   },
   mounted(){
