@@ -37,8 +37,8 @@ export default new Vuex.Store({
         },
         payload: state =>{
             return {
-
-                certificateID:state.certificate.certificateID,
+                basicDetails:{
+                                    certificateID:state.certificate.certificateID,
                 payload:{                name: state.certificate.name,
                     organizationID:state.organizationID,
                     description: state.certificate.description,
@@ -49,7 +49,12 @@ export default new Vuex.Store({
                     goal: state.certificate.goal,
                     specificity:state.certificate.rating,
                     pricing: state.certificate.pricing,
-                    sdgEngagement: state.certificate.sdgEngagement}
+                    sdgEngagement: state.certificate.sdgEngagement
+                },
+                sdgs:state.certificate.sdgs,
+                sdgTargets:state.certificate.sdgTargets
+
+}
 
             }
         },
