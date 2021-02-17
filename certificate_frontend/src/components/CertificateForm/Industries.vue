@@ -42,6 +42,7 @@ export default {
     }
   },
   mounted(){
+    this.selected = this.form.industries
   },
   mixins:[IndustryMixin, CertificateFormMixin]
 }

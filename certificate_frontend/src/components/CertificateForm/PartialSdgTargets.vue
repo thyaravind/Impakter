@@ -40,7 +40,7 @@ export default {
       this.$emit("next");
     },
     back(){
-      this.$store.dispatch("resetComputedSdgs");
+      this.$store.dispatch("resetComputed");
       this.$router.go(-1)
     }
 
@@ -62,6 +62,7 @@ export default {
     }
   },
   mounted(){
+    this.selected = this.form.sdgTargets
   },
   mixins:[SdgMixin]
 }

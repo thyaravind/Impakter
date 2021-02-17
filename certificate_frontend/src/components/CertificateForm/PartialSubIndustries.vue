@@ -31,7 +31,7 @@ export default {
   name: "PartialSubIndustries",
   data(){return{
     selected:[],
-    subIndustries:[]
+    subindustries: []
   }},
   methods:{
     next(){

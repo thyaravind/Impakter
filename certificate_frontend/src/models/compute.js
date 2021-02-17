@@ -10,4 +10,14 @@ export default class compute{
         }
 
     }
+
+    static convertFromBool(input) {
+        switch (input) {
+            case 1:
+                return true
+            case 0:
+                return false
+        }
+
+    }
 }

@@ -6,6 +6,9 @@
       <template #head(name)>
         <div class="text-nowrap">Certificate Name</div>
       </template>
+      <template #cell(name)="data">
+        <a>{{data.item.name}} </a>
+      </template>
       <template #cell(activeStatus)="row">
         <b-form-checkbox
           v-model="row.item.activeStatus"
@@ -13,7 +16,7 @@
           @change="updateStatus(row.index)"
           switch
         >
-          <b>Active {{ row.item.activeStatus }}</b>
+          <b>{{ row.item.activeStatus }}</b>
         </b-form-checkbox>
       </template>
       <template #head(computedPriority)>
@@ -36,6 +39,7 @@
 
 
 <script>
+
 export default {
   name: "OrgHome",
   data() {
@@ -63,6 +67,7 @@ export default {
     add() {
       this.$store.dispatch("changeMode", "new");
       this.$store.dispatch("resetCertificate");
+      this.$store.dispatch("resetComputed");
       this.$router.push({ name: "formPage1" });
     },
     copy(index) {
@@ -79,11 +84,13 @@ export default {
       this.$store.dispatch("updateCertificateStatus", this.certificates[index]);
     },
   },
+
 };
 </script>
 
 <style scoped>
-button {
+butt
+    CertificateProfileon {
   margin-left: 10px;
 }
 

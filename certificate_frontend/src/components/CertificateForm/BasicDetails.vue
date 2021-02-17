@@ -98,6 +98,9 @@
            </b-col>
       <b-col></b-col>
     </b-row>
+        <b-card class="mt-3" header="Form result so far">
+    <pre class="m-0">{{ form }}</pre>
+  </b-card>
   </div>
 </template>
 
@@ -152,6 +155,7 @@ export default {
     },
     onReset() {
       this.$store.dispatch("resetCertificate");
+      this.$store.dispatch("resetComputed");
     },
     },
   mixins: [CertificateFormMixin,FormGuardMixin],

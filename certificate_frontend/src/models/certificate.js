@@ -1,8 +1,9 @@
 import compute from "./compute"
-import {sdgs} from "./constants"
+import {sdgs,industries} from "./constants"
 
 export default class certificateModel {
-
+    mode = ""
+    modifiedState = false
     certificateID = null
     organizationID = null
     name = ""
@@ -27,6 +28,7 @@ export default class certificateModel {
     computedActiveStatus = null
     computedPriority = null
     computedSdgs = []
+    computedIndustries = []
 
 
     setOrganizationID(id) {
@@ -35,6 +37,8 @@ export default class certificateModel {
 
     getCertificatePayload() {
         return {
+            mode: this.mode,
+            status: this.modifiedState,
             certificateID: this.certificateID,
             basicDetails: {
                 name: this.name,
@@ -46,6 +50,8 @@ export default class certificateModel {
             },
             sdgs: this.sdgs,
             sdgTargets: this.sdgTargets,
+            industries: this.industries,
+            industrySectors: this.industrySectors,
             additionalDetails: {
                 applicationLength: this.applicationLength,
                 difficulty: this.difficulty,
@@ -72,10 +78,13 @@ export default class certificateModel {
         this.description = certificateResponseObj.details.description
         this.priority = certificateResponseObj.details.priority
         this.sdgEngagement = certificateResponseObj.details.sdgEngagement
+        this.activeStatus = compute.convertFromBool(certificateResponseObj.details.activeStatus)
 
 
         this.sdgs = certificateResponseObj.sdgs;
         this.sdgTargets = certificateResponseObj.sdgTargets;
+        this.industries = certificateResponseObj.industries;
+        this.industrySectors = certificateResponseObj.industrySectors;
 
         this.computedActiveStatus = certificateResponseObj.details.activeStatus == 1 ? true : false
         this.computedPriority = compute.convertFromScale(certificateResponseObj.details.priority)
@@ -83,6 +92,7 @@ export default class certificateModel {
     }
 
     computeSdgs() {
+        this.computedSdgs = []
         this.sdgs.forEach(
             sdg => {
                 var temp = sdgs.filter(function (item) {
@@ -92,6 +102,20 @@ export default class certificateModel {
                 
             })
     }
+
+    computeIndustries() {
+        this.computedIndustries = []
+        this.industries.forEach(
+            industry => {
+                var temp = industries.filter(function (item) {
+                    return item.value == industry;
+                })
+                this.computedIndustries.push(temp[0])
+                
+            })
+    }
+
+
 
 }
 

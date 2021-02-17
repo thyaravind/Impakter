@@ -3,9 +3,9 @@
     <b-row>
       <b-col cols="6"
         ><h3>You selected the following Industries</h3>
-        <div v-for="(industry,index) in form.industries" :key="industry.value">
-          <h5>
-            {{ industries[index]}}
+        <div v-for="(industry,index) in form.computedIndustries" :key="index">
+          <h5 :class="industry.value === currentIndustry ? 'bold' : ''">
+            {{ industry.value + ": " + industry.text }}
           </h5>
         </div>
       </b-col>
@@ -97,6 +97,7 @@ export default {
     },
     addNew() {
       this.$store.dispatch("resetCertificate");
+      this.$store.dispatch("resetComputed");
       this.$router.push({ name: "formPage1" });
     },
   },

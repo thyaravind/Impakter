@@ -89,8 +89,10 @@ export default new Vuex.Store({
             return state.organizationID
         },
         organization: state => {
-            return {organizationID: state.organizationID,
-                organizationName: state.organizationName}
+            return {
+                organizationID: state.organizationID,
+                organizationName: state.organizationName
+            }
         }
     },
     mutations: {
@@ -106,6 +108,7 @@ export default new Vuex.Store({
         },
         addIndustries(state, payload) {
             state.certificate.industries = payload
+            state.certificate.computeIndustries()
         },
         addSubIndustries(state, payload) {
             state.certificate.industrySectors = payload
@@ -117,7 +120,7 @@ export default new Vuex.Store({
         },
 
         async fetchCertificates(state) {
-            if(state.organizationID == null && localStorage.getItem("OrganizationID") != null){
+            if (state.organizationID == null && localStorage.getItem("OrganizationID") != null) {
                 state.organizationID = localStorage.getItem("OrganizationID")
             }
             state.certificates = [];
@@ -133,11 +136,11 @@ export default new Vuex.Store({
         },
 
         async fetchOrganization(state) {
-            if(state.organizationID == null && localStorage.getItem("OrganizationID") != null){
+            if (state.organizationID == null && localStorage.getItem("OrganizationID") != null) {
                 state.organizationID = localStorage.getItem("OrganizationID")
                 state.organizationName = localStorage.getItem("OrganizationName")
             }
-            else{
+            else {
                 var organizationResponse
                 await organizationService.fetchOrganization(state.organizationID).then(response => (organizationResponse = response.data.organizationDetails[0]));
                 window.localStorage.setItem('OrganizationID', organizationResponse.organizationID)
@@ -158,8 +161,8 @@ export default new Vuex.Store({
         changeMode(state, payload) {
             state.mode = payload
         },
-        changeLoginStatus (state){
-            if(localStorage.getItem("OrganizationID")==null){
+        changeLoginStatus(state) {
+            if (localStorage.getItem("OrganizationID") == null) {
                 state.IsloggedIn = false
             }
             else state.IsloggedIn = true
@@ -167,7 +170,21 @@ export default new Vuex.Store({
         resetComputedSdgs(state) {
             state.certificate.computedSdgs = []
         },
-        
+
+        async updateCertificateStatus(state, payload) {
+            state.certificate = payload
+            state.certificate.mode = "statusChange"
+            state.certificate.modifiedState = !state.certificate.activeStatus
+            var req = state.certificate.getCertificatePayload()
+
+            await certificateService.updateCertificate(req).then((response) => {
+                this.responseMessage = response.data.msg
+                this.responseStatus = response.data.status
+            });
+            console.log(this.responseMessage)
+            state.certificate = new certificateModel()
+
+        }
 
     },
     actions: {
@@ -210,8 +227,11 @@ export default new Vuex.Store({
         changeLoginStatus(context) {
             context.commit("changeLoginStatus")
         },
-        resetComputedSdgs(context) {
+        resetComputed(context) {
             context.commit("resetComputedSdgs")
+        },
+        updateCertificateStatus(context,payload) {
+            context.commit("updateCertificateStatus",payload)
         }
 
 
