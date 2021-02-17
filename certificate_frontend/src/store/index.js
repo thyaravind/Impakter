@@ -183,6 +183,7 @@ export default new Vuex.Store({
             });
             console.log(this.responseMessage)
             state.certificate = new certificateModel()
+            this.responseMessage = null
 
         }
 

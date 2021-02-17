@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="520d6d76-5b5c-4cc2-977b-e5a7be8ed7f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BO/certificateResponseObj.js" beforeDir="false" afterPath="$PROJECT_DIR$/BO/certificateResponseObj.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/certificate.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/certificate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/BasicDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/BasicDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/Industries.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/Industries.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/PartialSdgTargets.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/PartialSdgTargets.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/PartialSubIndustries.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/PartialSubIndustries.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SubIndustries.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SubIndustries.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/OrgHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/OrgHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/models/certificate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/models/certificate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/models/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/models/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +81,7 @@
       <workItem from="1613267417534" duration="5558000" />
       <workItem from="1613350149680" duration="12593000" />
       <workItem from="1613406224228" duration="3368000" />
-      <workItem from="1613433875429" duration="8178000" />
+      <workItem from="1613433875429" duration="8944000" />
     </task>
     <servers />
   </component>
