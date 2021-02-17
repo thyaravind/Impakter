@@ -3,7 +3,6 @@ import {sdgs,industries} from "./constants"
 
 export default class certificateModel {
     mode = ""
-    modifiedState = false
     certificateID = null
     organizationID = null
     name = ""
@@ -25,7 +24,6 @@ export default class certificateModel {
     industries = []
     industrySectors = []
     activeStatus = true
-    computedActiveStatus = null
     computedPriority = null
     computedSdgs = []
     computedIndustries = []
@@ -38,7 +36,6 @@ export default class certificateModel {
     getCertificatePayload() {
         return {
             mode: this.mode,
-            status: this.modifiedState,
             certificateID: this.certificateID,
             basicDetails: {
                 name: this.name,
@@ -85,8 +82,6 @@ export default class certificateModel {
         this.sdgTargets = certificateResponseObj.sdgTargets;
         this.industries = certificateResponseObj.industries;
         this.industrySectors = certificateResponseObj.industrySectors;
-
-        this.computedActiveStatus = certificateResponseObj.details.activeStatus == 1 ? true : false
         this.computedPriority = compute.convertFromScale(certificateResponseObj.details.priority)
 
     }

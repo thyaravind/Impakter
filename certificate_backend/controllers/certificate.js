@@ -160,7 +160,7 @@ exports.apiPUT = async function(req, res) {
     if(req.body.mode == "statusChange"){
         try{
             var certificateId = req.body.certificateID
-            var sql_resp = await pool.query('UPDATE certificates SET activeStatus = ? WHERE certificateID = ?', [req.body.status,certificateId])
+            var sql_resp = await pool.query('UPDATE certificates SET activeStatus = ? WHERE certificateID = ?', [req.body.basicDetails.activeStatus,certificateId])
             res.json({msg:"Updated Certificate status successfully",status:1});
             console.log("updated certificate status successfully")
         }

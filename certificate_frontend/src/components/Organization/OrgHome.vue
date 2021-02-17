@@ -83,6 +83,7 @@ export default {
     updateStatus(index) {
       this.$store.dispatch("updateCertificateStatus", this.certificates[index]);
       setTimeout(() => { this.$alert(this.$store.responseMessage); }, 1000);
+      this.$store.responseMessage = "_blank_"
       
     },
   },

@@ -174,7 +174,6 @@ export default new Vuex.Store({
         async updateCertificateStatus(state, payload) {
             state.certificate = payload
             state.certificate.mode = "statusChange"
-            state.certificate.modifiedState = !state.certificate.activeStatus
             var req = state.certificate.getCertificatePayload()
 
             await certificateService.updateCertificate(req).then((response) => {
@@ -183,7 +182,6 @@ export default new Vuex.Store({
             });
             console.log(this.responseMessage)
             state.certificate = new certificateModel()
-            this.responseMessage = null
 
         }
 
