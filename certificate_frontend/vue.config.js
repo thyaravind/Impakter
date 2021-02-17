@@ -7,5 +7,8 @@ module.exports = {
           "changeOrigin": true
         }
       }
+    },
+    "configureWebpack": {
+      "devtool": 'source-map'
     }
   }

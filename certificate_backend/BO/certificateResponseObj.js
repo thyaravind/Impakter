@@ -1,18 +1,9 @@
 class CertificateResponse {
-    constructor(basicDetails,sdgs,sdgTargets){
-        this.basicDetails = basicDetails
+    constructor(details,sdgs,sdgTargets){
+        this.details = details
         this.sdgs = sdgs
         this.sdgTargets = sdgTargets
-
     }
-
-    setSdgs (sdgs){
-        this.sdgs = sdgs
-    }
-    setSdgTargets (sdgTargets){
-        this.sdgTargets = sdgTargets
-    }
-
 
 }
 

@@ -11,7 +11,7 @@
 
             <b-collapse id="nav-collapse" is-nav>
               <b-navbar-nav>
-                <b-nav-item><router-link to="/organization/home">Home</router-link></b-nav-item
+                <b-nav-item><router-link to="/wait">Home</router-link></b-nav-item
                 >
                 <b-nav-item href="#"
                   ><router-link to="/certificates/add"
@@ -22,8 +22,8 @@
 
               <!-- Right aligned nav items -->
               <b-navbar-nav class="ml-auto">
-                <b-nav-item><router-link to="/">
-                <span v-if="loggedIn">Start</span><span v-if="!loggedIn">LogIn</span></router-link></b-nav-item>
+                <b-nav-item>
+                <span v-if="this.$store.state.IsloggedIn" @click="logout">LogOut</span><span v-if="!this.$store.state.IsloggedIn" @click="login">LogIn</span></b-nav-item>
               </b-navbar-nav>
             </b-collapse>
           </b-navbar>
@@ -41,15 +41,27 @@
 export default {
   data(){
     return{
-      
+      loggedIn: null
 
     }
   },
   computed:{
-    //todo Login - Logout based on certirficates fetched or not
-      loggedIn(){ return !this.$store.getters.certificates == []} 
+
 
     
+  },
+
+  methods:{
+    logout(){
+      localStorage.removeItem("OrganizationID")
+      localStorage.removeItem("OrganizationName")
+      this.$store.dispatch("changeLoginStatus");
+      this.$router.push("/prompt")
+
+    },
+    login(){
+      this.$router.push("/login")
+    }
   }
 }
 </script>

@@ -3,8 +3,27 @@
   <component name="ChangeListManager">
     <list default="true" id="520d6d76-5b5c-4cc2-977b-e5a7be8ed7f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BO/certificateResponseObj.js" beforeDir="false" afterPath="$PROJECT_DIR$/BO/certificateResponseObj.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/certificate.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/certificate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/organization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/BasicDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/BasicDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/IndustrySectors.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/Part2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/Part2.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGTargets.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGTargets.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SDGs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/CertificateForm/SubSDGTargets.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/LogIn.Vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/OrgHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/OrgHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/components/Organization/Welcome.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/mixins/IndustryMixin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/mixins/IndustryMixin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/mixins/SdgMixin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/mixins/SdgMixin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/services/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/services/Api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/services/OrganizationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/services/OrganizationService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../certificate_frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../certificate_frontend/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +98,9 @@
       <workItem from="1612536921403" duration="5220000" />
       <workItem from="1612557462624" duration="777000" />
       <workItem from="1613267417534" duration="5558000" />
-      <workItem from="1613350149680" duration="9254000" />
+      <workItem from="1613350149680" duration="12593000" />
+      <workItem from="1613406224228" duration="3368000" />
+      <workItem from="1613433875429" duration="5507000" />
     </task>
     <servers />
   </component>
@@ -103,21 +124,24 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/certificate.js</url>
-          <line>49</line>
-          <properties lambdaOrdinal="-1" />
+          <line>57</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/certificate.js</url>
-          <line>41</line>
-          <properties lambdaOrdinal="-1" />
+          <line>49</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/certificate.js</url>
-          <line>6</line>
-          <properties lambdaOrdinal="-1" />
+          <line>8</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/controllers/certificate.js</url>
+          <line>145</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

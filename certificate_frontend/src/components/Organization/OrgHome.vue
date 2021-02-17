@@ -1,19 +1,34 @@
 <template>
   <div>
-    <h2>Welcome Rain Forest Alliance</h2>
+    <h2>Welcome, {{ organization.organizationName }}</h2>
     <br />
     <b-table :fields="fields" :items="certificates">
-            <template #cell(status)>
-<b-form-checkbox v-model="activeStatus" name="data.index" switch>
-      <b>Active</b>
-    </b-form-checkbox>
+      <template #head(name)>
+        <div class="text-nowrap">Certificate Name</div>
+      </template>
+      <template #cell(activeStatus)="row">
+        <b-form-checkbox
+          v-model="row.item.activeStatus"
+          name="data.index"
+          @change="updateStatus(row.index)"
+          switch
+        >
+          <b>Active {{ row.item.activeStatus }}</b>
+        </b-form-checkbox>
+      </template>
+      <template #head(computedPriority)>
+        <div class="text-nowrap">Priority</div>
+      </template>
+      <template #head(sdgs)>
+        <div class="text-nowrap">SDGs</div>
       </template>
       <template #cell(actions)="data">
         <b-button @click="copy(data.index)" variant="success">Copy</b-button>
-        <b-button @click="edit(data.index)" variant="outline-danger">Edit</b-button>
+        <b-button @click="edit(data.index)" variant="outline-danger"
+          >Edit</b-button
+        >
         <!--<b-button>See Details</b-button>-->
       </template>
-
     </b-table>
     <b-button variant="outline-primary" @click="add"> Add Certificate</b-button>
   </div>
@@ -21,33 +36,33 @@
 
 
 <script>
-import { ServicesFactory } from "@/services/ServicesFactory";
-const certificateService = ServicesFactory.get("certificates");
-
 export default {
   name: "OrgHome",
   data() {
     return {
       certificates: [],
+      organization: {},
       organizationIdentifier: null,
       response: null,
-      fields: ["name", "difficulty", "relevance", "validity","status", "actions"],
-      activeStatus:true
+      InProgress: true,
+      fields: [
+        "name",
+        "computedPriority",
+        "sdgs",
+        "industries",
+        "activeStatus",
+        "actions",
+      ],
     };
   },
   async mounted() {
-    this.organizationIdentifier = this.$store.getters.organizationIdentifier;
-    this.response = await certificateService.fetchCertificates(
-      this.organizationIdentifier
-    );
-
-    this.$store.dispatch("fetchCertificates", this.response.data);
-
     this.certificates = this.$store.getters.certificates;
+    this.organization = this.$store.getters.organization;
   },
   methods: {
     add() {
       this.$store.dispatch("changeMode", "new");
+      this.$store.dispatch("resetCertificate");
       this.$router.push({ name: "formPage1" });
     },
     copy(index) {
@@ -59,6 +74,9 @@ export default {
       this.$store.dispatch("changeCertificate", this.certificates[index]);
       this.$store.dispatch("changeMode", "edit");
       this.$router.push({ name: "formPage1" });
+    },
+    updateStatus(index) {
+      this.$store.dispatch("updateCertificateStatus", this.certificates[index]);
     },
   },
 };

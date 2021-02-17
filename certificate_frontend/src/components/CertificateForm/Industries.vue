@@ -1,10 +1,10 @@
 <template>
   <div>
-    <b-form-group label="Please select all the SDGs:" v-slot="{ ariaDescribedby }" label-size="lg">
+    <b-form-group label="Please select all the Industries:" v-slot="{ ariaDescribedby }" label-size="lg">
       <b-form-checkbox-group
           id="checkbox-group-1"
           v-model="selected"
-          :options="sdgs"
+          :options="industries"
           :aria-describedby="ariaDescribedby"
           name="flavour-1"
           
@@ -22,11 +22,10 @@
 </template>
 
 <script>
-import SdgMixin from "../../mixins/SdgMixin";
+import IndustryMixin from "../../mixins/IndustryMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
-import FormGuardMixin from "@/mixins/FormGuardMixin";
 export default {
-  name: "FormSDGs",
+  name: "FormIndustries",
   data() {
     return {
       selected:[]
@@ -34,19 +33,17 @@ export default {
   },
   methods:{
     next(){
-      this.selected.sort((a,b)=>a-b);
-      this.$store.dispatch("addSdgs", this.selected);
-      this.permitNavigation = true
-      this.$router.push({name:'formPage2-2'})
+      this.selected.sort();
+      this.$store.dispatch("addIndustries", this.selected);
+      this.$router.push({name:'formPage3-2'})
     },
     back(){
       this.$router.go(-1)
     }
   },
   mounted(){
-    this.selected = this.form.sdgs
   },
-  mixins:[SdgMixin, CertificateFormMixin,FormGuardMixin]
+  mixins:[IndustryMixin, CertificateFormMixin]
 }
 </script>
 

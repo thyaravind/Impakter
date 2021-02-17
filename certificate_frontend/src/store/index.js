@@ -1,62 +1,83 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { ServicesFactory } from "@/services/ServicesFactory";
+
+const certificateService = ServicesFactory.get("certificates");
+const organizationService = ServicesFactory.get("organizations");
+import certificateModel from "../models/certificate";
+
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
 
-        certificate: {
-            certificateID:null,
+        certificateArchived: {
+            certificateID: null,
             name: "",
-            description:"",
+            description: "",
+            priority: "",
             applicationLength: "",
-            imagePath:"",
+            imagePath: "",
             difficulty: null,
             relevance: null,
             validity: null,
             region: null,
-            countries:[],
-            goal:null,
-            rating:"P3",
-            pricing:"",
-            sdgEngagement:"",
-            sdgs:[],
-            sdgTargets:[],
-            industries:[],
-            industrySectors:[]
+            countries: [],
+            goal: null,
+            rating: "P3",
+            pricing: "",
+            sdgEngagement: "",
+            sdgs: [],
+            sdgTargets: [],
+            industries: [],
+            industrySectors: [],
+            activeStatus: true
         },
-        certificates:[],
-        organizationID:null,
-        mode:"new"
+        certificate: new certificateModel(),
+        organizationName: null,
+        certificates: [],
+        organizationID: null,
+        mode: "new",
+        IsloggedIn: false
 
     },
     getters: {
         certificateForm: state => {
+            state.certificate.setOrganizationID(state.organizationID)
+            console.log(state.organizationID)
             return state.certificate
         },
-        payload: state =>{
+        payloadArchived: state => {
             return {
-                basicDetails:{
-                                    certificateID:state.certificate.certificateID,
-                payload:{                name: state.certificate.name,
-                    organizationID:state.organizationID,
+                certificateID: state.certificate.certificateID,
+                basicDetails: {
+                    name: state.certificate.name,
+                    organizationID: state.organizationID,
                     description: state.certificate.description,
-                    applicationLength:state.certificate.applicationLength,
+                    priority: state.certificate.priority,
+                    activeStatus: state.certificate.activeStatus
+                },
+                sdgs: state.certificate.sdgs,
+                sdgTargets: state.certificate.sdgTargets,
+                additionalDetails: {
+                    applicationLength: state.certificate.applicationLength,
                     difficulty: state.certificate.difficulty,
                     relevance: state.certificate.relevance,
-                    validity:state.certificate.validity,
+                    validity: state.certificate.validity,
                     goal: state.certificate.goal,
-                    specificity:state.certificate.rating,
+                    specificity: state.certificate.rating,
                     pricing: state.certificate.pricing,
                     sdgEngagement: state.certificate.sdgEngagement
-                },
-                sdgs:state.certificate.sdgs,
-                sdgTargets:state.certificate.sdgTargets
-
-}
+                }
 
             }
+
+
+        },
+        payload: state => {
+            var payload = state.certificate.getCertificatePayload()
+            return payload
         },
         certificates: state => {
             return state.certificates
@@ -67,88 +88,130 @@ export default new Vuex.Store({
         organizationIdentifier: state => {
             return state.organizationID
         },
-
-
+        organization: state => {
+            return {organizationID: state.organizationID,
+                organizationName: state.organizationName}
+        }
     },
     mutations: {
-        changeCertificate (state, payload) {
+        changeCertificate(state, payload) {
             state.certificate = payload
         },
-        addSdgs(state, payload){
+        addSdgs(state, payload) {
             state.certificate.sdgs = payload
+            state.certificate.computeSdgs()
         },
-        addSdgTargets(state, payload){
+        addSdgTargets(state, payload) {
             state.certificate.sdgTargets = payload
         },
-        addIndustrySectors(state, payload){
-            state.certificate.sdgTargets = payload
+        addIndustries(state, payload) {
+            state.certificate.industries = payload
+        },
+        addSubIndustries(state, payload) {
+            state.certificate.industrySectors = payload
         },
 
-        resetCertificate (state){
-            state.certificate = {
-                name: "",
-                applicationLength: "",
-                difficulty: null,
-                relevance: null,
-                validity: null,
-                region: null,
-                countries:[],
-                goal:null,
-                rating:"P3",
-                pricing:"",
-                sdgEngagement:"",
-                sdgs:[],
-                sdgTargets:[],
-                industries:[],
-                industrySectors:[]
+        resetCertificate(state) {
+            state.certificate = new certificateModel()
+
+        },
+
+        async fetchCertificates(state) {
+            if(state.organizationID == null && localStorage.getItem("OrganizationID") != null){
+                state.organizationID = localStorage.getItem("OrganizationID")
             }
+            state.certificates = [];
+            var certificatesResponse = [];
+            await certificateService.fetchCertificates(state.organizationID).then(response => (certificatesResponse = response.data));
+            console.log(certificatesResponse)
+            for (var i = 0; i < certificatesResponse.length; i++) {
+                var cert = new certificateModel()
+                cert.change(certificatesResponse[i])
+                state.certificates.push(cert)
+            }
+
         },
 
-        fetchCertificates(state,payload){
-            state.certificates = payload
+        async fetchOrganization(state) {
+            if(state.organizationID == null && localStorage.getItem("OrganizationID") != null){
+                state.organizationID = localStorage.getItem("OrganizationID")
+                state.organizationName = localStorage.getItem("OrganizationName")
+            }
+            else{
+                var organizationResponse
+                await organizationService.fetchOrganization(state.organizationID).then(response => (organizationResponse = response.data.organizationDetails[0]));
+                window.localStorage.setItem('OrganizationID', organizationResponse.organizationID)
+                window.localStorage.setItem('OrganizationName', organizationResponse.name)
+                state.organizationID = localStorage.getItem("OrganizationID")
+                state.organizationName = localStorage.getItem("OrganizationName")
+            }
+
         },
 
-        setOrganizationID(state,payload){
+        setOrganizationID(state, payload) {
             state.organizationID = payload
         },
 
-        addCertificate(state,payload){
+        addCertificate(state, payload) {
             state.certificates.Add(payload)
         },
-        changeMode(state,payload){
+        changeMode(state, payload) {
             state.mode = payload
-        }
+        },
+        changeLoginStatus (state){
+            if(localStorage.getItem("OrganizationID")==null){
+                state.IsloggedIn = false
+            }
+            else state.IsloggedIn = true
+        },
+        resetComputedSdgs(state) {
+            state.certificate.computedSdgs = []
+        },
+        
 
     },
     actions: {
-        changeCertificate (context, payload) {
-            context.commit("changeCertificate",payload)
+        changeCertificate(context, payload) {
+            context.commit("changeCertificate", payload)
         },
-        addSdgs(context, payload){
-            context.commit("addSdgs",payload)
+        addSdgs(context, payload) {
+            context.commit("addSdgs", payload)
         },
-        addSdgTargets(context, payload){
-            context.commit("addSdgTargets",payload)
+        addSdgTargets(context, payload) {
+            context.commit("addSdgTargets", payload)
         },
-        addIndustrySectors(context, payload){
-            context.commit("addIndustrySectors",payload)
+        addIndustries(context, payload) {
+            context.commit("addIndustries", payload)
         },
-        resetCertificate(context){
+        addSubIndustries(context, payload) {
+            context.commit("addSubIndustries", payload)
+        },
+
+        resetCertificate(context) {
             context.commit("resetCertificate")
         },
 
-        setOrganizationID(context,payload){
-            context.commit("setOrganizationID",payload)
+        setOrganizationID(context, payload) {
+            context.commit("setOrganizationID", payload)
         },
-        fetchCertificates(context,payload){
-            context.commit("fetchCertificates",payload)
+        async fetchCertificates(context, payload) {
+            context.commit("fetchCertificates", payload)
+        },
+        async fetchOrganization(context, payload) {
+            context.commit("fetchOrganization", payload)
         },
 
-        addCertificate(context,payload){
-            context.commit("addCertificate",payload)
+        addCertificate(context, payload) {
+            context.commit("addCertificate", payload)
         },
-        changeMode(context,payload){
-            context.commit("changeMode",payload)
+        changeMode(context, payload) {
+            context.commit("changeMode", payload)
+        },
+        changeLoginStatus(context) {
+            context.commit("changeLoginStatus")
+        },
+        resetComputedSdgs(context) {
+            context.commit("resetComputedSdgs")
         }
 
 

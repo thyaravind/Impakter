@@ -6,6 +6,9 @@ export default {
     fetchOrganizations () {
         return Api().get(`${resource}/`);
     },
+    fetchOrganization(organizationID){
+        return Api().get(`${resource}/${organizationID}`);
+    },
     createOrganization(payload){
         return Api().post(`${resource}/`,payload);
     }

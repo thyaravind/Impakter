@@ -28,7 +28,7 @@
 import SdgMixin from "@/mixins/SdgMixin";
 
 export default {
-  name: "SubSDGTargets",
+  name: "PartialSdgTargets",
   data(){return{
     selected:[],
     targets:[]
@@ -40,6 +40,7 @@ export default {
       this.$emit("next");
     },
     back(){
+      this.$store.dispatch("resetComputedSdgs");
       this.$router.go(-1)
     }
 

@@ -4,6 +4,8 @@ var CertificateResponse = require("../BO/certificateResponseObj.js");
 var pool = require("../db_connection")
 
 exports.apiGET = async function(req, res) {
+    try
+    {
     var certificates = []
         var sql_resp = await pool.query('select * from certificates where organizationID = ?', req.params.organizationID)
 
@@ -30,6 +32,12 @@ exports.apiGET = async function(req, res) {
             certificates.push(certificateResponse)
         }
         res.json(certificates);
+}
+catch(err) {
+    res.json({msg:"Failed to fetch the certificates",status:0});
+    console.log("failed to fetch with the following error:")
+    console.log(err)
+}
 
 
 };
@@ -113,24 +121,49 @@ exports.apiGET = function(req, res) {
 */
 
 exports.apiPOST = async function(req, res) {
-    await pool.query('INSERT INTO certificates SET ?', req.body.basicDetails, (err, sql_resp) => {
-        var certificateId = sql_resp.insertId
+    try
+    {
+    var sql_resp = await pool.query('INSERT INTO certificates SET ?', req.body.basicDetails)
+    var certificateId = sql_resp.insertId
+
+    req.body.sdgs.forEach(sdg => pool.query('INSERT INTO certificate_sdg (certificateID, sdgID) values (?,?)',[certificateId,sdg]))
+    req.body.sdgTargets.forEach(sdgTarget => pool.query('INSERT INTO certificate_sdgTarget (certificateID, sdgTargetID) values (?,?)',[certificateId,sdgTarget]))
+
+    res.json({msg:"Added Certificate successfully with ID:"+ sql_resp.insertId,status:1});
+    console.log("added certificate successfully")
+}
+catch(err) {
+    res.json({msg:"Failed to add the certificate",status:0});
+    console.log("failed to add the certificate with the following error:")
+    console.log(err)
+}
+
+};
+
+exports.apiPUT = async function(req, res) {
+    try
+    {
+        var certificateId = req.body.certificateID
+        var sql_resp = await pool.query('UPDATE certificates SET ? WHERE certificateID = ?', [req.body.basicDetails,certificateId])
+        await pool.query('DELETE FROM certificate_sdg where certificateID = ?',certificateId)
+        await pool.query('DELETE FROM certificate_sdgTarget where certificateID = ?',certificateId)
 
         req.body.sdgs.forEach(sdg => pool.query('INSERT INTO certificate_sdg (certificateID, sdgID) values (?,?)',[certificateId,sdg]))
         req.body.sdgTargets.forEach(sdgTarget => pool.query('INSERT INTO certificate_sdgTarget (certificateID, sdgTargetID) values (?,?)',[certificateId,sdgTarget]))
 
-        if(err)  res.json({msg: err});
-        else{
-            res.json({msg:"Added Certificate successfully with ID:"+ sql_resp.insertId});}
+        setTimeout(respond, 3000);
 
-    });
-};
+        async function respond(){
+            res.json({msg:"Updated Certificate successfully",status:1});
+            console.log("updated certificate successfully")
+    }
 
-exports.apiPUT = function(req, res) {
-    pool.query('UPDATE certificates SET ? WHERE certificateID = ?', [req.body.basicDetails,req.body.certificateID], (err, sql_resp) => {
-        if(err) throw err;
-        else{
-            res.json({msg:"Updated Certificate successfully"});}
+    }
+    catch(err) {
+        res.json({msg:"Failed to update the certificate",status:0});
+        console.log("failed to update the certificate with the following error:")
+        console.log(err)
+    }
 
-    });
+
 };

@@ -136,35 +136,6 @@
               ></b-form-textarea>
             </b-form-group>
 
-            <b-form-group
-              id="input-group-4"
-              v-slot="{ ariaDescribedby }"
-              label="What is the level of engagement with the UN Sustainable Development Goals?"
-              label-for="rating"
-              label-align-sm="left"
-            >
-              <b-form-radio-group
-                class="pt-2"
-                v-model="form.sdgEngagement"
-                :options="sdgEngagementOptions"
-                id="rating"
-                :aria-describedby="ariaDescribedby"
-                stacked
-              >
-              </b-form-radio-group>
-            </b-form-group>
-            <b-form-group
-              label-align-sm="left"
-              description="As you selected other, please specify"
-              v-if="form.sdgEngagement == '5'"
-            >
-              <b-form-input
-                id="name"
-                v-model="form.sdgEngagementOther"
-                placeholder="Other"
-                required
-              ></b-form-input>
-            </b-form-group>
             <br />
 
 
@@ -238,31 +209,7 @@ export default {
       ],
       searchText: "", // If value is falsy, reset searchText & searchItem
       lastSelectItem: {},
-      sdgEngagementOptions: [
-        {
-          value: "1",
-          text:
-            "We have analyzed and identified specific Sustainable Development Goals and their underlying targets that are most relevant to our business",
-        },
-        {
-          value: "2",
-          text:
-            "We have aligned our ongoing sustainability reporting metrics to the SDGs",
-        },
-        { value: "3", text: "We have set specific improvement goals to help achieve the SDGs (including goals set in the SDG Action Manager)" },
-                {
-          value: "4",
-          text:
-            "We have conducted internal training across our organization to educate our employees about the SDGs and our strategy to contribute to them",
-        },
-                {
-          value: "5",
-          text:
-            "Other",
-        },
 
-      ],
-      sdgEngagementOther: null,
       ratingOther: null
     };
   },
