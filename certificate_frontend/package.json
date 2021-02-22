@@ -9,13 +9,20 @@
     "deploy": "aws s3 sync ./dist s3://impakter-vue"
   },
   "dependencies": {
+    "3": "^2.1.0",
+    "-": "0.0.1",
     "@braid/vue-formulate": "^2.5.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/vue-fontawesome": "^3.0.0-3",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "jquery": "^1.9.1",
     "vue": "^2.6.11",
     "vue-mc": "^0.6.0",
     "vue-router": "^3.4.9",
+    "vue-scrollview": "^3.0.1",
     "vue-search-select": "^2.9.3",
     "vue-simple-alert": "^1.1.1",
     "vuex": "^3.6.0"

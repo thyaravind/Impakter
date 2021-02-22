@@ -1,32 +1,40 @@
 <template>
-  <b-container class="bv-example-row">
+  <b-container>
     <b-row>
-      <b-col cols="6"
-        ><h3>You selected the following Industries</h3>
-        <div v-for="(industry,index) in form.computedIndustries" :key="index">
-          <h5 :class="industry.value === currentIndustry ? 'bold' : ''">
-            {{ industry.value + ": " + industry.text }}
-          </h5>
+      <b-col cols="6">
+        <div class="position-fixed" id="subb">
+          <h3>Selected industries</h3>
+          <div
+            v-for="(industry, index) in form.computedIndustries"
+            :key="index"
+          >
+            <h5 :class="industry.value === currentIndustry ? 'bold' : ''">
+              <i class="far fa-envelope"></i>
+              {{ industry.value + ": " + industry.text }}
+            </h5>
+          </div>
         </div>
       </b-col>
-      <b-col
-        ><PartialSubIndustries
-          @next="next"
-          :current-industry-index="currentIndustry"
-      /></b-col>
+      <b-col>
+        <scroll-view>
+          <template
+            ><PartialSubIndustries
+              @next="next"
+              :current-industry-index="currentIndustry" /></template
+        ></scroll-view>
+      </b-col>
     </b-row>
 
     <b-card class="mt-3" header="Form result so far">
       <pre class="m-0">{{ form }}</pre>
     </b-card>
     <b-modal ref="proceed-modal" hide-footer>
-      <b-alert v-if="InProgress" show variant="primary">Updating Certificate...</b-alert>
-      <b-alert v-if="ProgressCompleted" show variant="success">{{ this.responseMessage }}</b-alert>
-      <b-alert v-if="ProgressFailed" show variant="danger">{{ this.responseMessage }}</b-alert>
-      <b-button @click="addMore" variant="primary"> Add more details</b-button>
-      <br />
-      <b-button @click="addNew"> Add another Certificate</b-button>
-      <br />
+      <p>Status Message:</p>
+      <b-alert v-if="InProgress" show variant="primary">Adding/Updating Certificate...</b-alert>
+      <b-alert v-if="ProgressCompleted" show variant="success">{{this.responseMessage}}</b-alert>
+      <b-alert v-if="ProgressFailed" show variant="danger">{{this.responseMessage}}</b-alert>
+      <!--<b-button @click="addMore" variant="primary"> Add more details</b-button>-->
+      <b-button @click="addNew" variant="primary"> Add another Certificate</b-button>
       <b-button to="/wait">Go to my certificates</b-button>
     </b-modal>
   </b-container>
@@ -50,7 +58,7 @@ export default {
       responseStatus: null,
       InProgress: false,
       ProgressCompleted: false,
-      ProgressFailed: false
+      ProgressFailed: false,
     };
   },
   methods: {
@@ -60,33 +68,27 @@ export default {
         this.currentIndustry = this.form.industries[this.industryIndex];
       } else {
         var mode = this.$store.getters.mode;
-        var req = this.$store.getters.payload;          
-        this.InProgress = true
+        var req = this.$store.getters.payload;
+        this.InProgress = true;
         this.$refs["proceed-modal"].show();
         if (mode == "edit") {
           //this.$alert("updating the certificate");
-          await certificateService
-            .updateCertificate(req)
-            .then((response) => {
-              this.responseMessage = response.data.msg
-              this.responseStatus = response.data.status
-              });
+          await certificateService.updateCertificate(req).then((response) => {
+            this.responseMessage = response.data.msg;
+            this.responseStatus = response.data.status;
+          });
         } else {
-          await certificateService
-            .createCertificate(req)
-            .then((response) => {
-            this.responseMessage = response.data.msg
-            this.responseStatus = response.data.status});
+          await certificateService.createCertificate(req).then((response) => {
+            this.responseMessage = response.data.msg;
+            this.responseStatus = response.data.status;
+          });
         }
 
         this.$store.dispatch("resetCertificate");
-        this.InProgress = false
-        if(this.responseStatus == 1) {
-            this.ProgressCompleted = true
-        }
-        else this.ProgressFailed = true
-        
-        
+        this.InProgress = false;
+        if (this.responseStatus == 1) {
+          this.ProgressCompleted = true;
+        } else this.ProgressFailed = true;
       }
 
       //else this.$router.push({name:'formPage3'})
@@ -115,6 +117,10 @@ export default {
   color: #41b883;
 }
 button {
-  margin-bottom: 5px;
+margin-right: 20px;
+}
+
+#subb {
+  width: 500px;
 }
 </style>

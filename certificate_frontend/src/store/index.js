@@ -36,10 +36,11 @@ export default new Vuex.Store({
         },
         certificate: new certificateModel(),
         organizationName: null,
-        certificates: [],
+        certificates: null,
         organizationID: null,
         mode: "new",
-        IsloggedIn: false
+        IsloggedIn: false,
+        isNetworkConnected: null
 
     },
     getters: {
@@ -88,6 +89,9 @@ export default new Vuex.Store({
         organizationIdentifier: state => {
             return state.organizationID
         },
+        isNetworkConnected: state => {
+            return state.isNetworkConnected
+        },
         organization: state => {
             return {
                 organizationID: state.organizationID,
@@ -124,14 +128,23 @@ export default new Vuex.Store({
                 state.organizationID = localStorage.getItem("OrganizationID")
             }
             state.certificates = [];
-            var certificatesResponse = [];
-            await certificateService.fetchCertificates(state.organizationID).then(response => (certificatesResponse = response.data));
+            var certificatesResponse = null;
+            await certificateService.fetchCertificates(state.organizationID).then(response => (certificatesResponse = response.data)).catch((e) =>
+                console.log("Error printed:" + e));
             console.log(certificatesResponse)
-            for (var i = 0; i < certificatesResponse.length; i++) {
-                var cert = new certificateModel()
-                cert.change(certificatesResponse[i])
-                state.certificates.push(cert)
+            if (certificatesResponse == null) {
+                state.isNetworkConnected = false
             }
+            else {
+                state.isNetworkConnected = true
+                for (var i = 0; i < certificatesResponse.length; i++) {
+                    var cert = new certificateModel()
+                    cert.change(certificatesResponse[i])
+                    state.certificates.push(cert)
+                }
+                
+            }
+
 
         },
 
@@ -229,8 +242,8 @@ export default new Vuex.Store({
         resetComputed(context) {
             context.commit("resetComputedSdgs")
         },
-        updateCertificateStatus(context,payload) {
-            context.commit("updateCertificateStatus",payload)
+        updateCertificateStatus(context, payload) {
+            context.commit("updateCertificateStatus", payload)
         }
 
 

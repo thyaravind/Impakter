@@ -49,6 +49,7 @@ export default {
       organizationIdentifier: null,
       response: null,
       InProgress: true,
+      networkConnected: null,
       fields: [
         "name",
         "computedPriority",
@@ -62,6 +63,10 @@ export default {
   async mounted() {
     this.certificates = this.$store.getters.certificates;
     this.organization = this.$store.getters.organization;
+    this.networkConnected = this.$store.getters.isNetworkConnected;
+    if(this.networkConnected == false){
+      setTimeout(() => { this.$alert("Network failure: Please contact Administrator"); }, 500);
+    }
   },
   methods: {
     add() {

@@ -1,13 +1,15 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
-      <b-col cols="6"
-        ><h3>You selected the following SDGs</h3>
+      <b-col cols="6">
+        <div class="position-fixed">
+          <h3>Sustainable Development Goals</h3>
 
-        <div v-for="(sdg, index) in form.computedSdgs" :key="index">
-          <h5 :class="sdg.value === currentSdg ? 'bold' : ''">
-            {{ sdg.text }}
-          </h5>
+          <div v-for="(sdg, index) in form.computedSdgs" :key="index">
+            <h5 :class="sdg.value === currentSdg ? 'bold' : ''">
+              {{ sdg.text }}
+            </h5>
+          </div>
         </div>
       </b-col>
       <b-col
@@ -44,7 +46,6 @@ export default {
     };
   },
   methods: {
-
     async next() {
       this.sdgIndex++;
       if (this.sdgIndex < this.form.sdgs.length) {
@@ -64,9 +65,7 @@ export default {
       this.$router.push({ name: "formPage1" });
     },
   },
-  computed: {
-
-  },
+  computed: {},
   mounted() {
     this.sdgIndex = 0;
     this.currentSdg = this.form.sdgs[this.sdgIndex];
