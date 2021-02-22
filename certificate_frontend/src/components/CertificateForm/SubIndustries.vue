@@ -25,9 +25,9 @@
       </b-col>
     </b-row>
 
-    <b-card class="mt-3" header="Form result so far">
+    <!--<b-card class="mt-3" header="Form result so far">
       <pre class="m-0">{{ form }}</pre>
-    </b-card>
+    </b-card>-->
     <b-modal ref="proceed-modal" hide-footer>
       <p>Status Message:</p>
       <b-alert v-if="InProgress" show variant="primary">Adding/Updating Certificate...</b-alert>

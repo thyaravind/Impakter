@@ -1,13 +1,15 @@
 <template>
   <div>
+    <div>
     <h2>Welcome, {{ organization.organizationName }}</h2>
+    </div>
     <br />
     <b-table :fields="fields" :items="certificates">
       <template #head(name)>
         <div class="text-nowrap">Certificate Name</div>
       </template>
       <template #cell(name)="data">
-        <a>{{data.item.name}} </a>
+        <a>{{ data.item.name }} </a>
       </template>
       <template #cell(activeStatus)="row">
         <b-form-checkbox
@@ -39,7 +41,6 @@
 
 
 <script>
-
 export default {
   name: "OrgHome",
   data() {
@@ -64,8 +65,10 @@ export default {
     this.certificates = this.$store.getters.certificates;
     this.organization = this.$store.getters.organization;
     this.networkConnected = this.$store.getters.isNetworkConnected;
-    if(this.networkConnected == false){
-      setTimeout(() => { this.$alert("Network failure: Please contact Administrator"); }, 500);
+    if (this.networkConnected == false) {
+      setTimeout(() => {
+        this.$alert("Network failure: Please contact Administrator");
+      }, 500);
     }
   },
   methods: {
@@ -87,18 +90,17 @@ export default {
     },
     updateStatus(index) {
       this.$store.dispatch("updateCertificateStatus", this.certificates[index]);
-      setTimeout(() => { this.$alert(this.$store.responseMessage); }, 1000);
-      this.$store.responseMessage = "_blank_"
-      
+      setTimeout(() => {
+        this.$alert(this.$store.responseMessage);
+      }, 1000);
+      this.$store.responseMessage = "_blank_";
     },
   },
-
 };
 </script>
 
 <style scoped>
-butt
-    CertificateProfileon {
+butt CertificateProfileon {
   margin-left: 10px;
 }
 

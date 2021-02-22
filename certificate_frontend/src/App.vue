@@ -4,7 +4,7 @@
       <b-row>
         <div id="nav">
           <b-navbar toggleable="lg" type="dark" fixed="top" variant="light">
-            <b-navbar-brand href="/organization/home"
+            <b-navbar-brand href=""
               ><img id="logo" src="@/assets/logo_index.png"
             /></b-navbar-brand>
 
@@ -32,6 +32,15 @@
       >
       <b-row>
         <b-container><router-view /></b-container>
+      </b-row>
+      <b-row>
+        <b-col>
+          <br />
+          <br />
+          <span></span>
+          <br />
+          <br />
+        </b-col>
       </b-row>
     </b-container>
   </div>

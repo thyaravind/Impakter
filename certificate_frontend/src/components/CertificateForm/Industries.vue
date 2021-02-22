@@ -25,9 +25,9 @@
       <b-button @click="back">Back</b-button>
       <b-button variant="primary" @click="next">Next</b-button>
     </b-container>
-    <b-card class="mt-3" header="Form result so far">
+    <!--<b-card class="mt-3" header="Form result so far">
       <pre class="m-0">{{ form }}</pre>
-    </b-card>
+    </b-card>-->
   </div>
 </template>
 
