@@ -16,6 +16,7 @@ import { ServicesFactory } from "@/services/ServicesFactory";
 const certificateService2 = ServicesFactory.get("certificates");
 const organizationService = ServicesFactory.get("organizations");
 
+
 export default {
   name: "Home",
   data() {
@@ -23,7 +24,6 @@ export default {
       certificates: {},
     };
   },
-  components: {},
   methods: {
     async getCertificates() {
       const resp = await CertificateService.fetchCertificates(1);

@@ -1,6 +1,9 @@
 <template>
   <div>
     <b-container>
+          <b-row>
+        <progress-bar :currentStep="3"> </progress-bar>
+      </b-row>
       <b-row>        
         <b-col> </b-col>
         <b-col cols="8">       <b-form-group
@@ -34,6 +37,7 @@
 <script>
 import IndustryMixin from "../../mixins/IndustryMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
+import ProgressBar from '../Shared/ProgressBar.vue';
 export default {
   name: "FormIndustries",
   data() {
@@ -55,6 +59,7 @@ export default {
     this.selected = this.form.industries;
   },
   mixins: [IndustryMixin, CertificateFormMixin],
+   components: { ProgressBar },
 };
 </script>
 
