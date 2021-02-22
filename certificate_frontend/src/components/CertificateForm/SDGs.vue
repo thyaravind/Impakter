@@ -2,6 +2,9 @@
   <div>
     <b-container>
       <b-row>
+        <progress-bar :currentStep="2"> </progress-bar>
+      </b-row>
+      <b-row>
         <h4>
           Please select all the Sustainable Development Goals (SDGs) applicable
           to this certificate
@@ -37,6 +40,7 @@
 import SdgMixin from "../../mixins/SdgMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 import FormGuardMixin from "@/mixins/FormGuardMixin";
+import ProgressBar from '../Shared/ProgressBar.vue';
 export default {
   name: "FormSDGs",
   data() {
@@ -59,6 +63,7 @@ export default {
     this.selected = this.form.sdgs;
   },
   mixins: [SdgMixin, CertificateFormMixin, FormGuardMixin],
+    components: { ProgressBar },
 };
 </script>
 

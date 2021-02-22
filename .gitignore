@@ -9,3 +9,4 @@ package-lock.json
 
 *.sqlite
 *.env
+node_modules

@@ -1,5 +1,9 @@
 <template>
   <div>
+    <b-container>
+    <b-row>
+      <progress-bar  :currentStep="1" > </progress-bar>
+    </b-row>
     <b-row>
       <b-col></b-col>
       <b-col cols="8">
@@ -99,13 +103,18 @@
     </b-row>
     <!--<b-card class="mt-3" header="Form result so far">
       <pre class="m-0">{{ form }}</pre>
+
     </b-card>-->
-  </div>
+
+    </b-container>
+
+</div>
 </template>
 
 <script>
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 import FormGuardMixin from "@/mixins/FormGuardMixin";
+import ProgressBar from '../Shared/ProgressBar.vue';
 
 export default {
   data() {
@@ -160,6 +169,7 @@ export default {
     },
   },
   mixins: [CertificateFormMixin, FormGuardMixin],
+  components: { ProgressBar },
 };
 </script>
 

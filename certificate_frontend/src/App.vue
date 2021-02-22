@@ -11,25 +11,38 @@
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
-
-              <b-navbar-nav>
-                
-              </b-navbar-nav>
+              <b-navbar-nav> </b-navbar-nav>
 
               <!-- Right aligned nav items -->
               <b-navbar-nav class="ml-auto">
                 <!--<b-nav-item ><router-link to="/wait"><span id="refresh">refresh</span></router-link></b-nav-item>-->
-                <b-nav-item><router-link to="/organization/home">MY CERTIFICATES</router-link></b-nav-item>
-                <b-nav-item href="#"><router-link to="/certificates/add">ADD CERTIFICATE</router-link></b-nav-item>
+                <b-nav-item
+                  ><router-link to="/organization/home"
+                    >MY CERTIFICATES</router-link
+                  ></b-nav-item
+                >
+                <b-nav-item href="#"
+                  ><router-link to="/certificates/add"
+                    >ADD CERTIFICATE</router-link
+                  ></b-nav-item
+                >
                 <b-nav-item> | </b-nav-item>
                 <b-nav-item>
-                  <span v-if="this.$store.state.IsloggedIn" @click="logout">LOGOUT</span>
-                  <span v-if="!this.$store.state.IsloggedIn" @click="login">LOGIN</span></b-nav-item>
+                  <span v-if="this.$store.state.IsloggedIn" @click="logout"
+                    >LOGOUT</span
+                  >
+                  <span v-if="!this.$store.state.IsloggedIn" @click="login"
+                    >LOGIN</span
+                  ></b-nav-item
+                >
               </b-navbar-nav>
             </b-collapse>
           </b-navbar>
-        </div></b-row
-      >
+        </div>
+      </b-row>
+      <b-row>
+        
+      </b-row>
       <b-row>
         <b-container><router-view /></b-container>
       </b-row>
@@ -47,6 +60,9 @@
 </template>
 
 <script>
+
+
+
 export default {
   data() {
     return {
@@ -108,9 +124,7 @@ button {
   width: 190px;
 }
 
-#refresh{
-  color:rgb(79, 167, 162);
-
-
+#refresh {
+  color: rgb(79, 167, 162);
 }
 </style>

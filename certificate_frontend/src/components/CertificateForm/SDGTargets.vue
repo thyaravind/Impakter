@@ -1,6 +1,9 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
+        <progress-bar :currentStep="2"> </progress-bar>
+      </b-row>
+    <b-row>
       <b-col cols="6">
         <div class="position-fixed">
           <h3>Sustainable Development Goals</h3>
@@ -35,9 +38,10 @@
 import PartialSdgTargets from "@/components/CertificateForm/PartialSdgTargets";
 import SdgMixin from "@/mixins/SdgMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
+import ProgressBar from '../Shared/ProgressBar.vue';
 export default {
   name: "FormSDGtargets",
-  components: { PartialSdgTargets },
+  components: { PartialSdgTargets,ProgressBar },
   data() {
     return {
       currentSdg: null,
