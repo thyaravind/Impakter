@@ -17,15 +17,8 @@
               <b-navbar-nav class="ml-auto">
                 <!--<b-nav-item ><router-link to="/wait"><span id="refresh">refresh</span></router-link></b-nav-item>-->
                 <b-nav-item
-                  ><router-link to="/organization/home"
-                    >MY CERTIFICATES</router-link
-                  ></b-nav-item
-                >
-                <b-nav-item href="#"
-                  ><router-link to="/certificates/add"
-                    >ADD CERTIFICATE</router-link
-                  ></b-nav-item
-                >
+                  ><router-link to="/organization/home">MY CERTIFICATES</router-link></b-nav-item>
+                <b-nav-item href="#"><router-link to="/certificates/add">ADD CERTIFICATE</router-link></b-nav-item>
                 <b-nav-item> | </b-nav-item>
                 <b-nav-item>
                   <span v-if="this.$store.state.IsloggedIn" @click="logout"
@@ -41,10 +34,10 @@
         </div>
       </b-row>
       <b-row>
-        
+        <div id="spacer"></div>
       </b-row>
       <b-row>
-        <b-container><router-view /></b-container>
+        <b-container id="router_view_container"><router-view /></b-container>
       </b-row>
       <b-row>
         <b-col>
@@ -60,9 +53,6 @@
 </template>
 
 <script>
-
-
-
 export default {
   data() {
     return {
@@ -100,10 +90,11 @@ export default {
 }
 
 #nav {
-  margin-bottom: 90px;
+
   border-bottom: #a1a1a1 0.5px solid;
   box-shadow: 1px 1px 5px 1px #c0c0c0;
   background: aliceblue;
+  z-index:100;
 }
 
 #nav a {
@@ -127,4 +118,33 @@ button {
 #refresh {
   color: rgb(79, 167, 162);
 }
+
+.main_row {
+  margin-top: 0px;
+}
+
+.buttons_row {
+  justify-content: center;
+}
+
+
+#checkbox-group-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left !important;
+}
+#spacer {
+  background-color: white;
+  position: fixed;
+  z-index:90;
+  padding: 50px;
+  width: 100%;
+}
+
+#router_view_container{
+margin-top: 100px;
+
+}
+
 </style>

@@ -1,6 +1,9 @@
 <template>
   <b-container>
     <b-row>
+      <progress-bar :currentStep="3"> </progress-bar>
+    </b-row>
+    <b-row>
       <b-col cols="6">
         <div class="position-fixed" id="subb">
           <h3>Selected industries</h3>
@@ -30,11 +33,19 @@
     </b-card>-->
     <b-modal ref="proceed-modal" hide-footer>
       <p>Status Message:</p>
-      <b-alert v-if="InProgress" show variant="primary">Adding/Updating Certificate...</b-alert>
-      <b-alert v-if="ProgressCompleted" show variant="success">{{this.responseMessage}}</b-alert>
-      <b-alert v-if="ProgressFailed" show variant="danger">{{this.responseMessage}}</b-alert>
+      <b-alert v-if="InProgress" show variant="primary"
+        >Adding/Updating Certificate...</b-alert
+      >
+      <b-alert v-if="ProgressCompleted" show variant="success">{{
+        this.responseMessage
+      }}</b-alert>
+      <b-alert v-if="ProgressFailed" show variant="danger">{{
+        this.responseMessage
+      }}</b-alert>
       <!--<b-button @click="addMore" variant="primary"> Add more details</b-button>-->
-      <b-button @click="addNew" variant="primary"> Add another Certificate</b-button>
+      <b-button @click="addNew" variant="primary">
+        Add another Certificate</b-button
+      >
       <b-button to="/wait">Go to my certificates</b-button>
     </b-modal>
   </b-container>
@@ -45,11 +56,12 @@ import PartialSubIndustries from "@/components/CertificateForm/PartialSubIndustr
 import { ServicesFactory } from "@/services/ServicesFactory";
 import IndustryMixin from "@/mixins/IndustryMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
+import ProgressBar from '../Shared/ProgressBar.vue';
 
 const certificateService = ServicesFactory.get("certificates");
 export default {
   name: "FormSubIndustries",
-  components: { PartialSubIndustries },
+  components: { PartialSubIndustries, ProgressBar },
   data() {
     return {
       currentIndustry: null,
@@ -117,7 +129,7 @@ export default {
   color: #41b883;
 }
 button {
-margin-right: 20px;
+  margin-right: 20px;
 }
 
 #subb {

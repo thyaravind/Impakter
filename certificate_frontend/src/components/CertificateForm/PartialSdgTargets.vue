@@ -1,14 +1,13 @@
 <template>
   <div>
-    <div class="">
-      <h4>Please select applicable SDG targets for each SDG</h4>
+    <div>
+      <b>Please select applicable SDG targets for each SDG</b>
     </div>
     <br />
     <div id="scroll">
-      <p>Current SDG Index: {{ currentSdgIndex }}</p>
+      <!--<p>Current SDG Index: {{ currentSdgIndex }}</p>-->
       <b-row>
         <b-form-group
-          label="Please select all applicable SDG targets:"
           v-slot="{ ariaDescribedby }"
         >
           <b-form-checkbox-group
@@ -22,7 +21,7 @@
         </b-form-group>
       </b-row>
 
-      <b-row>
+      <b-row class="buttons_row">
         <b-button @click="back">Back</b-button>
         <b-button variant="primary" @click="next">Next</b-button>
       </b-row>
@@ -84,7 +83,7 @@ export default {
 .position-fixed {
   margin-bottom: 20px;
   background-color: rgb(255, 255, 255);
-  z-index: 1000;
+  z-index: 80;
 }
 
 #scroll{

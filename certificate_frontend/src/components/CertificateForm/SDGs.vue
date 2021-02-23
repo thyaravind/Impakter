@@ -4,16 +4,10 @@
       <b-row>
         <progress-bar :currentStep="2"> </progress-bar>
       </b-row>
-      <b-row>
-        <h4>
-          Please select all the Sustainable Development Goals (SDGs) applicable
-          to this certificate
-        </h4>
-      </b-row>
-      <b-row>
+      <b-row class="main_row">
         <b-col> </b-col>
-        <b-col cols="6">
-          <b-form-group v-slot="{ ariaDescribedby }" label-size="lg">
+        <b-col cols="8">
+          <b-form-group v-slot="{ ariaDescribedby }" label-size="lg" label="Please select all the Susainable Development Goals applicable to this certificate">
             <b-form-checkbox-group
               id="checkbox-group-1"
               v-model="selected"
@@ -23,11 +17,12 @@
               stacked
             ></b-form-checkbox-group>
           </b-form-group>
-
-          <b-button @click="back">Back</b-button>
-          <b-button variant="primary" @click="next">Next</b-button>
         </b-col>
         <b-col> </b-col>
+      </b-row>
+      <b-row class="buttons_row">
+        <b-button @click="back">Back</b-button>
+        <b-button variant="primary" @click="next">Next</b-button>
       </b-row>
     </b-container>
     <!--<b-card class="mt-3" header="Form result so far">
@@ -40,7 +35,7 @@
 import SdgMixin from "../../mixins/SdgMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 import FormGuardMixin from "@/mixins/FormGuardMixin";
-import ProgressBar from '../Shared/ProgressBar.vue';
+import ProgressBar from "../Shared/ProgressBar.vue";
 export default {
   name: "FormSDGs",
   data() {
@@ -63,15 +58,9 @@ export default {
     this.selected = this.form.sdgs;
   },
   mixins: [SdgMixin, CertificateFormMixin, FormGuardMixin],
-    components: { ProgressBar },
+  components: { ProgressBar },
 };
 </script>
 
 <style scoped>
-#checkbox-group-1 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left !important;
-}
 </style>

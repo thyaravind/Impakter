@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>
-    <h2>Welcome, {{ organization.organizationName }}</h2>
-    </div>
+      <div id="main_heading">
+        <h2>Welcome, {{ organization.organizationName }}</h2>
+      </div>
     <br />
     <b-table :fields="fields" :items="certificates">
       <template #head(name)>
@@ -106,5 +106,18 @@ butt CertificateProfileon {
 
 h2 {
   align-self: left;
+}
+
+#main_heading {
+  display: flex;
+  position: fixed;
+  justify-content: flex-start;
+  background-color: white;
+  z-index: 80;
+  width: 100%;
+}
+
+table {
+  margin-top: 40px;
 }
 </style>

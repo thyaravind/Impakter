@@ -4,7 +4,7 @@
     <b-row>
       <progress-bar  :currentStep="1" > </progress-bar>
     </b-row>
-    <b-row>
+    <b-row class="main_row">
       <b-col></b-col>
       <b-col cols="8">
         <b-form @submit="onSubmit" @reset="onReset">

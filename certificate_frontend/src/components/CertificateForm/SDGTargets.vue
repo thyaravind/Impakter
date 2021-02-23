@@ -3,8 +3,8 @@
     <b-row>
         <progress-bar :currentStep="2"> </progress-bar>
       </b-row>
-    <b-row>
-      <b-col cols="6">
+    <b-row class="main_row">
+      <b-col cols="6" >
         <div class="position-fixed">
           <h3>Sustainable Development Goals</h3>
 
