@@ -15,16 +15,16 @@
 
               <!-- Right aligned nav items -->
               <b-navbar-nav class="ml-auto">
-                <!--<b-nav-item ><router-link to="/wait"><span id="refresh">refresh</span></router-link></b-nav-item>-->
+                <b-nav-item ><router-link to="/wait"><span id="refresh">refresh</span></router-link></b-nav-item>
                 <b-nav-item
                   ><router-link to="/organization/home">MY CERTIFICATES</router-link></b-nav-item>
                 <b-nav-item href="#"><router-link to="/certificates/add">ADD CERTIFICATE</router-link></b-nav-item>
                 <b-nav-item> | </b-nav-item>
                 <b-nav-item>
-                  <span v-if="this.$store.state.IsloggedIn" @click="logout"
+                  <span v-if="loggedIn" @click="logout"
                     >LOGOUT</span
                   >
-                  <span v-if="!this.$store.state.IsloggedIn" @click="login"
+                  <span v-if="!loggedIn" @click="login"
                     >LOGIN</span
                   ></b-nav-item
                 >
@@ -56,10 +56,16 @@
 export default {
   data() {
     return {
-      loggedIn: null,
     };
   },
-  computed: {},
+  computed: {
+loggedIn: function(){ return this.$store.state.IsloggedIn} 
+  },
+  mounted(){
+    this.$root.$on('myEvent', () => { // here you need to use the arrow function
+     this.loggedIn = true;})
+    
+  },
 
   methods: {
     logout() {
@@ -72,6 +78,9 @@ export default {
       this.$router.push("/login");
     },
   },
+    created () {
+            document.title = "Impakter - Certificates";
+        }
 };
 </script>
 
@@ -127,6 +136,13 @@ button {
   justify-content: center;
 }
 
+.buttons_row * {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+
 
 #checkbox-group-1 {
   display: flex;
@@ -134,6 +150,21 @@ button {
   align-items: flex-start;
   text-align: left !important;
 }
+
+#input-group-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left !important;
+}
+
+#input-group-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left !important;
+}
+
 #spacer {
   background-color: white;
   position: fixed;
@@ -146,5 +177,11 @@ button {
 margin-top: 100px;
 
 }
+
+.pagination {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
 
 </style>

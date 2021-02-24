@@ -42,3 +42,23 @@ export const industries = [
 
     ]
 
+export const awsConfig = {
+    s3bucketUrl:" ",
+    policy: {
+        content_type:"",
+        acl:"public_read",
+        full_path:"",
+        key:"",
+        policy:"",
+        success_action_status:"",
+        url:"",
+        x_amz_algorithm:"AWS4-HMAC-SHA256",
+        x_amz_credential:"",
+        x_amz_date:"",
+        x_amz_security_token:"",
+        x_amz_signature:"",
+        x_amz_meta_uuid:"14365123651274",
+        x_amz_server_side_encryption:"AES256"
+      }
+
+}

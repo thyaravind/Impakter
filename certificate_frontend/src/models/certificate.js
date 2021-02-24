@@ -7,7 +7,7 @@ export default class certificateModel {
     organizationID = null
     name = ""
     description = ""
-    priority = ""
+    priority = null
     applicationLength = ""
     imagePath = ""
     difficulty = null
@@ -43,7 +43,14 @@ export default class certificateModel {
                 description: this.description,
                 priority: this.priority,
                 activeStatus: this.activeStatus,
-                sdgEngagement: this.sdgEngagement
+                sdgEngagement: this.sdgEngagement,
+                applicationLength: this.applicationLength,
+                difficulty: this.difficulty,
+                relevance: this.relevance,
+                validity: this.validity,
+                goal: this.goal,
+                specificity: this.rating,
+                pricing: this.pricing
             },
             sdgs: this.sdgs,
             sdgTargets: this.sdgTargets,
@@ -76,6 +83,11 @@ export default class certificateModel {
         this.priority = certificateResponseObj.details.priority
         this.sdgEngagement = certificateResponseObj.details.sdgEngagement
         this.activeStatus = compute.convertFromBool(certificateResponseObj.details.activeStatus)
+        this.relevance = certificateResponseObj.details.relevance
+        this.validity = certificateResponseObj.details.validity
+        this.goal = certificateResponseObj.details.goal
+        this.pricing = certificateResponseObj.details.pricing
+        this.specificity = certificateResponseObj.details.rating
 
 
         this.sdgs = certificateResponseObj.sdgs;

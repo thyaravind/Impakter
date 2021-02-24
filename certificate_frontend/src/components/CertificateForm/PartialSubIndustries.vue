@@ -20,7 +20,7 @@
       </b-form-group>
     </b-row>
 
-    <b-row>
+    <b-row class="buttons_row">
       <b-button @click="back">Back</b-button>
       <b-button variant="primary" @click="next">Next</b-button>
     </b-row>

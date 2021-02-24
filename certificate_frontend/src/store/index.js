@@ -1,11 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { ServicesFactory } from "@/services/ServicesFactory";
+import axios from 'axios'
 
 const certificateService = ServicesFactory.get("certificates");
 const organizationService = ServicesFactory.get("organizations");
 import certificateModel from "../models/certificate";
-
+import {awsConfig} from "@/models/constants"
 
 Vue.use(Vuex);
 
@@ -40,7 +41,9 @@ export default new Vuex.Store({
         organizationID: null,
         mode: "new",
         IsloggedIn: false,
-        isNetworkConnected: null
+        isNetworkConnected: null,
+        uploadPolicy: null,
+        orgLoginFailed: false
 
     },
     getters: {
@@ -97,6 +100,9 @@ export default new Vuex.Store({
                 organizationID: state.organizationID,
                 organizationName: state.organizationName
             }
+        },
+        uploadPolicy: state => {
+            return state.uploadPolicy
         }
     },
     mutations: {
@@ -156,10 +162,18 @@ export default new Vuex.Store({
             else {
                 var organizationResponse
                 await organizationService.fetchOrganization(state.organizationID).then(response => (organizationResponse = response.data.organizationDetails[0]));
+                if(organizationResponse == undefined){
+                    state.orgLoginFailed = true
+
+                }
+                else {
+                state.orgLoginFailed = false
                 window.localStorage.setItem('OrganizationID', organizationResponse.organizationID)
                 window.localStorage.setItem('OrganizationName', organizationResponse.name)
                 state.organizationID = localStorage.getItem("OrganizationID")
                 state.organizationName = localStorage.getItem("OrganizationName")
+                }
+
             }
 
         },
@@ -196,6 +210,16 @@ export default new Vuex.Store({
             console.log(this.responseMessage)
             state.certificate = new certificateModel()
 
+        },
+
+        fetchSignatureAndPolicy(state,payload){
+            state.uploadPolicy = awsConfig.policy
+            state.uploadPolicy.content_type = payload.content_type
+            state.uploadPolicy.key = `certificateLogos/${state.organizationName}_${payload.filename}`
+        },
+        async uploadImage(payload){
+            let { data } = await axios.post(awsConfig.s3bucketUrl, payload)
+            console.log(data)
         }
 
     },

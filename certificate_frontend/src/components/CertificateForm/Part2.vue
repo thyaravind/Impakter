@@ -2,9 +2,12 @@
   <div>
     <b-container class="bv-example-row">
       <b-row>
+        <h5>Additional Detials for {{form.name}}</h5>
+      </b-row>
+      <b-row>
         <b-col></b-col>
         <b-col cols="8">
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+          <b-form @submit="onSubmit" v-if="show">
             <b-form-group
               label-cols="4"
               label-cols-lg="3"
@@ -40,6 +43,8 @@
               </b-form-radio-group>
             </b-form-group>
             <br />
+
+            <!--
             <b-form-group
               label-cols="4"
               label-cols-lg="3"
@@ -53,8 +58,9 @@
                 :options="regions"
               ></b-form-select>
             </b-form-group>
-            <br />
-            <b-form-group
+            -->
+
+            <!--<b-form-group
               label-cols="4"
               label-cols-lg="3"
               label="Select all countires that this certificate valid in?"
@@ -68,10 +74,10 @@
                 @select="onSelect"
               >
               </multi-select>
-            </b-form-group>
+            </b-form-group>-->
             <br />
             <b-form-group
-              id="input-group-4"
+              id="input-group-1"
               v-slot="{ ariaDescribedby }"
               label="What is the goal of the certificate?"
               label-for="goal"
@@ -89,7 +95,7 @@
             </b-form-group>
             <br />
             <b-form-group
-              id="input-group-4"
+              id="input-group-2"
               v-slot="{ ariaDescribedby }"
               label="Choose the option that best describes the certificate"
               label-for="rating"
@@ -138,23 +144,45 @@
 
             <br />
 
-
-            <b-button type="reset" variant="danger">Reset</b-button>
-            <b-button type="submit" variant="primary">Proceed to SDGs</b-button>
+            <b-button type="submit" variant="primary">Submit Additional Details</b-button>
           </b-form>
         </b-col>
         <b-col> </b-col>
       </b-row>
-      <b-card class="mt-3" header="Form result so far">
+      <!--<b-card class="mt-3" header="Form result so far">
         <pre class="m-0">{{ form }}</pre>
-      </b-card>
+      </b-card>-->
+          <b-modal ref="proceed-modal" hide-footer>
+      <p>Status Message:</p>
+      <b-alert v-if="InProgress" show variant="primary"
+        >Adding/Updating Certificate...</b-alert
+      >
+      <b-alert v-if="ProgressCompleted" show variant="success">{{
+        this.responseMessage
+      }}</b-alert>
+      <b-alert v-if="ProgressFailed" show variant="danger">{{
+        this.responseMessage
+      }}</b-alert>
+      <b-row class="buttons_row">
+      <b-button @click="addNew" variant="primary" class="button_group">
+        Add another Certificate</b-button
+      >
+      <b-button to="/wait" class="button_group">Go to my certificates</b-button>
+      </b-row>
+    </b-modal>
     </b-container>
   </div>
 </template>
 
 <script>
-import { MultiSelect } from "vue-search-select";
+//import { MultiSelect } from "vue-search-select";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
+import SubmitMixin from "@/mixins/SubmitMixin";
+
+import { ServicesFactory } from "@/services/ServicesFactory";
+const certificateService = ServicesFactory.get("certificates");
+
+
 
 export default {
   data() {
@@ -213,9 +241,6 @@ export default {
       ratingOther: null
     };
   },
-  mounted() {
-    
-  },
   methods: {
     async onSubmit(event) {
       event.preventDefault();
@@ -228,7 +253,23 @@ export default {
       }
       
       await this.$store.dispatch("changeCertificate", this.form);
-      this.$router.push({ name: "formPage2-1" });
+        var mode = this.$store.getters.mode;
+        var req = this.$store.getters.payload;
+        this.InProgress = true;
+        this.$refs["proceed-modal"].show();
+        if (mode == "edit") {
+          //this.$alert("updating the certificate");
+          await certificateService.updateCertificate(req).then((response) => {
+            this.responseMessage = response.data.msg;
+            this.responseStatus = response.data.status;
+          });
+        }
+
+        this.$store.dispatch("resetCertificate");
+        this.InProgress = false;
+        if (this.responseStatus == 1) {
+          this.ProgressCompleted = true;
+        } else this.ProgressFailed = true;
     },
     onReset() {
       this.$store.dispatch("resetCertificate");
@@ -240,9 +281,17 @@ export default {
     reset() {
       this.items = []; // reset
     },
+        addNew() {
+      this.$store.dispatch("resetCertificate");
+      this.$store.dispatch("resetComputed");
+      this.$router.push({ name: "formPage1" });
+    },
   },
-  components: { MultiSelect },
-  mixins: [CertificateFormMixin],
+  //components: { MultiSelect },
+  mixins: [CertificateFormMixin,SubmitMixin],
+  mounted(){
+    this.$store.dispatch("changeMode", "edit");
+  }
 };
 </script>
 
@@ -250,9 +299,6 @@ export default {
 <style>
 form {
   padding: 10px;
-}
-button {
-  margin-left: 10px;
 }
 
 .label {
