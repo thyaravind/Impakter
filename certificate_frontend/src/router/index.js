@@ -102,7 +102,7 @@ const routes = [
   {
     path: '/certificates/add/part2',
     name: 'formPart2',
-    beforeEnter : guardMyroute,
+    //beforeEnter : guardMyroute,
     component: Part2
   },
 

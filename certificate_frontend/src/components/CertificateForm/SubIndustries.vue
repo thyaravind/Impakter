@@ -42,11 +42,16 @@
       <b-alert v-if="ProgressFailed" show variant="danger">{{
         this.responseMessage
       }}</b-alert>
-      <!--<b-button @click="addMore" variant="primary"> Add more details</b-button>-->
+      <b-row class="buttons_row">
+      
+      <b-button @click="addMore" variant="primary"> Add more details</b-button>
       <b-button @click="addNew" variant="primary">
-        Add another Certificate</b-button
-      >
-      <b-button to="/wait">Go to my certificates</b-button>
+        Add another Certificate</b-button>  
+      </b-row>
+      <br>
+
+      <div class="flex_and_center"> -Or- </div>
+      <b-button id="bottom_button" to="/wait">Go to my certificates</b-button>
     </b-modal>
   </b-container>
 </template>
@@ -54,11 +59,16 @@
 <script>
 import PartialSubIndustries from "@/components/CertificateForm/PartialSubIndustries";
 import { ServicesFactory } from "@/services/ServicesFactory";
+const certificateService = ServicesFactory.get("certificates");
+
 import IndustryMixin from "@/mixins/IndustryMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
+import SubmitMixin from "@/mixins/SubmitMixin";
 import ProgressBar from '../Shared/ProgressBar.vue';
 
-const certificateService = ServicesFactory.get("certificates");
+
+
+
 export default {
   name: "FormSubIndustries",
   components: { PartialSubIndustries, ProgressBar },
@@ -66,11 +76,6 @@ export default {
     return {
       currentIndustry: null,
       industryIndex: 0,
-      responseMessage: null,
-      responseStatus: null,
-      InProgress: false,
-      ProgressCompleted: false,
-      ProgressFailed: false,
     };
   },
   methods: {
@@ -96,7 +101,7 @@ export default {
           });
         }
 
-        this.$store.dispatch("resetCertificate");
+        //this.$store.dispatch("resetCertificate");
         this.InProgress = false;
         if (this.responseStatus == 1) {
           this.ProgressCompleted = true;
@@ -120,7 +125,7 @@ export default {
     this.industryIndex = 0;
     this.currentIndustry = this.form.industries[this.industryIndex];
   },
-  mixins: [IndustryMixin, CertificateFormMixin],
+  mixins: [IndustryMixin, CertificateFormMixin, SubmitMixin],
 };
 </script>
 
@@ -128,11 +133,17 @@ export default {
 .bold {
   color: #41b883;
 }
-button {
-  margin-right: 20px;
-}
 
 #subb {
   width: 500px;
+}
+.flex_and_center {
+  display: flex;
+  justify-content: center;
+}
+
+#bottom_button {
+  margin-top: 10px;
+  width: 100%;
 }
 </style>

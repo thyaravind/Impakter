@@ -23,10 +23,10 @@
 
         <b-col> </b-col>
       </b-row>
-
-
+      <b-row class="buttons_row">
       <b-button @click="back">Back</b-button>
       <b-button variant="primary" @click="next">Next</b-button>
+      </b-row>
     </b-container>
     <!--<b-card class="mt-3" header="Form result so far">
       <pre class="m-0">{{ form }}</pre>

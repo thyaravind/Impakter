@@ -15,7 +15,7 @@
 
               <!-- Right aligned nav items -->
               <b-navbar-nav class="ml-auto">
-                <!--<b-nav-item ><router-link to="/wait"><span id="refresh">refresh</span></router-link></b-nav-item>-->
+                <b-nav-item ><router-link to="/wait"><span id="refresh">refresh</span></router-link></b-nav-item>
                 <b-nav-item
                   ><router-link to="/organization/home">MY CERTIFICATES</router-link></b-nav-item>
                 <b-nav-item href="#"><router-link to="/certificates/add">ADD CERTIFICATE</router-link></b-nav-item>
@@ -127,6 +127,13 @@ button {
   justify-content: center;
 }
 
+.buttons_row * {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+
 
 #checkbox-group-1 {
   display: flex;
@@ -134,6 +141,21 @@ button {
   align-items: flex-start;
   text-align: left !important;
 }
+
+#input-group-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left !important;
+}
+
+#input-group-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left !important;
+}
+
 #spacer {
   background-color: white;
   position: fixed;
@@ -145,6 +167,16 @@ button {
 #router_view_container{
 margin-top: 100px;
 
+}
+
+.pagination {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+
+.button_group {
+  
 }
 
 </style>

@@ -22,7 +22,7 @@
       </b-row>
 
       <b-row class="buttons_row">
-        <b-button @click="back">Back</b-button>
+        <b-button @click="back" class="button_group">Back</b-button>
         <b-button variant="primary" @click="next">Next</b-button>
       </b-row>
     </div>
