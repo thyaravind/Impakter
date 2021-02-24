@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="login_main">
     <b-alert v-if="InProgress" show variant="primary">Logging you in...</b-alert>
     <b-form-group
       label-cols="4"
@@ -34,7 +34,13 @@ export default {
       this.$store.dispatch("setOrganizationID", this.identifier);
       this.InProgress = true
       setTimeout(() => { this.$router.push({ name: "InProgress" }); }, 2000);
+      this.$root.$emit('myEvent', 'true');
     },
   },
 };
 </script>
+<style scoped>
+#login_main{
+  margin-top: 10px;
+}
+</style>

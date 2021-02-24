@@ -167,6 +167,7 @@ export default new Vuex.Store({
 
                 }
                 else {
+                state.orgLoginFailed = false
                 window.localStorage.setItem('OrganizationID', organizationResponse.organizationID)
                 window.localStorage.setItem('OrganizationName', organizationResponse.name)
                 state.organizationID = localStorage.getItem("OrganizationID")

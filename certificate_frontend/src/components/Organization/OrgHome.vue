@@ -38,10 +38,8 @@
               name="data.index"
               @change="updateStatus(row.index)"
               switch
-              v-b-tooltip.hover
-              :title="row.item"
             >
-              <b>{{ row.item.activeStatus }}</b>
+              <!--<b>{{ row.item.activeStatus }}</b>-->
             </b-form-checkbox>
           </template>
           <template #head(computedPriority)>
@@ -132,7 +130,7 @@ export default {
   name: "OrgHome",
   data() {
     return {
-      perPage: 5,
+      perPage: 6,
       currentPage: 1,
       certificates: [],
       organization: {},

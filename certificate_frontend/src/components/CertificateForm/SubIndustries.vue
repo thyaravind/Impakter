@@ -98,6 +98,7 @@ export default {
           await certificateService.createCertificate(req).then((response) => {
             this.responseMessage = response.data.msg;
             this.responseStatus = response.data.status;
+            this.$store.state.certificate.certificateID = response.data.insertId
           });
         }
 

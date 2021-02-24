@@ -143,7 +143,7 @@ exports.apiPOST = async function(req, res) {
         setTimeout(respond, 3000);
 
         async function respond(){
-        res.json({msg:"Added Certificate successfully with ID:"+ sql_resp.insertId,status:1});
+        res.json({msg:"Added Certificate successfully with ID:"+ sql_resp.insertId,status:1,insertId:sql_resp.insertId});
         console.log("added certificate successfully")
     }
 

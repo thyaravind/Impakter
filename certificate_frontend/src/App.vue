@@ -21,10 +21,10 @@
                 <b-nav-item href="#"><router-link to="/certificates/add">ADD CERTIFICATE</router-link></b-nav-item>
                 <b-nav-item> | </b-nav-item>
                 <b-nav-item>
-                  <span v-if="this.$store.state.IsloggedIn" @click="logout"
+                  <span v-if="loggedIn" @click="logout"
                     >LOGOUT</span
                   >
-                  <span v-if="!this.$store.state.IsloggedIn" @click="login"
+                  <span v-if="!loggedIn" @click="login"
                     >LOGIN</span
                   ></b-nav-item
                 >
@@ -56,10 +56,16 @@
 export default {
   data() {
     return {
-      loggedIn: null,
     };
   },
-  computed: {},
+  computed: {
+loggedIn: function(){ return this.$store.state.IsloggedIn} 
+  },
+  mounted(){
+    this.$root.$on('myEvent', () => { // here you need to use the arrow function
+     this.loggedIn = true;})
+    
+  },
 
   methods: {
     logout() {
@@ -72,6 +78,9 @@ export default {
       this.$router.push("/login");
     },
   },
+    created () {
+            document.title = "Impakter - Certificates";
+        }
 };
 </script>
 
@@ -174,9 +183,5 @@ margin-top: 100px;
   margin-bottom: 40px;
 }
 
-
-.button_group {
-  
-}
 
 </style>
