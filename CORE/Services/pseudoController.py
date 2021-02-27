@@ -28,7 +28,7 @@ news.google(start_date='01/01/2017', end_date='01/31/2017', company=company, key
 # %% Data for top 100 brands - 2017 to 2020 - Sustainability
 
 
-companies_df = pd.read_csv("/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/ProjectData/Top100BrandsData.csv")
+companies_df = pd.read_csv("/ProjectData/Top100BrandsData.csv")
 
 news = News.News()
 
@@ -48,4 +48,5 @@ finally:
 #50-55: Added until Siemens... stopped at Nestle
 #55-60: completed until ESPN... stopped at Citi
 #60-65:completed from Adobe to Ebay...
-#
+#65-70: completed from Chevrolet to PwC
+
