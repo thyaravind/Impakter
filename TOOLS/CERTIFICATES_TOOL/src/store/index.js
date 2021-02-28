@@ -220,6 +220,10 @@ export default new Vuex.Store({
         async uploadImage(payload){
             let { data } = await axios.post(awsConfig.s3bucketUrl, payload)
             console.log(data)
+        },
+        resetState(state){
+            state.organizationID = null;
+            state.organizationName = null;
         }
 
     },
@@ -268,7 +272,10 @@ export default new Vuex.Store({
         },
         updateCertificateStatus(context, payload) {
             context.commit("updateCertificateStatus", payload)
-        }
+        },
+        resetState(context) {
+            context.commit("resetState")
+        },
 
 
     }

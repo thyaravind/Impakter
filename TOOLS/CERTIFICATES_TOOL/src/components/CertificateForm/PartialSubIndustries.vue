@@ -21,8 +21,9 @@
     </b-row>
 
     <b-row class="buttons_row">
-      <b-button @click="back">Back</b-button>
-      <b-button variant="primary" @click="next">Next</b-button>
+        <b-button @click="back">Previous</b-button>
+        <b-button variant="primary" @click="next">{{currentIndustryIndex == form.industries[form.industries.length - 1]?"Submit" : "Next"}}</b-button>
+        <b-button @click="skip" variant="outline-primary">Skip & Submit</b-button>
     </b-row>
   </div>
 </template>
@@ -47,8 +48,11 @@ export default {
       window.scrollTo(0, 0);
     },
     back() {
-      this.$router.go(-1);
+        this.$emit("back");
     },
+    skip(){
+      this.$emit("submit");
+    }
   },
   props: { currentIndustryIndex: String },
   computed: {

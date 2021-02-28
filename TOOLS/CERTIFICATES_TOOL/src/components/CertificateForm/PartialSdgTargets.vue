@@ -2,6 +2,7 @@
   <div>
     <div>
       <b>Please select applicable SDG targets for each SDG</b>
+      <!--<p>SDG Targets for </p>-->
     </div>
     <br />
     <div id="scroll">
@@ -22,8 +23,9 @@
       </b-row>
 
       <b-row class="buttons_row">
-        <b-button @click="back" class="button_group">Back</b-button>
+        <b-button @click="back">Previous</b-button>
         <b-button variant="primary" @click="next">Next</b-button>
+        <b-button @click="skip" variant="outline-primary">Skip Targets</b-button>
       </b-row>
     </div>
   </div>
@@ -49,11 +51,13 @@ export default {
       window.scrollTo(0, 0);
     },
     back() {
-      this.$store.dispatch("resetComputed");
-      this.$router.go(-1);
+        this.$emit("back");
     },
+    skip(){
+      this.$router.push({ name: "formPage3-1" });
+    }
   },
-  props: { currentSdgIndex: String },
+  props: { currentSdgIndex: Number },
   computed: {
     computedTargets() {
       this.sdgTargets.forEach((element) => {
@@ -65,6 +69,12 @@ export default {
 
       //return this.sdgs[this.currentSdgIndex].targets
     },
+    currentSdg(){
+      var current = this.sdgs.filter(x => {
+        x.value == this.currentSdgIndex
+      })
+      return current.text
+    }
   },
   mounted() {
     this.selected = this.form.sdgTargets;

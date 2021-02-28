@@ -1,22 +1,28 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
-        <progress-bar :currentStep="2"> </progress-bar>
-      </b-row>
+      <progress-bar :currentStep="2"> </progress-bar>
+    </b-row>
     <b-row class="main_row">
-      <b-col cols="6" >
+      <b-col cols="6">
         <div class="position-fixed">
           <h3>Sustainable Development Goals</h3>
+          <p>You selected the following SDGs</p>
 
-          <div v-for="(sdg, index) in form.computedSdgs" :key="index">
+          <div class="flex_and_start" v-for="(sdg, index) in form.computedSdgs" :key="index">
             <h5 :class="sdg.value === currentSdg ? 'bold' : ''">
               {{ sdg.text }}
             </h5>
           </div>
+          <br/>
+          <b-button @click="reselect" variant="outline-primary">Reselect SDGs</b-button>
         </div>
       </b-col>
       <b-col
-        ><PartialSdgTargets @next="next" :current-sdg-index="currentSdg"
+        ><PartialSdgTargets
+          @next="next"
+          @back="back"
+          :current-sdg-index="currentSdg"
       /></b-col>
     </b-row>
 
@@ -38,10 +44,10 @@
 import PartialSdgTargets from "@/components/CertificateForm/PartialSdgTargets";
 import SdgMixin from "@/mixins/SdgMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
-import ProgressBar from '../Shared/ProgressBar.vue';
+import ProgressBar from "../Shared/ProgressBar.vue";
 export default {
   name: "FormSDGtargets",
-  components: { PartialSdgTargets,ProgressBar },
+  components: { PartialSdgTargets, ProgressBar },
   data() {
     return {
       currentSdg: null,
@@ -60,7 +66,14 @@ export default {
 
       //else this.$router.push({name:'formPage3'})
     },
-    back() {},
+    back() {
+      if (this.sdgIndex == 0) {
+        this.$store.dispatch("resetComputed");
+        this.$router.go(-1);
+      }
+      this.sdgIndex--;
+      this.currentSdg = this.form.sdgs[this.sdgIndex];
+    },
     addMore() {
       this.$router.push({ name: "formPart2" });
     },
@@ -68,6 +81,10 @@ export default {
       this.$store.dispatch("resetCertificate");
       this.$router.push({ name: "formPage1" });
     },
+    reselect(){
+        this.$store.dispatch("resetComputed");
+        this.$router.go(-1);
+    }
   },
   computed: {},
   mounted() {

@@ -7,7 +7,19 @@
       <b-row class="main_row">
         <b-col> </b-col>
         <b-col cols="8">
-          <b-form-group v-slot="{ ariaDescribedby }" label-size="lg" label="Please select all the Susainable Development Goals applicable to this certificate">
+          <b-form-group
+            v-slot="{ ariaDescribedby }"
+            label-size="lg"
+            label="Please select all the Susainable Development Goals applicable to this certificate"
+          >
+            <b-form-checkbox
+            class="flex_and_start"
+              v-model="allSelected"
+              :indeterminate="indeterminate"
+              @change="toggleAll"
+            >
+              <b>{{ allSelected ? "Un-select All" : "Select All" }}</b>
+            </b-form-checkbox>
             <b-form-checkbox-group
               id="checkbox-group-1"
               v-model="selected"
@@ -41,9 +53,15 @@ export default {
   data() {
     return {
       selected: [],
+      allSelected: false,
     };
   },
   methods: {
+    toggleAll(checked) {
+        this.selected = checked ? this.sdgs.map(x => {
+          return x.value
+        }): []
+      },
     next() {
       this.selected.sort((a, b) => a - b);
       this.$store.dispatch("addSdgs", this.selected);

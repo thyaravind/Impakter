@@ -71,6 +71,7 @@ loggedIn: function(){ return this.$store.state.IsloggedIn}
     logout() {
       localStorage.removeItem("OrganizationID");
       localStorage.removeItem("OrganizationName");
+      this.$store.dispatch("resetState")
       this.$store.dispatch("changeLoginStatus");
       this.$router.push("/prompt");
     },
@@ -139,6 +140,13 @@ button {
 .buttons_row * {
   margin-right: 10px;
   margin-left: 10px;
+}
+
+.flex_and_start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left !important;
 }
 
 

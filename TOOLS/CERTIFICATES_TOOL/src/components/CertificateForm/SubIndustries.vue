@@ -16,6 +16,10 @@
               {{ industry.value + ": " + industry.text }}
             </h5>
           </div>
+          <br />
+          <b-button @click="reselect" variant="outline-primary"
+            >Reselect Industries</b-button
+          >
         </div>
       </b-col>
       <b-col>
@@ -23,6 +27,8 @@
           <template
             ><PartialSubIndustries
               @next="next"
+              @back="back"
+              @submit="submit"
               :current-industry-index="currentIndustry" /></template
         ></scroll-view>
       </b-col>
@@ -43,14 +49,16 @@
         this.responseMessage
       }}</b-alert>
       <b-row class="buttons_row">
-      
-      <b-button @click="addMore" variant="primary"> Add more details</b-button>
-      <b-button @click="addNew" variant="primary">
-        Add another Certificate</b-button>  
+        <b-button @click="addMore" variant="primary">
+          Add more details</b-button
+        >
+        <b-button @click="addNew" variant="primary">
+          Add another Certificate</b-button
+        >
       </b-row>
-      <br>
+      <br />
 
-      <div class="flex_and_center"> -Or- </div>
+      <div class="flex_and_center">-Or-</div>
       <b-button id="bottom_button" to="/wait">Go to my certificates</b-button>
     </b-modal>
   </b-container>
@@ -64,10 +72,7 @@ const certificateService = ServicesFactory.get("certificates");
 import IndustryMixin from "@/mixins/IndustryMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 import SubmitMixin from "@/mixins/SubmitMixin";
-import ProgressBar from '../Shared/ProgressBar.vue';
-
-
-
+import ProgressBar from "../Shared/ProgressBar.vue";
 
 export default {
   name: "FormSubIndustries",
@@ -79,11 +84,15 @@ export default {
     };
   },
   methods: {
-    async next() {
+    next() {
       this.industryIndex++;
       if (this.industryIndex < this.form.industries.length) {
         this.currentIndustry = this.form.industries[this.industryIndex];
       } else {
+        this.submit()
+      }
+    },
+    async submit(){
         var mode = this.$store.getters.mode;
         var req = this.$store.getters.payload;
         this.InProgress = true;
@@ -98,7 +107,8 @@ export default {
           await certificateService.createCertificate(req).then((response) => {
             this.responseMessage = response.data.msg;
             this.responseStatus = response.data.status;
-            this.$store.state.certificate.certificateID = response.data.insertId
+            this.$store.state.certificate.certificateID =
+              response.data.insertId;
           });
         }
 
@@ -107,11 +117,17 @@ export default {
         if (this.responseStatus == 1) {
           this.ProgressCompleted = true;
         } else this.ProgressFailed = true;
-      }
 
-      //else this.$router.push({name:'formPage3'})
+
     },
-    back() {},
+    back() {
+      if (this.industryIndex == 0) {
+        this.$store.dispatch("resetComputed");
+        this.$router.go(-1);
+      }
+      this.industryIndex--;
+      this.currentIndustry = this.form.industries[this.industryIndex];
+    },
     addMore() {
       this.$router.push({ name: "formPart2" });
     },
@@ -119,6 +135,10 @@ export default {
       this.$store.dispatch("resetCertificate");
       this.$store.dispatch("resetComputed");
       this.$router.push({ name: "formPage1" });
+    },
+    reselect() {
+      this.$store.dispatch("resetComputed");
+      this.$router.go(-1);
     },
   },
   computed: {},
