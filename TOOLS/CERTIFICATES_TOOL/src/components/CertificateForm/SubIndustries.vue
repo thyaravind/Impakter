@@ -7,7 +7,7 @@
       <b-col cols="6">
         <div class="position-fixed" id="subb">
           <h3>Selected industries</h3>
-          <div
+          <div class="flex_and_start"
             v-for="(industry, index) in form.computedIndustries"
             :key="index"
           >
