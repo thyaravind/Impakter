@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="520d6d76-5b5c-4cc2-977b-e5a7be8ed7f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../CENTRAL/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../CENTRAL/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/certificate.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/certificate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/organization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/organizations.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/organizations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +90,8 @@
       <workItem from="1614128572670" duration="2154000" />
       <workItem from="1614167959089" duration="1233000" />
       <workItem from="1614172279119" duration="272000" />
+      <workItem from="1614550116114" duration="177000" />
+      <workItem from="1614550390066" duration="4583000" />
     </task>
     <servers />
   </component>
@@ -109,18 +115,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/certificate.js</url>
-          <line>66</line>
+          <line>74</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/certificate.js</url>
-          <line>58</line>
+          <line>66</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/controllers/certificate.js</url>
-          <line>8</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
