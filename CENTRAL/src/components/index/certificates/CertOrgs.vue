@@ -103,13 +103,13 @@ export default {
     add() {
       this.$store.dispatch("changeMode", "new");
       this.$store.dispatch("resetOrganization");
-      this.$store.dispatch("resetComputed");
-      this.$router.push({ name: "formPage1" });
+      this.$store.dispatch("setOrgType","certificate");
+      this.$router.push({ name: "OrgFormPage1" });
     },
     edit(index) {
       this.$store.dispatch("changeOrganization", this.organizations[index]);
       this.$store.dispatch("changeMode", "edit");
-      this.$router.push({ name: "formPage1" });
+      this.$router.push({ name: "OrgFormPage1" });
     },
 
   },

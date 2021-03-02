@@ -26,6 +26,7 @@
     "nodemon": "^2.0.7",
     "serverless": "^2.21.1",
     "sync-mysql": "^3.0.1",
-    "sync-sql": "^1.0.2"
+    "sync-sql": "^1.0.2",
+    "uuid": "^8.3.2"
   }
 }

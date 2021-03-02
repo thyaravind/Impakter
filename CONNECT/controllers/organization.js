@@ -1,5 +1,5 @@
 var connection = require("../db_connection")
-
+const { v4: uuidv4 } = require('uuid');
 
 
 exports.apiGetAll = function(req, res) {
@@ -33,12 +33,16 @@ exports.apiGet = function(req, res) {
 };
 
 exports.apiPOST = function(req, res) {
-    connection.query('INSERT INTO certificateOrganizations SET ?', req.body, (err, sql_resp) => {
-        if(err) throw err;
+    orgID = uuidv4()
+    connection.query('INSERT INTO certificateOrganizations (organizationID,name) VALUES (?,?)', [orgID,req.body.name], (err, sql_resp) => {
+        if(err){
+            res.json({msg:"Failed to add organization",status:0});
+            console.log("failed to add the organization with the following error:")
+            console.log(err)
+        }
         else{
-            var message = 'Added the organization with insert ID:' + sql_resp.insertId;
-            res.json({msg:message});}
-
-        console.log(message);
+            res.json({msg:"Added Certificate successfully",status:1});
+            console.log("added a new org successfully")
+        }
     });
 };

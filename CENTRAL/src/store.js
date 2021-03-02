@@ -13,7 +13,10 @@ export default new Vuex.Store({
     state: {
         organizations: [],
         certificates: [],
-        userID: "aravind"
+        userID: "aravind",
+        organization: new organizationModel(),
+        certificate: new certificateModel(),
+        mode: "new"
 
     },
     getters: {
@@ -23,7 +26,12 @@ export default new Vuex.Store({
         certificates: state => {
             return state.certificates
         },
- 
+        organization: state => {
+            return state.organization
+        },
+        mode: state => {
+            return state.mode
+        },
     },
     mutations: {
 
@@ -76,6 +84,12 @@ export default new Vuex.Store({
 
 
         },
+        resetCertificate(state) {
+            state.certificate = new certificateModel()
+        },
+        resetOrganization(state) {
+            state.organization = new organizationModel()
+        },
    
    
 
@@ -86,6 +100,12 @@ export default new Vuex.Store({
         },
         async fetchCertificates(context, payload) {
             context.commit("fetchCertificates", payload)
+        },
+        resetCertificate(context) {
+            context.commit("resetCertificate")
+        },
+        resetOrganization(context) {
+            context.commit("resetOrganization")
         },
 
     }

@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 
 import CertificateOrganizations from "@/components/index/certificates/CertOrgs";
 import Certificates from "@/components/index/certificates/Certificates";
+import OrgForm from "@/components/index/certificates/OrgForm";
+
 
 Vue.use(VueRouter)
 
@@ -16,6 +18,11 @@ const routes = [
         path: '/index/certificates/all',
         name: 'Certificates',
         component: Certificates
+      },
+      {
+        path: '/organizations/add',
+        name: 'OrgFormPage1',
+        component: OrgForm
       },
 ]
 
