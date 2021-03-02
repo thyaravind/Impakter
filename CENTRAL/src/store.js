@@ -90,6 +90,9 @@ export default new Vuex.Store({
         resetOrganization(state) {
             state.organization = new organizationModel()
         },
+        changeOrganization(state,payload){
+            state.organization = payload
+        }
    
    
 
@@ -106,6 +109,9 @@ export default new Vuex.Store({
         },
         resetOrganization(context) {
             context.commit("resetOrganization")
+        },
+        changeOrganization(context) {
+            context.commit("changeOrganization")
         },
 
     }
