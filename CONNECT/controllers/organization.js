@@ -12,12 +12,22 @@ exports.apiGetAll = function(req, res) {
 
 };
 
-exports.apiGetOne = function(req, res) {
-    connection.query('SELECT * from certificateOrganizations where organizationID = ?',req.params.organizationID, (err, sql_resp) => {
+exports.apiGet = function(req, res) {
+
+    if(req.params.organizationID){
+        connection.query('SELECT * from certificateOrganizations where organizationID = ?',req.params.organizationID, (err, sql_resp) => {
         if(err) throw err;
         else{
             res.json({msg:"Org fetched successfully",organizationDetails: sql_resp});}
-    });
+    });}
+    else{
+        connection.query('SELECT * from certificateOrganizations', (err, sql_resp) => {
+            if(err) throw err;
+            else{
+                res.json({msg:"Orgs fetched successfully",organizations: sql_resp});}
+        });
+    }
+
 
 
 };

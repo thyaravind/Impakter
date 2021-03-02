@@ -1,52 +1,60 @@
 var CertificateResponse = require("../BO/certificateResponseObj.js");
 //var sdg = require("./sdgs.js")
-//var connection = require("../db_connection")
+var connection = require("../db_connection")
 var pool = require("../db_connection")
 
 exports.apiGET = async function(req, res) {
-    try
-    {
-    var certificates = []
-        var sql_resp = await pool.query('select * from certificates where organizationID = ?', req.params.organizationID)
 
-        for (i = 0; i < sql_resp.length; i++) {
-            var certificateID = sql_resp[i].certificateID
-            var sdgs = [];
-            var sdgTargets = [];
-            var industries = [];
-            var industrySectors = [];
-            sql_resp2 = await pool.query('select sdgID from certificate_sdg where certificateID = ?', certificateID)
-            for(j = 0; j < sql_resp2.length; j++) {
-                sdgs.push(sql_resp2[j].sdgID)
+
+        try
+        {
+            var certificates = []
+            if(req.params.organizationID) {
+                var sql_resp = await pool.query('select * from certificates where organizationID = ?', req.params.organizationID)
+            }
+            else {
+                var sql_resp = await pool.query('select * from certificates')
             }
 
-            sql_resp3 = await pool.query('select sdgTargetID from certificate_sdgTarget where certificateID = ?', certificateID)
-            for(k = 0; k < sql_resp3.length; k++) {
-                sdgTargets.push(sql_resp3[k].sdgTargetID)
+            for (i = 0; i < sql_resp.length; i++) {
+                var certificateID = sql_resp[i].certificateID
+                var sdgs = [];
+                var sdgTargets = [];
+                var industries = [];
+                var industrySectors = [];
+                sql_resp2 = await pool.query('select sdgID from certificate_sdg where certificateID = ?', certificateID)
+                for(j = 0; j < sql_resp2.length; j++) {
+                    sdgs.push(sql_resp2[j].sdgID)
+                }
+
+                sql_resp3 = await pool.query('select sdgTargetID from certificate_sdgTarget where certificateID = ?', certificateID)
+                for(k = 0; k < sql_resp3.length; k++) {
+                    sdgTargets.push(sql_resp3[k].sdgTargetID)
+                }
+
+                sql_resp4 = await pool.query('select industryID from certificate_industry where certificateID = ?', certificateID)
+                for(l = 0; l < sql_resp4.length; l++) {
+                    industries.push(sql_resp4[l].industryID)
+                }
+
+                sql_resp5 = await pool.query('select industrySectorID from certificate_industrySector where certificateID = ?', certificateID)
+                for(m = 0; m < sql_resp5.length; m++) {
+                    industrySectors.push(sql_resp5[m].industrySectorID)
+                    console.log('industrySector Response:', sql_resp5)
+                }
+
+
+                var certificateResponse = new CertificateResponse(sql_resp[i], sdgs, sdgTargets,industries,industrySectors)
+                certificates.push(certificateResponse)
             }
-
-            sql_resp4 = await pool.query('select industryID from certificate_industry where certificateID = ?', certificateID)
-            for(l = 0; l < sql_resp4.length; l++) {
-                industries.push(sql_resp4[l].industryID)
-            }
-
-            sql_resp5 = await pool.query('select industrySectorID from certificate_industrySector where certificateID = ?', certificateID)
-            for(m = 0; m < sql_resp5.length; m++) {
-                industrySectors.push(sql_resp5[m].industrySectorID)
-                console.log('industrySector Response:', sql_resp5)
-            }
-
-
-            var certificateResponse = new CertificateResponse(sql_resp[i], sdgs, sdgTargets,industries,industrySectors)
-            certificates.push(certificateResponse)
+            res.json(certificates);
         }
-        res.json(certificates);
-}
-catch(err) {
-    res.json({msg:"Failed to fetch the certificates",status:0});
-    console.log("failed to fetch with the following error:")
-    console.log(err)
-}
+        catch(err) {
+            res.json({msg:"Failed to fetch the certificates",status:0});
+            console.log("failed to fetch with the following error:")
+            console.log(err)
+        }
+
 
 
 };
