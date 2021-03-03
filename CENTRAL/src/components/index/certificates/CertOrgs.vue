@@ -44,6 +44,12 @@
               >
             </div>
           </template>
+                              <template #cell(actions)="data">
+            <b-button @click="edit(data.index)" variant="outline-danger"
+              >Edit</b-button
+            >
+            <!--<b-button>See Details</b-button>-->
+          </template>
         </b-table>
       </b-row>
 
