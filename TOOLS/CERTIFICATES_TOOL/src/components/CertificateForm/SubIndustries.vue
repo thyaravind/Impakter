@@ -66,7 +66,7 @@
     </b-modal>
         <certificate-profile
       ref="preview_modal"
-      :savePreview="true"
+      :isSavePreview="true"
       @submit="submit"
     ></certificate-profile>
   </b-container>

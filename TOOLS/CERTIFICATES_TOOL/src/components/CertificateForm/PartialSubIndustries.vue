@@ -26,7 +26,7 @@
     </b-row>
         <certificate-profile
       ref="preview_modal"
-      :savePreview="true"
+      :isSavePreview="true"
     ></certificate-profile>
   </div>
 </template>

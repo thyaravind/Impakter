@@ -259,7 +259,7 @@
     </b-container>
     <certificate-profile
       ref="preview_modal"
-      :savePreview="false"
+      :isSavePreview="false"
     ></certificate-profile>
   </div>
 </template>
