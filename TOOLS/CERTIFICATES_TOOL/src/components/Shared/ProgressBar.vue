@@ -2,8 +2,8 @@
   <div class="root">
      <div class="container">
           <ul class="progressbar">
-            <span :class="[currentStep == 1 ? 'active': 'none']">Step 1: Basic Details </span>
-            <span :class="[currentStep == 2 ? 'active': 'none']">Step 2: Sustainable Development Goals </span>
+            <span :class="[currentStep == 1 ? 'active': 'none']">Step 1: Basic Information </span>
+            <span :class="[currentStep == 2 ? 'active': 'none']">Step 2: UN Sustainable Development Goals </span>
             <span :class="[currentStep == 3 ? 'active': 'none']">Step 3: Industries </span>
           </ul>
       </div>

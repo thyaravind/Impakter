@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <b>Please select applicable SDG targets for each SDG</b>
+      <b>Please select applicable UN SDG targets for each SDG</b>
       <!--<p>SDG Targets for </p>-->
     </div>
     <br />
@@ -14,18 +14,26 @@
           <b-form-checkbox-group
             id="checkbox-group-1"
             v-model="selected"
-            :options="computedTargets"
             :aria-describedby="ariaDescribedby"
             name="flavour-1"
             stacked
-          ></b-form-checkbox-group>
+          >
+            <b-form-checkbox
+    v-for="target in computedTargets"
+    :value="target.value"
+    class="mb-3"
+    :key="target.text"
+  ><b>{{ "Target " + target.value+ ": " }} </b>
+    {{target.text }}
+  </b-form-checkbox>
+          
+          </b-form-checkbox-group>
         </b-form-group>
       </b-row>
 
       <b-row class="buttons_row">
         <b-button @click="back">Previous</b-button>
         <b-button variant="primary" @click="next">Next</b-button>
-        <b-button @click="skip" variant="outline-primary">Skip Targets</b-button>
       </b-row>
     </div>
   </div>
@@ -52,9 +60,6 @@ export default {
     },
     back() {
         this.$emit("back");
-    },
-    skip(){
-      this.$router.push({ name: "formPage3-1" });
     }
   },
   props: { currentSdgIndex: Number },

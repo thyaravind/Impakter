@@ -4,7 +4,7 @@
       <b-row>
         <div id="nav">
           <b-navbar toggleable="lg" type="dark" fixed="top" variant="light">
-            <b-navbar-brand href=""
+            <b-navbar-brand href="https://index.impakter.com"
               ><img id="logo" src="@/assets/logo_index.png"
             /></b-navbar-brand>
 
@@ -15,7 +15,7 @@
 
               <!-- Right aligned nav items -->
               <b-navbar-nav class="ml-auto">
-                <b-nav-item ><router-link to="/wait"><span id="refresh">refresh</span></router-link></b-nav-item>
+                <b-nav-item ><router-link to="/wait"><span id="refresh">REFRESH</span></router-link></b-nav-item>
                 <b-nav-item
                   ><router-link to="/organization/home">MY CERTIFICATES</router-link></b-nav-item>
                 <b-nav-item href="#"><router-link to="/certificates/add">ADD CERTIFICATE</router-link></b-nav-item>

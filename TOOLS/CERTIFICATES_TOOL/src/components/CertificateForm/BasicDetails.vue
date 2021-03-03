@@ -28,7 +28,7 @@
             <b-form-group
               label-cols="4"
               label-cols-lg="3"
-              label="Description of the Certification"
+              label="Certificate Description:"
               label-for="description"
               label-align-sm="left"
               id="desc"
@@ -113,7 +113,7 @@
             <br />
             <b-row class="buttons_row">
             <b-button type="reset" variant="danger">Reset</b-button>
-            <b-button type="submit" variant="primary">Proceed to SDGs</b-button>
+            <b-button type="submit" variant="primary">Next</b-button>
             </b-row>
           </b-form>
         </b-col>

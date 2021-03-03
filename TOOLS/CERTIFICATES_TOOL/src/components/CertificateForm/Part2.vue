@@ -2,7 +2,7 @@
   <div>
     <b-container class="bv-example-row">
       <b-row>
-        <h5>Additional Detials for {{form.name}}</h5>
+        <h5>Additional Information for {{form.name}}</h5>
       </b-row>
       <b-row>
         <b-col></b-col>
@@ -144,7 +144,7 @@
 
             <br />
 
-            <b-button type="submit" variant="primary">Submit Additional Details</b-button>
+            <b-button type="submit" variant="primary">Submit</b-button>
           </b-form>
         </b-col>
         <b-col> </b-col>
@@ -153,7 +153,6 @@
         <pre class="m-0">{{ form }}</pre>
       </b-card>-->
           <b-modal ref="proceed-modal" hide-footer>
-      <p>Status Message:</p>
       <b-alert v-if="InProgress" show variant="primary"
         >Adding/Updating Certificate...</b-alert
       >
@@ -165,7 +164,7 @@
       }}</b-alert>
       <b-row class="buttons_row">
       <b-button @click="addNew" variant="primary" class="button_group">
-        Add another Certificate</b-button
+        Add another certificate</b-button
       >
       <b-button to="/wait" class="button_group">Go to my certificates</b-button>
       </b-row>

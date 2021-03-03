@@ -67,10 +67,7 @@
       {{ form }}
     </b-card>
     <b-row class="buttons_row" v-if="savePreview">
-      <b-button @click="add" variant="primary"> Add more details</b-button>
-      <b-button @click="add" variant="primary">
-        Add another Certificate</b-button
-      >
+      <b-button @click="submit" variant="primary">Submit</b-button>
     </b-row>
     <br />
     <b-row class="buttons_row" v-if="!savePreview">
@@ -97,6 +94,9 @@ export default {
       this.$refs["preview-modal"].show();
     },
     add() {},
+    submit(){
+        this.$emit("submit");
+    },
     close() {
       this.$refs["preview-modal"].hide();
     },

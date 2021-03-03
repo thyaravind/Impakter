@@ -10,7 +10,7 @@
           <b-form-group
             v-slot="{ ariaDescribedby }"
             label-size="lg"
-            label="Please select all the Susainable Development Goals applicable to this certificate"
+            label="Please select all the United Nations Susainable Development Goals (SDGs) applicable to this certificate"
           >
             <b-form-checkbox
             class="flex_and_start"

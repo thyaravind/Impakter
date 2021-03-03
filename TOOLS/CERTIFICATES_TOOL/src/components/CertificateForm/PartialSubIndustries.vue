@@ -1,12 +1,11 @@
 
 <template>
   <div>
-    <h4>Please select sub industry sectors for each industry</h4>
-    <p>Current Industry: {{ currentIndustryIndex }}</p>
+    <h4>Industry Description</h4>
     <b-row>
 
       <b-form-group
-        label="Please select all the sub industries that applies to this certificate:"
+        label="Please select the industry description that applies to this certificate:"
         v-slot="{ ariaDescribedby }"
       >
         <b-form-checkbox-group
@@ -22,15 +21,20 @@
 
     <b-row class="buttons_row">
         <b-button @click="back">Previous</b-button>
-        <b-button variant="primary" @click="next">{{currentIndustryIndex == form.industries[form.industries.length - 1]?"Submit" : "Next"}}</b-button>
-        <b-button @click="skip" variant="outline-primary">Skip & Submit</b-button>
+        <b-button variant="primary" @click="next">{{currentIndustryIndex == form.industries[form.industries.length - 1]?"Review & Submit" : "Next"}}</b-button>
+        
     </b-row>
+        <certificate-profile
+      ref="preview_modal"
+      :savePreview="true"
+    ></certificate-profile>
   </div>
 </template>
 
 <script>
 import IndustryMixin from "@/mixins/IndustryMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
+import CertificateProfile from "../CertificateProfile.vue";
 
 export default {
   name: "PartialSubIndustries",
@@ -41,17 +45,20 @@ export default {
     };
   },
   methods: {
-    next() {
+    next() {     
+      if(this.currentIndustryIndex == this.form.industries[this.form.industries.length - 1]){
+        this.$emit("isLast");
+      }
       this.$store.dispatch("addSubIndustries", this.selected);
       this.subindustries = [];
       this.$emit("next");
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0);     
+ 
     },
     back() {
         this.$emit("back");
     },
     skip(){
-      this.$emit("submit");
     }
   },
   props: { currentIndustryIndex: String },
@@ -74,6 +81,7 @@ export default {
     this.selected = this.form.industrySectors;
   },
   mixins: [IndustryMixin,CertificateFormMixin],
+  components:{CertificateProfile}
 };
 </script>
 

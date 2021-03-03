@@ -6,7 +6,7 @@
     <b-row class="main_row">
       <b-col cols="6">
         <div class="position-fixed">
-          <h3>Sustainable Development Goals</h3>
+          <h3>UN Sustainable Development Goals</h3>
           <p>You selected the following SDGs</p>
 
           <div class="flex_and_start" v-for="(sdg, index) in form.computedSdgs" :key="index">
@@ -24,6 +24,10 @@
           @back="back"
           :current-sdg-index="currentSdg"
       /></b-col>
+    </b-row>
+    <b-row class="buttons_row">
+      
+      <b-button @click="skip" variant="outline-primary">Skip Targets</b-button>
     </b-row>
 
     <!--<b-card class="mt-3" header="Form result so far">
@@ -84,6 +88,9 @@ export default {
     reselect(){
         this.$store.dispatch("resetComputed");
         this.$router.go(-1);
+    },
+    skip(){
+      this.$router.push({ name: "formPage3-1" });
     }
   },
   computed: {},

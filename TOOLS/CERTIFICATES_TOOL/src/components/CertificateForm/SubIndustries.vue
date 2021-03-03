@@ -6,7 +6,8 @@
     <b-row>
       <b-col cols="6">
         <div class="position-fixed" id="subb">
-          <h3>Selected industries</h3>
+          <h3>Industries</h3>
+          <p>You have selected the following industries</p>
           <div class="flex_and_start"
             v-for="(industry, index) in form.computedIndustries"
             :key="index"
@@ -28,17 +29,19 @@
             ><PartialSubIndustries
               @next="next"
               @back="back"
-              @submit="submit"
+              @isLast="toggleIsLast"
               :current-industry-index="currentIndustry" /></template
         ></scroll-view>
       </b-col>
+    </b-row>
+    <b-row class="buttons_row">
+      <b-button @click="$refs.preview_modal.showModal()" v-if="!isLast" variant="outline-primary">Skip & Review</b-button>
     </b-row>
 
     <!--<b-card class="mt-3" header="Form result so far">
       <pre class="m-0">{{ form }}</pre>
     </b-card>-->
-    <b-modal ref="proceed-modal" hide-footer>
-      <p>Status Message:</p>
+    <b-modal ref="proceed-modal" hide-footer title="">
       <b-alert v-if="InProgress" show variant="primary"
         >Adding/Updating Certificate...</b-alert
       >
@@ -53,7 +56,7 @@
           Add more details</b-button
         >
         <b-button @click="addNew" variant="primary">
-          Add another Certificate</b-button
+          Add another certificate</b-button
         >
       </b-row>
       <br />
@@ -61,6 +64,11 @@
       <div class="flex_and_center">-Or-</div>
       <b-button id="bottom_button" to="/wait">Go to my certificates</b-button>
     </b-modal>
+        <certificate-profile
+      ref="preview_modal"
+      :savePreview="true"
+      @submit="submit"
+    ></certificate-profile>
   </b-container>
 </template>
 
@@ -73,14 +81,16 @@ import IndustryMixin from "@/mixins/IndustryMixin";
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 import SubmitMixin from "@/mixins/SubmitMixin";
 import ProgressBar from "../Shared/ProgressBar.vue";
+import CertificateProfile from "../CertificateProfile.vue";
 
 export default {
   name: "FormSubIndustries",
-  components: { PartialSubIndustries, ProgressBar },
+  components: { PartialSubIndustries, ProgressBar,CertificateProfile },
   data() {
     return {
       currentIndustry: null,
       industryIndex: 0,
+      isLast: false
     };
   },
   methods: {
@@ -89,7 +99,7 @@ export default {
       if (this.industryIndex < this.form.industries.length) {
         this.currentIndustry = this.form.industries[this.industryIndex];
       } else {
-        this.submit()
+        this.$refs.preview_modal.showModal()
       }
     },
     async submit(){
@@ -140,6 +150,9 @@ export default {
       this.$store.dispatch("resetComputed");
       this.$router.go(-1);
     },
+    toggleIsLast(){
+      this.isLast = true
+    }
   },
   computed: {},
   mounted() {
