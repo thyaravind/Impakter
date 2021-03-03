@@ -14,12 +14,14 @@
           id="main_table"
           :per-page="perPage"
           :current-page="currentPage"
+          hover
+          
         >
           <template #head(name)>
             <div class="text-nowrap">Certificate Name</div>
           </template>
-          <template #cell(name)="data">
-            <a>{{ data.item.name }} </a>
+          <template #cell(name)="data" >
+            <p @click="view(data.index); $refs.preview_modal.showModal(); " class="certificateName">{{ data.item.name }} </p>
           </template>
           <template #head(activeStatus)>
             <div
@@ -121,17 +123,23 @@
         Add New Certificate</b-button
       >
     </b-container>
+    <certificate-profile ref="preview_modal" :savePreview="false"></certificate-profile>
   </div>
 </template>
 
 
 <script>
+import compute from "@/models/compute"
+import CertificateProfile from '../CertificateProfile.vue';
+
 export default {
   name: "OrgHome",
   data() {
     return {
-      perPage: 6,
+    showModal: false,
+     perPage: 6,
       currentPage: 1,
+      sortBy: 'name',
       certificates: [],
       organization: {},
       organizationIdentifier: null,
@@ -149,7 +157,7 @@ export default {
     };
   },
   async mounted() {
-    this.certificates = this.$store.getters.certificates;
+    this.certificates = this.$store.getters.certificates.sort(compute.compareByName);
     this.organization = this.$store.getters.organization;
     this.networkConnected = this.$store.getters.isNetworkConnected;
     if (this.networkConnected == false) {
@@ -158,6 +166,7 @@ export default {
       }, 500);
     }
   },
+  components:{CertificateProfile },
   methods: {
     add() {
       this.$store.dispatch("changeMode", "new");
@@ -182,6 +191,15 @@ export default {
       }, 1000);
       this.$store.responseMessage = "_blank_";
     },
+      view(index) {
+      this.$store.dispatch("changeCertificate", this.certificates[index]);
+      setTimeout(() => {}, 500);
+ 
+    },
+        view2(record,index) {
+      this.$store.dispatch("changeCertificate", this.certificates[index]);
+      this.$router.push({ name: "CertificateProfile" });
+    },
   },
   computed: {
     rows() {
@@ -203,5 +221,10 @@ export default {
 
 table {
   margin-top: 0px;
+  
+}
+
+.certificateName{
+  cursor: pointer;
 }
 </style>

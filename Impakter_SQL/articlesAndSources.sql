@@ -17,7 +17,7 @@ Source_Url VARCHAR(250)
 
 
 SELECT *
-FROM sources;
+FROM articles where sourceID = 25;
 
 
 ---SQLITE

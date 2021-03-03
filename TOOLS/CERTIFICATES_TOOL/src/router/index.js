@@ -11,6 +11,7 @@ import Login from "@/components/Shared/Login";
 import LoginPrompt from "@/components/Shared/LoginPrompt";
 import InProgress from "@/components/Shared/InProgress";
 import Home from "@/components/Home";
+import CertificateProfile from "@/components/CertificateProfile";
 import store from "@/store/index.js"
 
 Vue.use(VueRouter)
@@ -59,6 +60,13 @@ const routes = [
     name: 'OrgHome',
     beforeEnter : guardMyroute,
     component: OrgHome,
+    alias: '/'
+  },
+  {
+    path: '/certificate',
+    name: 'CertificateProfile',
+    beforeEnter : guardMyroute,
+    component: CertificateProfile,
     alias: '/'
   },
   {

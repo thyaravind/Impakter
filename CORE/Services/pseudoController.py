@@ -28,12 +28,12 @@ news.google(start_date='01/01/2017', end_date='01/31/2017', company=company, key
 # %% Data for top 100 brands - 2017 to 2020 - Sustainability
 
 
-companies_df = pd.read_csv("/ProjectData/Top100BrandsData.csv")
+companies_df = pd.read_csv("/Users/aravind/OneDrive/OneDocuments/Algorithm/Impakter/ProjectData/Top100BrandsData.csv")
 
 news = News.News()
 
 try:
-    for company in companies_df.Brand[65:70]:
+    for company in companies_df.Brand[70:75]:
         news.fetch(start_date='01/01/2017', end_date='12/31/2020', company=company, keyword="Sustainability")
 finally:
     news.close_db_connection()
@@ -49,4 +49,4 @@ finally:
 #55-60: completed until ESPN... stopped at Citi
 #60-65:completed from Adobe to Ebay...
 #65-70: completed from Chevrolet to PwC
-
+#70-75:

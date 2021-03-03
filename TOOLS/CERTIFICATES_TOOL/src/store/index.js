@@ -120,6 +120,10 @@ export default new Vuex.Store({
             state.certificate.industries = payload
             state.certificate.computeIndustries()
         },
+        performComputations(state){
+            state.certificate.computeSdgs()
+            state.certificate.computeIndustries()
+        },
         addSubIndustries(state, payload) {
             state.certificate.industrySectors = payload
         },
@@ -276,7 +280,9 @@ export default new Vuex.Store({
         resetState(context) {
             context.commit("resetState")
         },
-
+        performComputations(context) {
+            context.commit("performComputations")
+        },
 
     }
 });
