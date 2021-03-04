@@ -156,11 +156,42 @@ exports.apiPOST = async function(req, res) {
     }
 
 }
+
+
 catch(err) {
     res.json({msg:"Failed to add the certificate",status:0});
     console.log("failed to add the certificate with the following error:")
     console.log(err)
 }
+
+};
+
+exports.apiDELETE = async function(req, res) {
+    try
+    {
+        var sql_resp = await pool.query('INSERT INTO certificates SET ?', req.body.basicDetails)
+        var certificateId = sql_resp.insertId
+
+        req.body.sdgs.forEach(sdg => pool.query('INSERT INTO certificate_sdg (certificateID, sdgID) values (?,?)',[certificateId,sdg]))
+        req.body.sdgTargets.forEach(sdgTarget => pool.query('INSERT INTO certificate_sdgTarget (certificateID, sdgTargetID) values (?,?)',[certificateId,sdgTarget]))
+        req.body.industries.forEach(industry => pool.query('INSERT INTO certificate_industry (certificateID, industryID) values (?,?)',[certificateId,industry]))
+        req.body.industrySectors.forEach(industrySector => pool.query('INSERT INTO certificate_industrySector (certificateID, industrySectorID) values (?,?)',[certificateId,industrySector]))
+
+        setTimeout(respond, 3000);
+
+        async function respond(){
+            res.json({msg:"Added Certificate successfully with ID:"+ sql_resp.insertId,status:1,insertId:sql_resp.insertId});
+            console.log("added certificate successfully")
+        }
+
+    }
+
+
+    catch(err) {
+        res.json({msg:"Failed to add the certificate",status:0});
+        console.log("failed to add the certificate with the following error:")
+        console.log(err)
+    }
 
 };
 

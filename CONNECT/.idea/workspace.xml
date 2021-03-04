@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="520d6d76-5b5c-4cc2-977b-e5a7be8ed7f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../CENTRAL/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../CENTRAL/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CENTRAL/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../CENTRAL/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/organization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/certificate.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/certificate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/certificates.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/certificates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CORE/Services/pseudoController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CORE/Services/pseudoController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TOOLS/CERTIFICATES_TOOL/src/components/CertificateProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../TOOLS/CERTIFICATES_TOOL/src/components/CertificateProfile.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +95,7 @@
       <workItem from="1614550116114" duration="177000" />
       <workItem from="1614550390066" duration="4583000" />
       <workItem from="1614644225087" duration="2028000" />
+      <workItem from="1614772733443" duration="712000" />
     </task>
     <servers />
   </component>

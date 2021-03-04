@@ -5,5 +5,6 @@ var certificate = require('../controllers/certificate');
 router.route('/certificates/:organizationID?')
     .get(certificate.apiGET)
     .post(certificate.apiPOST)
-    .put(certificate.apiPUT);
+    .put(certificate.apiPUT)
+    .delete(certificate.apiDELETE)
 module.exports = router;

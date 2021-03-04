@@ -49,4 +49,4 @@ finally:
 #55-60: completed until ESPN... stopped at Citi
 #60-65:completed from Adobe to Ebay...
 #65-70: completed from Chevrolet to PwC
-#70-75:
+#70-75: completed until Lancome

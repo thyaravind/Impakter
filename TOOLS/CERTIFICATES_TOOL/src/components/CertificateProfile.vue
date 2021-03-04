@@ -87,6 +87,8 @@
     </b-row>
     <br />
     <b-row class="buttons_row" v-if="!isSavePreview">
+      <b-button @click="edit" variant="outline-danger">Edit</b-button>
+      <b-button @click="deleteCert" variant="danger">Delete</b-button>
       <b-button @click="close" variant="primary"> Close</b-button>
     </b-row>
   </b-modal>
@@ -112,6 +114,12 @@ export default {
     add() {},
     submit() {
       this.$emit("submit");
+    },
+        edit() {
+      this.$emit("edit");
+    },
+        delete() {
+      this.$emit("delete");
     },
     close() {
       this.$refs["preview-modal"].hide();

@@ -161,7 +161,7 @@ export default {
     },
   },
   created() {
-    document.title = "Impakter - Certificates";
+    document.title = "Impakter - Central";
   },
   components: { SidebarMenu },
 };
