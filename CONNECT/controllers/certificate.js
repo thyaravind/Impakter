@@ -9,8 +9,8 @@ exports.apiGET = async function(req, res) {
         try
         {
             var certificates = []
-            if(req.params.organizationID) {
-                var sql_resp = await pool.query('select * from certificates where organizationID = ?', req.params.organizationID)
+            if(req.params.ID) {
+                var sql_resp = await pool.query('select * from certificates where organizationID = ?', req.params.ID)
             }
             else {
                 var sql_resp = await pool.query('select * from certificates')
@@ -40,7 +40,7 @@ exports.apiGET = async function(req, res) {
                 sql_resp5 = await pool.query('select industrySectorID from certificate_industrySector where certificateID = ?', certificateID)
                 for(m = 0; m < sql_resp5.length; m++) {
                     industrySectors.push(sql_resp5[m].industrySectorID)
-                    console.log('industrySector Response:', sql_resp5)
+                    //console.log('industrySector Response:', sql_resp5)
                 }
 
 
@@ -48,6 +48,7 @@ exports.apiGET = async function(req, res) {
                 certificates.push(certificateResponse)
             }
             res.json(certificates);
+            console.log("fetched certificates sucessfully")
         }
         catch(err) {
             res.json({msg:"Failed to fetch the certificates",status:0});
@@ -169,27 +170,29 @@ catch(err) {
 exports.apiDELETE = async function(req, res) {
     try
     {
-        var sql_resp = await pool.query('INSERT INTO certificates SET ?', req.body.basicDetails)
-        var certificateId = sql_resp.insertId
+        if(req.params.ID) {
+            var certificateId = req.params.ID;
+        }
+        var sql_resp = await pool.query('DELETE FROM certificates where certificateID = ?', certificateId)
+        await pool.query('DELETE FROM certificate_sdg where certificateID = ?',certificateId)
+        await pool.query('DELETE FROM certificate_sdgTarget where certificateID = ?',certificateId)
 
-        req.body.sdgs.forEach(sdg => pool.query('INSERT INTO certificate_sdg (certificateID, sdgID) values (?,?)',[certificateId,sdg]))
-        req.body.sdgTargets.forEach(sdgTarget => pool.query('INSERT INTO certificate_sdgTarget (certificateID, sdgTargetID) values (?,?)',[certificateId,sdgTarget]))
-        req.body.industries.forEach(industry => pool.query('INSERT INTO certificate_industry (certificateID, industryID) values (?,?)',[certificateId,industry]))
-        req.body.industrySectors.forEach(industrySector => pool.query('INSERT INTO certificate_industrySector (certificateID, industrySectorID) values (?,?)',[certificateId,industrySector]))
+        await pool.query('DELETE FROM certificate_industry where certificateID = ?',certificateId)
+        await pool.query('DELETE FROM certificate_industrySector where certificateID = ?',certificateId)
 
-        setTimeout(respond, 3000);
+        setTimeout(respond, 2000);
 
         async function respond(){
-            res.json({msg:"Added Certificate successfully with ID:"+ sql_resp.insertId,status:1,insertId:sql_resp.insertId});
-            console.log("added certificate successfully")
+            res.json({msg:"Deleted Certificate successfully",status:1});
+            console.log("deleted certificate successfully")
         }
 
     }
 
 
     catch(err) {
-        res.json({msg:"Failed to add the certificate",status:0});
-        console.log("failed to add the certificate with the following error:")
+        res.json({msg:"Failed to delete the certificate",status:0});
+        console.log("failed to delete the certificate with the following error:")
         console.log(err)
     }
 

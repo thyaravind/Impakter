@@ -6,6 +6,7 @@ import axios from 'axios'
 const certificateService = ServicesFactory.get("certificates");
 const organizationService = ServicesFactory.get("organizations");
 import certificateModel from "../models/certificate";
+import organizationModel from "../models/organization";
 import {awsConfig} from "@/models/constants"
 
 Vue.use(Vuex);
@@ -36,6 +37,7 @@ export default new Vuex.Store({
             activeStatus: true
         },
         certificate: new certificateModel(),
+        organization: new organizationModel(),
         organizationName: null,
         certificates: null,
         organizationID: null,
@@ -51,6 +53,13 @@ export default new Vuex.Store({
             state.certificate.setOrganizationID(state.organizationID)
             console.log(state.organizationID)
             return state.certificate
+        },
+        organizationForm: state => {
+            if(state.organization.name == ""){
+                var org = localStorage.getItem("Organization")
+                state.organization.map(org)
+            }
+            return state.organization
         },
         payloadArchived: state => {
             return {
@@ -174,12 +183,27 @@ export default new Vuex.Store({
                 state.orgLoginFailed = false
                 window.localStorage.setItem('OrganizationID', organizationResponse.organizationID)
                 window.localStorage.setItem('OrganizationName', organizationResponse.name)
+                window.localStorage.setItem('Organization', organizationResponse)
+                state.organization.map(organizationResponse)
                 state.organizationID = localStorage.getItem("OrganizationID")
                 state.organizationName = localStorage.getItem("OrganizationName")
                 }
 
             }
 
+        },
+
+
+        async updateOrganization(state,payload){
+            await organizationService.updateOrganization(payload).then((response) => {
+            this.responseMessage = response.data.msg;
+            this.responseStatus = response.data.status;
+          });
+          window.localStorage.removeItem('Organization')
+          var organizationResponse
+          await organizationService.fetchOrganization(state.organizationID).then(response => (organizationResponse = response.data.organizationDetails[0]));
+                window.localStorage.setItem('Organization', organizationResponse)
+                state.organization.map(organizationResponse)
         },
 
         setOrganizationID(state, payload) {
@@ -216,6 +240,16 @@ export default new Vuex.Store({
 
         },
 
+        async deleteCertificate(state) {
+            await certificateService.deleteCertificate(state.certificate.certificateID).then((response) => {
+                this.responseMessage = response.data.msg
+                this.responseStatus = response.data.status
+            });
+            console.log(this.responseMessage)
+            state.certificate = new certificateModel()
+
+        },
+
         fetchSignatureAndPolicy(state,payload){
             state.uploadPolicy = awsConfig.policy
             state.uploadPolicy.content_type = payload.content_type
@@ -228,7 +262,10 @@ export default new Vuex.Store({
         resetState(state){
             state.organizationID = null;
             state.organizationName = null;
-        }
+        },
+        resetOrganization(state) {
+            state.organization = new organizationModel()
+        },
 
     },
     actions: {
@@ -282,6 +319,15 @@ export default new Vuex.Store({
         },
         performComputations(context) {
             context.commit("performComputations")
+        },
+        deleteCertificate(context) {
+            context.commit("deleteCertificate")
+        },
+        resetOrganization(context) {
+            context.commit("resetOrganization")
+        },
+        updateOrganization(context,payload) {
+            context.commit("updateOrganization",payload)
         },
 
     }

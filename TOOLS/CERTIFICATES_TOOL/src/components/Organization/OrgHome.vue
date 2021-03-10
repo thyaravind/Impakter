@@ -123,18 +123,20 @@
     <br />
     <b-container>
       <b-row>
-        <b-col><h2 >Welcome, {{ organization.organizationName }}</h2> </b-col>
-        <b-col cols="3">      <b-button variant="outline-primary" @click="add">
-        Add New Certificate</b-button
-      > </b-col>
+        <b-col
+          ><h2>Welcome, {{ organization.organizationName }}</h2>
+        </b-col>
+        <b-col cols="3">
+          <b-button variant="outline-primary" @click="add">
+            Add New Certificate</b-button
+          >
+        </b-col>
       </b-row>
       <b-row>
-        <p> </p>
+        <p></p>
       </b-row>
 
-<b-row>
-
-</b-row>
+      <b-row> </b-row>
       <b-row>
         <b-table
           :fields="fields"
@@ -235,9 +237,7 @@
             </div>
           </template>
           <template #cell(actions)="data">
-            <b-button @click="copy(data.item)" variant="success"
-              >Copy</b-button
-            >
+            <b-button @click="copy(data.item)" variant="success">Copy</b-button>
             <b-button @click="edit(data.item)" variant="outline-danger"
               >Edit</b-button
             >
@@ -255,11 +255,12 @@
           pills
         ></b-pagination>
       </div>
-
     </b-container>
     <certificate-profile
       ref="preview_modal"
       :isSavePreview="false"
+      @edit="editFromProfile"
+      @delete="delet"
     ></certificate-profile>
   </div>
 </template>
@@ -331,13 +332,24 @@ export default {
       this.$store.responseMessage = "_blank_";
     },
     view(item) {
-      console.log(item)
+      console.log(item);
       this.$store.dispatch("changeCertificate", item);
       setTimeout(() => {}, 500);
     },
     view2(record, index) {
       this.$store.dispatch("changeCertificate", this.certificates[index]);
       this.$router.push({ name: "CertificateProfile" });
+    },
+    delet() {
+      this.$store.dispatch("deleteCertificate");
+        setTimeout(() => {
+        this.$alert(this.$store.responseMessage);
+      }, 3000);
+      this.$store.responseMessage = "_blank_";
+    },
+    editFromProfile() {
+      this.$store.dispatch("changeMode", "edit");
+      this.$router.push({ name: "formPage1" });
     },
   },
   computed: {
@@ -366,7 +378,7 @@ table {
   cursor: pointer;
 }
 
-#main_heading{
+#main_heading {
   justify-content: flex-start;
 }
 </style>

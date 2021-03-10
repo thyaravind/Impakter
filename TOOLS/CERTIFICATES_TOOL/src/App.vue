@@ -19,6 +19,7 @@
                 <b-nav-item
                   ><router-link to="/organization/home">MY CERTIFICATES</router-link></b-nav-item>
                 <b-nav-item href="#"><router-link to="/certificates/add">ADD CERTIFICATE</router-link></b-nav-item>
+                <b-nav-item href="#"><router-link to="/profile/edit">MY PROFILE</router-link></b-nav-item>
                 <b-nav-item> | </b-nav-item>
                 <b-nav-item>
                   <span v-if="loggedIn" @click="logout"
@@ -135,6 +136,7 @@ button {
 
 .buttons_row {
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .buttons_row * {

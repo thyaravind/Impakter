@@ -24,7 +24,6 @@
               ></b-form-input>
             </b-form-group>
             <br />
-
             <b-form-group
               label-cols="4"
               label-cols-lg="3"
@@ -41,11 +40,17 @@
                 max-rows="6"
               ></b-form-textarea>
             </b-form-group>
-            <b-tooltip target="desc__BV_label_" triggers="hover" variant="secondary" placement="lefttop">
+            <b-tooltip
+              target="desc__BV_label_"
+              triggers="hover"
+              variant="secondary"
+              placement="lefttop"
+            >
               Please describe your certificate in around 500 words approx.
             </b-tooltip>
 
             <br />
+            
             <!--
             <b-form-group
               label-cols="4"
@@ -77,8 +82,14 @@
                 :options="scale"
               ></b-form-select>
             </b-form-group>
-            <b-tooltip target="prio__BV_label_" triggers="hover" variant="secondary" placement="lefttop">
-              How important is it to attain this certificate for a given company?
+            <b-tooltip
+              target="prio__BV_label_"
+              triggers="hover"
+              variant="secondary"
+              placement="lefttop"
+            >
+              How important is it to attain this certificate for a given
+              company?
             </b-tooltip>
             <br />
             <b-form-group
@@ -112,8 +123,8 @@
             </b-form-group>
             <br />
             <b-row class="buttons_row">
-            <b-button type="reset" variant="danger">Reset</b-button>
-            <b-button type="submit" variant="primary">Next</b-button>
+              <b-button type="reset" variant="danger">Reset</b-button>
+              <b-button type="submit" variant="primary">Next</b-button>
             </b-row>
           </b-form>
         </b-col>
@@ -131,6 +142,7 @@
 import CertificateFormMixin from "@/mixins/CertificateFormMixin";
 import FormGuardMixin from "@/mixins/FormGuardMixin";
 import ProgressBar from "../Shared/ProgressBar.vue";
+
 
 export default {
   data() {
@@ -219,11 +231,13 @@ export default {
   },
   mixins: [CertificateFormMixin, FormGuardMixin],
   components: { ProgressBar },
+  mounted() {
+
+  }
 };
 </script>
 
 <style scoped>
-
 #rating {
   display: flex;
   flex-direction: column;

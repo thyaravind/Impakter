@@ -11,5 +11,8 @@ export default {
     },
     createOrganization(payload){
         return Api().post(`${resource}/`,payload);
-    }
+    },
+    updateOrganization(payload){
+        return Api().put(`${resource}/`,payload);
+    },
 }

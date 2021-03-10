@@ -8,9 +8,15 @@
     <div id="scroll">
       <!--<p>Current SDG Index: {{ currentSdgIndex }}</p>-->
       <b-row>
-        <b-form-group
-          v-slot="{ ariaDescribedby }"
-        >
+        <b-form-group v-slot="{ ariaDescribedby }">
+          <b-form-checkbox
+              class="flex_and_start"
+              v-model="allSelected"
+              :indeterminate="indeterminate"
+              @change="toggleAll"
+            >
+              <b>{{ allSelected ? "Un-select All" : "Select All" }}</b>
+            </b-form-checkbox>
           <b-form-checkbox-group
             id="checkbox-group-1"
             v-model="selected"
@@ -18,15 +24,15 @@
             name="flavour-1"
             stacked
           >
+            
             <b-form-checkbox
-    v-for="target in computedTargets"
-    :value="target.value"
-    class="mb-3"
-    :key="target.text"
-  ><b>{{ "Target " + target.value+ ": " }} </b>
-    {{target.text }}
-  </b-form-checkbox>
-          
+              v-for="target in computedTargets"
+              :value="target.value"
+              class="mb-3"
+              :key="target.text"
+              ><b>{{ "Target " + target.value + ": " }} </b>
+              {{ target.text }}
+            </b-form-checkbox>
           </b-form-checkbox-group>
         </b-form-group>
       </b-row>
@@ -34,6 +40,11 @@
       <b-row class="buttons_row">
         <b-button @click="back">Previous</b-button>
         <b-button variant="primary" @click="next">Next</b-button>
+      </b-row>
+      <b-row class="buttons_row">
+        <b-button @click="skip" variant="outline-primary"
+          >Skip Targets</b-button
+        >
       </b-row>
     </div>
   </div>
@@ -47,11 +58,19 @@ export default {
   name: "PartialSdgTargets",
   data() {
     return {
+      allSelected: false,
       selected: [],
       targets: [],
     };
   },
   methods: {
+    toggleAll(checked) {
+      this.selected = checked
+        ? this.computedTargets.map((x) => {
+            return x.value;
+          })
+        : [];
+    },
     next() {
       this.$store.dispatch("addSdgTargets", this.selected);
       this.targets = [];
@@ -59,8 +78,11 @@ export default {
       window.scrollTo(0, 0);
     },
     back() {
-        this.$emit("back");
-    }
+      this.$emit("back");
+    },
+    skip() {
+      this.$router.push({ name: "formPage3-1" });
+    },
   },
   props: { currentSdgIndex: Number },
   computed: {
@@ -74,17 +96,17 @@ export default {
 
       //return this.sdgs[this.currentSdgIndex].targets
     },
-    currentSdg(){
-      var current = this.sdgs.filter(x => {
-        x.value == this.currentSdgIndex
-      })
-      return current.text
-    }
+    currentSdg() {
+      var current = this.sdgs.filter((x) => {
+        x.value == this.currentSdgIndex;
+      });
+      return current.text;
+    },
   },
   mounted() {
     this.selected = this.form.sdgTargets;
   },
-  mixins: [SdgMixin,CertificateFormMixin],
+  mixins: [SdgMixin, CertificateFormMixin],
 };
 </script>
 
@@ -101,8 +123,7 @@ export default {
   z-index: 80;
 }
 
-#scroll{
+#scroll {
   margin-top: 0px;
-
 }
 </style>

@@ -41,8 +41,23 @@ exports.apiPOST = function(req, res) {
             console.log(err)
         }
         else{
-            res.json({msg:"Added Certificate successfully",status:1});
+            res.json({msg:"Added Organization successfully",status:1});
             console.log("added a new org successfully")
+        }
+    });
+};
+
+
+exports.apiPUT = function(req, res) {
+    connection.query('UPDATE certificateOrganizations set name=?,website=? WHERE organizationID = ?', [req.body.name,req.body.website,req.body.organizationID], (err, sql_resp) => {
+        if(err){
+            res.json({msg:"Failed to update organization",status:0});
+            console.log("failed to update the organization with the following error:")
+            console.log(err)
+        }
+        else{
+            res.json({msg:"Updated Organization successfully",status:1});
+            console.log("updated org successfully")
         }
     });
 };

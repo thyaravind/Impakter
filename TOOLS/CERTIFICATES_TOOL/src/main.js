@@ -15,6 +15,7 @@ import 'vue-search-select/dist/VueSearchSelect.css'
 import './assets/formulate.css'
 import router from './router'
 
+
 Vue.use(VueSimpleAlert);
 Vue.use(ScrollView)
 Vue.use(BootstrapVue)

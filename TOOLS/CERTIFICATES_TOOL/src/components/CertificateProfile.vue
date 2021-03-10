@@ -61,7 +61,7 @@
     <div v-if="isSavePreview">
       <b-card title="Basic Information">
         <p><b>Certificate Name:</b> {{ form.name }}</p>
-        <p><b>Certificate Description:</b> {{ form.description }}</p>
+        <p><b>Certificate Description:</b> {{ formattedText }}</p>
         <p><b>Priority:</b> {{ form.priority }}</p>
         <p><b>Active status:</b> {{ form.activeStatus }}</p>
         <p><b>Goal of the certificate:</b> {{ form.goal }}</p>
@@ -118,7 +118,7 @@ export default {
         edit() {
       this.$emit("edit");
     },
-        delete() {
+        deleteCert() {
       this.$emit("delete");
     },
     close() {
@@ -127,5 +127,16 @@ export default {
   },
   mixins: [CertificateFormMixin],
   mounted() {},
+  computed:{
+    formattedText(){
+      var input = this.form.description
+      input = input.replace(/[\n]{2}/, '</p><p>');
+      input = input.replace('\n\n', '<br/>');
+      input = input.replace(/\*\*(.+)\*\*/, '<strong>$1</strong>');
+      input = input.replace(/\*(.+)\*/, '<em>$1</em>');
+      return input;
+    }
+
+  }
 };
 </script>

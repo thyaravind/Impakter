@@ -25,10 +25,6 @@
           :current-sdg-index="currentSdg"
       /></b-col>
     </b-row>
-    <b-row class="buttons_row">
-      
-      <b-button @click="skip" variant="outline-primary">Skip Targets</b-button>
-    </b-row>
 
     <!--<b-card class="mt-3" header="Form result so far">
       <pre class="m-0">{{ form }}</pre>
@@ -88,9 +84,6 @@ export default {
     reselect(){
         this.$store.dispatch("resetComputed");
         this.$router.go(-1);
-    },
-    skip(){
-      this.$router.push({ name: "formPage3-1" });
     }
   },
   computed: {},

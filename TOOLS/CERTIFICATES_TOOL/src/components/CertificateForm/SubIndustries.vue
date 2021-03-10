@@ -29,14 +29,13 @@
             ><PartialSubIndustries
               @next="next"
               @back="back"
+              @submit="submit"
               @isLast="toggleIsLast"
               :current-industry-index="currentIndustry" /></template
         ></scroll-view>
       </b-col>
     </b-row>
-    <b-row class="buttons_row">
-      <b-button @click="$refs.preview_modal.showModal()" v-if="!isLast" variant="outline-primary">Skip & Review</b-button>
-    </b-row>
+
 
     <!--<b-card class="mt-3" header="Form result so far">
       <pre class="m-0">{{ form }}</pre>

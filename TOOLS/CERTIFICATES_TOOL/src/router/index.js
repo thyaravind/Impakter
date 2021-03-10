@@ -13,6 +13,7 @@ import InProgress from "@/components/Shared/InProgress";
 import Home from "@/components/Home";
 import CertificateProfile from "@/components/CertificateProfile";
 import store from "@/store/index.js"
+import OrgForm from "@/components/OrgForm";
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/profile/edit',
+    name: 'EditProfile',
+    component: OrgForm
   },
   {
     path: '/prompt',

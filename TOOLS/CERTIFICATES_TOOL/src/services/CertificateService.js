@@ -12,5 +12,9 @@ export default {
     updateCertificate(payload){
         return Api().put(`${resource}/`,payload);
     },
+    deleteCertificate(ID){
+        return Api().delete(`${resource}/${ID}`);
+    },
+
 
 }
