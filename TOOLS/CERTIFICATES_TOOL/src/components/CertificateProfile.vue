@@ -45,6 +45,7 @@
             </p>
           </b-card-text>
         </b-tab>
+
         <b-tab title="Industries">
           <b-card-text>
             <p
@@ -52,6 +53,13 @@
               :key="index"
             >
               {{ industry.text }}
+            </p>
+          </b-card-text>
+        </b-tab>
+                        <b-tab title="Documents">
+          <b-card-text>
+            <p v-for="(document, index) in form.documents" :key="index">
+              {{ document.documentName }} : <a target="_blank" :href="document.documentUrl">{{document.documentUrl}}</a>
             </p>
           </b-card-text>
         </b-tab>
@@ -80,6 +88,7 @@
           {{ industry.text }}
         </p>
       </b-card>
+      
     </div>
  <br />
     <b-row class="buttons_row" v-if="isSavePreview">

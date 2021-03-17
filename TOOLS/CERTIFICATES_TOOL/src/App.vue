@@ -137,6 +137,7 @@ button {
 .buttons_row {
   justify-content: center;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .buttons_row * {

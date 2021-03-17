@@ -22,6 +22,7 @@ exports.apiGET = async function(req, res) {
                 var sdgTargets = [];
                 var industries = [];
                 var industrySectors = [];
+                var documents = [];
                 sql_resp2 = await pool.query('select sdgID from certificate_sdg where certificateID = ?', certificateID)
                 for(j = 0; j < sql_resp2.length; j++) {
                     sdgs.push(sql_resp2[j].sdgID)
@@ -43,8 +44,13 @@ exports.apiGET = async function(req, res) {
                     //console.log('industrySector Response:', sql_resp5)
                 }
 
+                sql_resp6 = await pool.query('select * from certificate_document where certificateID = ?', certificateID)
+                for(n = 0; n < sql_resp6.length; n++) {
+                    documents.push(sql_resp6[n])
+                }
 
-                var certificateResponse = new CertificateResponse(sql_resp[i], sdgs, sdgTargets,industries,industrySectors)
+
+                var certificateResponse = new CertificateResponse(sql_resp[i], sdgs, sdgTargets,industries,industrySectors,documents)
                 certificates.push(certificateResponse)
             }
             res.json(certificates);
@@ -148,6 +154,7 @@ exports.apiPOST = async function(req, res) {
         req.body.sdgTargets.forEach(sdgTarget => pool.query('INSERT INTO certificate_sdgTarget (certificateID, sdgTargetID) values (?,?)',[certificateId,sdgTarget]))
         req.body.industries.forEach(industry => pool.query('INSERT INTO certificate_industry (certificateID, industryID) values (?,?)',[certificateId,industry]))
         req.body.industrySectors.forEach(industrySector => pool.query('INSERT INTO certificate_industrySector (certificateID, industrySectorID) values (?,?)',[certificateId,industrySector]))
+        req.body.documents.forEach(document => pool.query('INSERT INTO certificate_document (certificateID, documentName,languageName, documentUrl) values (?,?,?,?)',[certificateId,document.documentName,document.languageName,document.documentUrl]))
 
         setTimeout(respond, 3000);
 

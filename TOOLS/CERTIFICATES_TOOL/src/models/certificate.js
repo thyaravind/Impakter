@@ -1,6 +1,7 @@
 import compute from "./compute"
 import {sdgs,industries} from "./constants"
 
+
 export default class certificateModel {
     mode = ""
     certificateID = null
@@ -27,6 +28,7 @@ export default class certificateModel {
     computedPriority = null
     computedSdgs = []
     computedIndustries = []
+    documents = null
 
 
     setOrganizationID(id) {
@@ -56,6 +58,7 @@ export default class certificateModel {
             sdgTargets: this.sdgTargets,
             industries: this.industries,
             industrySectors: this.industrySectors,
+            documents: this.documents,
             additionalDetails: {
                 applicationLength: this.applicationLength,
                 difficulty: this.difficulty,
@@ -95,6 +98,8 @@ export default class certificateModel {
         this.industries = certificateResponseObj.industries;
         this.industrySectors = certificateResponseObj.industrySectors;
         this.computedPriority = compute.convertFromScale(certificateResponseObj.details.priority)
+
+        this.documents = certificateResponseObj.documents;
 
     }
 
